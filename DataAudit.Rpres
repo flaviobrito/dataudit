@@ -1,0 +1,59 @@
+<style>
+.footer {
+    color: black;
+    background: #E8E8E8;
+    position: fixed;
+    top: 90%;
+    text-align:center;
+    width:100%;
+}
+.header {
+    color: black;
+    background: #1C096F;
+    position: fixed;
+    top: 1%;
+    text-align:right;
+    width:100%;
+}
+</style>
+
+<div class="header" style="margin-top:5px;font-size:80%;">
+</div>
+DataAudit
+========================================================
+author: Flávio Brito
+date: Out/2016
+autosize: true
+
+First Slide
+========================================================
+
+For more details on authoring R presentations please visit <https://support.rstudio.com/hc/en-us/articles/200486468>.
+
+- Bullet 1
+- Bullet 2
+- Bullet 3
+
+<div class="footer" style="margin-top:-10px;font-size:80%;">
+Curso: Auditoria de Dados - Flávio Brito<br>
+</div>
+
+Slide With Code
+========================================================
+
+```{r}
+summary(cars)
+```
+<div class="footer" style="margin-top:-10px;font-size:80%;">
+Curso: Auditoria de Dados - Flávio Brito<br>
+</div>
+
+Slide With Plot
+========================================================
+
+```{r, echo=FALSE}
+plot(cars)
+```
+<div class="footer" style="margin-top:-10px;font-size:80%;">
+Curso: Auditoria de Dados - Flávio Brito<br>
+</div>
