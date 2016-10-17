@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <style>
 .footer {
     color: black;
@@ -51,3 +52,58 @@ summary(cars)
 plot(pressure)
 ```
 
+=======
+<style>
+.footer {
+    color: black;
+    background: #E8E8E8;
+    position: fixed;
+    top: 90%;
+    text-align:center;
+    width:100%;
+}
+</style>
+
+---
+title: "Auditoria de Dados"
+author: "Flávio Brito"
+date: "14 de outubro de 2016"
+output: ioslides_presentation
+--- 
+---
+output:
+  ioslides_presentation:
+    logo: gov_seplag.png
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+<!-- |   	|![Logo](gov_seplag.png#right)   	|  -->
+
+
+## Auditoria de Dados
+Refere-se ao processo de auditoria que visa avaliar a qualidade dos dados bem como sua utilidade para um propósito específico. Auditoria de dados, diferentemente de auditoria financeira envolve olhar para as principais métricas para chegar a conclusões a respeito das propriedades de um determinado conjunto de dados. 
+[_www.techopedia.com_](www.techopedia.com "www.techopedia.com")</H5>.
+
+## Slide with Bullets
+
+- Bullet 1
+- Bullet 2
+- Bullet 3
+
+## Slide with R Output
+
+```{r cars, echo = TRUE}
+summary(cars)
+```
+
+## Slide with Plot
+
+```{r pressure}
+plot(pressure)
+```
+
+>>>>>>> origin/master
