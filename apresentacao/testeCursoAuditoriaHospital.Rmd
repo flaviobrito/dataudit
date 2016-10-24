@@ -12,35 +12,38 @@ output:
     fig_height: 3
     self_contained: false
 ---
-
-```{r setup, include=FALSE, error=TRUE}
+```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-#Arquivos
 
-
-```{r error=TRUE}
-#Retirando um data frame da memoria
+## R Markdown
+```{r}
+#Retirando um data frame da mem?ria
 hospay <- NULL
 
 #Lendo o arquivo no padr?o csv com separador ; e criando o data frame nf
-#hospay <- read.csv(file="./dados/Hospital.csv", sep=";",stringsAsFactors = FALSE, na.strings = c(""," "))
-hospay <- read.csv(file="./dados/Hospital.csv", sep=";",stringsAsFactors = FALSE, na.strings = c(""," "))  
+hospay <- read.csv(file="./dados/Hospital.csv",stringsAsFactors = FALSE, sep=";" )
+  
+```
 
+```{r}
 #Estrutura do Arquivo
 str(hospay)
 
 #Resumo dos Dados
 summary(hospay$Measure.start.date)
 summary(hospay$Measure.End.Date)
+```
 
-#Lista as categorias em um 
-unique(hospay$Measure.start.date)
+```{r}
+#Lista as categorias em um
+
+levels(hospay$Measure.start.date)
 levels(hospay$Measure.End.Date)
 
-#Checando
-hospay$Measure.start.date <- trimws(hospay$Measure.start.date, which = "both")
-hospay$Measure.End.Date <- trimws(hospay$Measure.End.Date, which = "both")
+# #Checando
+# hospay$Measure.start.date <- gsub("[[:blank:]]", "", hospay$Measure.start.date)
+# hospay$Measure.End.Date <- gsub("[[:blank:]]", "", hospay$Measure.End.Date)
 
 #Datas com Missing
 any(is.na(as.character(hospay$Measure.start.date)))
@@ -61,14 +64,14 @@ str(hospay$Measure.start.date)
 str(hospay$Measure.End.Date)
 
 # Tratamento de valores em Strings
-# Remover sinal de dollar e v?rgula
+# Remover sinal de dollar e vírgula
 
 hospay$Payment <- as.numeric(gsub("[$,]", "", hospay$Payment))
 hospay$Lower.estimate <- as.numeric(gsub("[$,]", "", hospay$Lower.estimate))
 hospay$Higher.estimate <-as.numeric(gsub("[$,]", "", hospay$Lower.estimate))
 
 #Limpa os brancos 
-hospay$Hospital.name<- gsub("[ ]", "", hospay$Hospital.name)
+hospay$Hospital.name < - trimws(hospay$Hospital.name)
 
 #Qual o total de hospitais prentes na lista
 length(hospay$Hospital.name)
@@ -93,23 +96,23 @@ pv1.out <- cbind(pv1.freq, pv1.prob)
 #Mudando o nome das colunas
 colnames(pv1.out) <-c("Freq","Perc(%)") 
 
-#Frequencia por faixa - dados num?ricos
-faixa1 <-cut(hospay$Payment, breaks = 10,dig.lab = 10,include.lowest = TRUE)
+#Frequencia por faixa - dados numéricos
+faixa1 <-cut(hospay$Payment, breaks = -100:30000,include.lowest = TRUE)
 stack(table(faixa1)) #transpoe
 
 
-faixa1 <-cut(hospay$Payment, seq(from = 1000, to = 40000, by = 5000),dig.lab = 10,include.lowest = TRUE,right = TRUE)
+faixa1 <-cut(hospay$Payment, seq(from = 1000, to = 40000, by = 5000),include.lowest = TRUE)
 stack(table(faixa1)) #transpoe
 
-faixa1 <-cut(hospay$Payment, seq(1000, 40000, 5000),dig.lab = 10,right = FALSE)
+faixa1 <-cut(hospay$Payment, seq(1000, 40000, 5000),right = FALSE)
 stack(table(faixa1)) #transpoe
 
 
 #include.lowest = TRUE inclui o menor
-faixa2 <-cut(hospay$Payment, breaks = 10, dig.lab = 10,labels=c("A","B", "C", "D", "E", "F", "G", "H", "I", "J")) # for?a os labels
+faixa2 <-cut(hospay$Payment, breaks = 10, dig.lab = 2,labels=c("A","B", "C", "D", "E", "F", "G", "H", "I", "J")) # força os labels
 summary(faixa2)
 stack(summary(faixa2))
-faixa2 <-cut(hospay$Payment, breaks = 10, dig.lab = 10,labels=c(1:10)) # for?a os labels
+faixa2 <-cut(hospay$Payment, breaks = 10, dig.lab = 2,labels=c(1:10)) # força os labels
 summary(faixa2)
 stack(summary(faixa2))
 
@@ -118,17 +121,11 @@ stack(summary(faixa2))
 faixa <-cut(hospay$Payment, breaks = c(100,10000,20000, 30000), labels=c("medio", "maior", "avaliar"))
 stack(table(faixa)) #transpoe
 
-#Steam and Leaf - dados num?ricos
-stem(hospay$Payment)
-plot(density(na.omit(hospay$Payment)))
-#Boxplot
-bl <-boxplot(na.omit(hospay$Payment))
-which(hospay$Payment %in% bl$out)
-hospay$Payment[95]
-bl$out
-hospay$Payment[which(hospay$Payment %in% bl$out)]
+#Steam and Leaf - dados numéricos
+stem(hospay$Payment, scale =.5)
 
-#Agrega??o
+#Agregação
+by(data=hospay$Payment, IND=hospay$State, FUN=mean)
 with(hospay, by(hospay$Payment, list(hospay$Payment.category,hospay$State), mean))
 with(hospay, table(hospay$Payment.category,hospay$State))
 
@@ -138,7 +135,7 @@ aggregate(hospay$Payment ~ hospay$State, FUN=mean, hospay)
 
 # Removendo hospitais que apresentam MISSING
 
-hospay<-hospay[hospay$Payment.category !="Not Available" & hospay$Payment.category !="Number of Cases Too Small",]
+hospay<-hospay[hosp$Payment.category !="Not Available" & hosp$Payment.category !="Number of Cases Too Small",]
 
 summary(hospay)
 
@@ -148,7 +145,7 @@ hospay_pneumo <- NULL
 hospay_pneumo <- subset(hospay,  hospay$State == "CA" & grepl("pneumonia",hospay$Payment.measure.name) )
 
 # Contagem de casos por Hospital
-library(lubridate)
+
 table(hospay_pneumo$City, hospay_pneumo$Value.of.care.category)
 
 with(hospay_pneumo,
@@ -157,6 +154,12 @@ with(hospay_pneumo,
            months(hospay_pneumo$Measure.start.date),
            City,
            useNA = "ifany"))
+
+#useNA = "ifany" para contar NA
+
+
+My.Data[grep("^G45", My.Data$x), ]
+
 
 
 head(hospay$Payment)
@@ -173,8 +176,5 @@ hosp_est <- sqldf("select State, avg(Estimate) as Estimate
                   from hosp_melt 
                   where paymentmeasurename = 'Payment for heart attack patients' 
                   group by State")
-
-
-head(hosp_est)
 
 ```
