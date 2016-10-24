@@ -1,0 +1,272 @@
+
+---
+title: "Auditoria de Dados"
+subtitle: "Introdução"
+author: Flávio Brito
+date: 2016-10-26
+output:
+  ioslides_presentation:
+    widescreen: true
+    mode: selfcontained
+    fontsize: 8pt
+---
+<style>
+h2 { 
+ color: #3399ff;		
+}
+h3 { 
+ color: #3399ff;		
+}
+</style>
+
+# Agenda
+
+---
+
+### MÓDULO 1 
+* Introdução  
+    + Proposta do Curso e objetivos  
+    + Material do Curso e dinâmica
+    + Recursos
+
+### MÓDULO 2 
+* Fundamentos sobre Auditoria de Dados 
+    + Conceitos gerais e definições 
+    + Histórico e utilizações 
+    + Aplicações coorporativas 
+* O mercado 
+    + Preparação profissional  
+* Recursos 
+
+---
+
+# PRÁTICA  
+
+---
+
+### MÓDULO 3 
+* Arquivos 
+    + Metadados e Armazenagem 
+    + Integração com Excel, Python e R 
+    + Operações e Status 
+    + Listagem em Diretório  
+    + Permissionamento  
+    + Mudança de Diretório 
+    + Cópia  
+    + Remoção  
+    + Merge  
+    + Append  
+    + Split  
+    + Compactação via script 
+
+---
+
+### MÓDULO 4 
+* Arquivos
+    + Carga / Importação 
+    + Estruturação de Rotinas  
+* Boas práticas 
+* Dados 
+    + Tipos de Dados 
+    + Metadados e rastreabilidade 
+    + Limpeza de Dados 
+    + Filtro de Dados 
+    + Operações com Variáveis 
+    + Coerções 
+    + Pitfalls 
+    + Outliers 
+    + Padrões de Informação 
+
+---
+
+
+# MÓDULO 1 
+
+---
+
+### Introdução  
+    + Proposta do Curso e objetivos  
+    + Material do Curso e dinâmica
+    + Recursos
+
+---
+
+# MÓDULO 2
+
+---
+
+### Fundamentos sobre Auditoria de Dados 
+### Conceitos gerais e definições
+
+- Auditoria de dados é definida como o processo de inspeção, limpeza, transformação, e modelagem de dados com o objetivo de destacar informações úteis, sugerindo conclusões, e apoiar a tomada de decisões.  <b>(Diversas fontes)</b>
+
+- Auditoria de dados é um processo analítico pelo qual idéias são extraídas de dados  eletrônicos internos e externos a partir de fontes operacionais, financeiras entre outras. Esses insights podem ser históricos, em tempo real, ou preditivos e também pode ser focadas em risco (por exemplo, controle de eficácia, fraude, desperdício, abuso, política de não conformidade regulamentar) ou o desempenho, centrado (por exemplo, aumento de vendas, redução de custos, melhorou rentabilidade) e frequentemente fornecer o "Como?" e "Por quê?" respostas para a inicial "o quê?" perguntas freqüentemente encontradas na informação inicialmente extraídas dos dados. <b>(KPMG)</b>
+
+---
+
+
+### Histórico e utilizações 
+* Fim dos anos 1980 – generalized auditing software companies form
+    + ACL, 1987
+    + Caseware, 1988
+* Charles Carslaw, Applying Benford’s Law to Accounting, 1988
+* Continuous Process Auditing System, AT&T Bell Laboratories, 1989
+
+As aplicações de auditoria são um tipo comum de auditoria para empresas médias e grandes, especialmente quando algumas das aplicações são desenvolvidas in-house. Há alguns princípios básicos de aplicações de auditoria que os auditores de TI precisam saber e entender. 
+
+
+---
+
+### Framework
+plicações de auditoria é um tipo comum de auditoria para empresas médias e grandes, especialmente quando algumas das aplicações são desenvolvidas in-house. Há alguns princípios básicos de aplicações de auditoria que os auditores de TI precisa saber e entender. Este artigo de duas partes descreve uma estrutura para a realização de auditorias eficaz dos pedidos.
+
+O Framework 
+Uma estrutura orientada para o processo inclui etapas semelhantes para o seguinte:
+
+* Planejar a auditoria.
+* Determine objetivos da auditoria.
+* Sistemas de mapas e fluxos de dados.
+* Identificar controles-chave.
+* Entender a funcionalidade do aplicativo.
+* Realizar testes aplicáveis.
+* Evite / considerar complicações.
+* Incluir afirmações financeiras.
+* Considere ferramentas benéficas.
+* Completar o relatório.
+
+Alguns dos passos, tais como sistemas de mapeamento e fluxos de dados, são abrangentes. Enquanto mapeamento deve ocorrer perto do início da auditoria, que tem um papel na maior parte dos outros passos. Outros, como afirmações financeiras, podem ou não podem ser aplicadas. 
+
+---
+
+### Framework
+
+<b>Plano de Auditoria</b>
+Planejamento da auditoria inclui a consideração de todos os fatores relevantes que emolduram o propósito da auditoria. Esta consideração é necessário planejar adequadamente a auditoria.
+
+</b>Consideração de Propósito</b> 
+Um dos principais impulsionadores de uma auditoria aplicação em todo o processo são as condições ou circunstâncias em que a auditoria surgiram. Ou seja, o que está impulsionando a necessidade de a auditoria? É um plano de auditoria regular? É uma auditoria ad hoc? A necessidade é geralmente associado diretamente com o principal objectivo da auditoria. Por exemplo, se a gerência quer ganhar a garantia de que uma nova aplicação está funcionando como projetado, esse facto irá conduzir os objetivos da auditoria e plano.
+
+<b>Consideração de Risco</b> 
+Um segundo fator-chave e motorista é a consideração de risco associado a uma auditoria em particular, dada a propósito da auditoria que foi determinado anteriormente. O auditor de TI, ou a equipe de auditoria, precisa identificar o risco associado com o aplicativo e seu associado de dados, fontes, infra-estrutura e sistemas. Para seguir o exemplo anterior, possíveis cenários de risco incluem a falta de funcionalidade (ou seja, na verdade não cumprir os requisitos de informação), erros e / ou erros, uma incapacidade de integrar adequadamente / Interface com outras aplicações ou sistemas, erros de dados, e outros risco semelhante.
+
+Naturalmente, uma vez que os cenários de risco sejam devidamente identificados, o auditor de TI precisa avaliar o impacto sobre os procedimentos objetivos da auditoria, plano de auditoria, escopo de auditoria e auditoria. Por exemplo, se a falta de funcionalidade é um risco, o auditor de TI deve analisar os requisitos de informação originais, testes de revisão, revisar um documento de aceitação do usuário (se existir), testar o aplicativo e executar outros procedimentos semelhantes.
+
+<b>Consideração do ambiente de controle</b> 
+Normalmente, o plano de auditoria deve levar em conta o ambiente de controle em torno da aplicação, no contexto do objectivo de auditoria. Se o objetivo principal da auditoria é auditar a funcionalidade adequada, os controles podem ser controles de desenvolvimento de aplicativos ou de ciclo de vida de desenvolvimento de sistemas de controles (SDLC). Em particular, os controles para ensaios de aplicação são importante
+
+---
+
+##Framework 
+
+<b>Consideração do ambiente de controle</b> 
+Normalmente, o plano de auditoria deve levar em conta o ambiente de controle em torno da aplicação, no contexto do objectivo de auditoria. Se o objetivo principal da auditoria é auditar a funcionalidade adequada, os controles podem ser controles de desenvolvimento de aplicativos ou de ciclo de vida de desenvolvimento de sistemas de controles (SDLC). Em particular, os controles para ensaios de aplicação são importantes.
+
+
+<b>Consideração de Pre / Postimplementation</b> 
+Às vezes, a auditoria aplicação envolve uma aplicação preimplementation, mas muito provavelmente, será uma situação postimplementation. A preaudit tende a envolver objetivos proprietárias, âmbito e procedimentos que são peculiares a esse pedido e propósito. Postaudits muitas vezes seguem um conjunto geral de objetivos (consulte a secção Determine objetivos da auditoria).
+
+<b>Consideração do Âmbito</b> 
+Uma consideração muito importante no planejamento é estabelecer os limites do âmbito de aplicação. Isso significa determinar as tecnologias e controles relevantes associados à auditoria das aplicações, tais como:
+
+---
+
+
+
+## Interfaces para outras aplicações
+sistemas de origem
+sistemas-alvo / destino
+Infra-estrutura ou os seus componentes
+Bases de dados
+área de preparo instalação / teste
+Consideração de Competências 
+Como em todas as auditorias, um dos líderes ou gerentes da equipe de auditoria terá de avaliar as competências do pessoal em relação às necessidades da auditoria. Por exemplo, se a interface envolve a Oracle, é possível que um perito no Oracle que serão necessários para auditar adequadamente a aplicação.
+
+Determine objetivos da auditoria
+Os objetivos são um pouco amarrado à consideração de pre / postimplementation. Como afirmado anteriormente, os objectivos tendem a ser própria para aplicações preimplementation. O mesmo pode ser verdade para certos fins. Para outros, o objetivo tende a ser um daqueles que são típicos de auditorias:
+
+Eficiência (relacionada com o custo de desenvolvimento, o desempenho operacional, etc.)
+Eficácia (relacionadas com a satisfação dos requisitos de informação / funcionalidade, o propósito autorização original, integração com outras TI desempenho, operacional, etc.)
+Conformidade (leis e regulamentos, contratual, etc.)
+Alertas (se os alertas estão envolvidos com a aplicação)
+implicações de relatórios finan
+
+ceiros
+Mapa Sistemas e fluxos de dados
+
+
+
+
+
+###  Aplicações coorporativas 
+
+---
+
+### MÓDULO 2 
+####  O mercado 
+
+---
+
+### MÓDULO 2 
+#### Preparação profissional  
+
+---
+
+### MÓDULO 2 
+#### Recursos 
+
+---
+
+
+
+
+## Removendo Data frames da Memória
+
+nf <- NULL
+
+## Carregando Arquivos {.smaller .build}
+### Definir:
+* o local sdo arquivo com o parâmetro files
+* O separdor para arquivos padrão csv
+* O parâmetros opcionais de StringsFactors entre outros
+
+
+```{r, echo = TRUE}
+nf <- read.csv(file="~/Documents/NotaFiscal.csv", sep=";",stringsAsFactors = FALSE, )
+
+```
+<div class="notes">
+This is my *note*.
+
+- It can contain markdown
+- like this list
+
+</div>
+-----
+
+## Slide with R Output
+
+```{r nf, echo = TRUE}
+summary(nf)
+
+```
+-----
+
+
+## Slide with R Output
+
+```{r, echo = TRUE}
+
+print(nf)
+```
+-----
+
+
+
+
+
+## Slide with Plot
+
+```{r pressure}
+plot(pressure)
+```
+

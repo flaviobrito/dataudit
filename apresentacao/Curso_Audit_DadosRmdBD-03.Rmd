@@ -1,0 +1,44 @@
+---
+title: "Curso de Auditoria de Dados - Encontro 03"
+author: "Flávio Brito"
+date: "23/10/2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Conexão com Banco de Dados
+### MYSQL
+
+```{r}
+
+library(RMySQL)
+driver.name <- "MySQL()"
+db.name <- "data_audit"
+host.name <- "127.0.0.1"
+port <-"3306"
+user.name <-"root"
+password <- "root"
+
+
+con <- dbConnect(MySQL(),
+                 user=user.name, password=password,
+                 dbname=db.name, host=host.name)
+on.exit(dbDisconnect(con))
+
+
+cargos <- dbGetQuery(conn = con, statement = "SELECT * FROM nf WHERE CNPJ='49.740.886/0001-07'LIMIT 10;")
+
+#Lista alll tables from connected database
+dbListTables(con)
+
+#Read ALL records from a specific table to dataframe
+nf <- dbReadTable(con,name = "nf")
+
+categoria  <- table(nf$CNPJ)
+View(categoria)
+dbDisconnect(con)
+
+```

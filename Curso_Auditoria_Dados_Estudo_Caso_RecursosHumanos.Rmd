@@ -1,0 +1,115 @@
+---
+title: "Curso Auditoria de Dados - Caso Estudo Recursos Humanos"
+author: "Flávio Brito"
+date: "23/10/2016"
+output:
+  html_document:
+    toc: true
+    number_sections: true
+    theme: cerulean
+    highlight: tango
+    fig_width: 10
+    fig_height: 3
+    self_contained: false
+---
+
+```{r setup, include=FALSE, error=TRUE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+#Geração de Base Simulada
+
+##Exemplo
+```{r}
+ID    <- c(1,2,3,4,5)
+IDADE <- c(40,45,25,50,60)
+CARGO <- c("TECNICO", "ASSISTENTE", "COORDENADOR","AUXILIAR", "GERENTE")
+FORMACAO <- c("ESTATISTICA", "ECONOMIA", "SISTEMAS", "DIREITO","LETRAS")
+DEPARTAMENTO = c("DEPARTAMENTO A", "DEPARTAMENTO A", "DEPARTAMENTO A","DEPARTAMENTO B","DEPARTAMENTO B")
+
+RH1 <-data.frame(ID, IDADE, CARGO, FORMACAO, DEPARTAMENTO)
+
+print(RH1)
+
+```
+
+```{r error=TRUE}
+
+##Remove o data frame caso exista
+RH  <- NULL
+```
+```{r}
+#Criando o Data Frame
+RH <- data.frame(ID = 1:1000,
+             IDADE = rnorm(1000, mean = 45, sd = 6),
+             CARGO = sample(gl(5, 200,
+                labels = c("TECNICO", "ASSISTENTE", "COORDENADOR","AUXILIAR", "GERENTE")),50,replace=TRUE),
+             FORMACAO = sample(gl(8, 125,
+                        labels = c("ESTATISTICA", "ECONOMIA", "SISTEMAS", "DIREITO","LETRAS", "MATEMATICA","ENGENHARIA","PROFESSOR")),50,replace=TRUE),
+             DEPARTAMENTO = sample(paste("DEPARTAMENTO", LETTERS[1:5]), 100, replace = TRUE))
+
+head(RH)
+```
+
+#Outra forma de gerar o mesmo Data Frame
+```{r}
+
+ID    <- seq(1:1000)
+IDADE <-  rnorm(1000, mean = 45, sd = 6)
+CARGO <- sample(gl(5, 200,labels = c("TECNICO", "ASSISTENTE", "COORDENADOR","AUXILIAR", "GERENTE")),50,replace=TRUE)
+FORMACAO <- sample(gl(8, 125,labels = c("ESTATISTICA", "ECONOMIA", "SISTEMAS", "DIREITO","LETRAS", "MATEMATICA","ENGENHARIA","PROFESSOR")),50,replace=TRUE)
+DEPARTAMENTO = sample(paste("DEPARTAMENTO", LETTERS[1:5]), 100, replace = TRUE)
+
+RH2 <- data.frame(ID, IDADE, CARGO, FORMACAO, DEPARTAMENTO)
+
+head(RH2)
+
+```
+
+
+#Gera propositamente 10 Missings Values (NA) em IDADE
+```{r}
+is.na(RH$IDADE) <-sample(1:1000, 10)
+```
+#Gera um Sumário
+```{r}
+summary(RH)
+```
+#Calcula a Frequência do campo DEPARTAMENTO
+```{r}
+table(RH$DEPARTAMENTO)
+```
+#Calcula a Frequência do campo IDADE para valores menores que 50
+```{r}
+table(RH$IDADE < 50)
+```
+## Ao utilizar o argumento -> useNA queremos que também seja apresentada a coluna de missings (NA) na tabela de frequências
+```{r}
+table(RH$IDADE < 50, useNA = "always")
+```
+## tabela de Missings por IDADE
+```{r}
+table(RH$DEPARTAMENTO, is.na(RH$IDADE))
+```
+#DEPARTAMENTO com o maior número de missings -> maior para menor frequencia
+```{r}
+sort(table(RH$DEPARTAMENTO, is.na(RH$IDADE))[, 2],
+     decreasing = TRUE)
+```
+
+# Tabela com a distribuição de missings por IDADE e DEPARTAMENTO
+```{r}
+freq1 <- table(RH$DEPARTAMENTO, is.na(RH$IDADE))
+```
+#Exibe a tabela de frequência calculada acima
+```{r}
+print(freq1)
+```
+#Calcula os percentuais utilizando as frequências já calculadas
+```{r}
+prob1 <- prop.table(freq1)
+```
+#Une as tabelas pelas colunas
+```{r}
+cbind(freq1,prob1)
+
+```
