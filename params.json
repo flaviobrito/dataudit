@@ -1,6 +1,6 @@
 {
   "name": "Dataudit",
   "tagline": "Data Audit Course",
-  "body": "### Bem-vindo ao Curso de Auditoria de Dados\r\n\r\nO objetivo deste curso é apresentar ao aluno o conhecimento inicial necessário para o trabalho do auditor interno de dados. O material está dividido em 3 encontros cujos links estão abaixo:\r\n\r\n* [Apresentação](apresentacao/data_audit_course.pdf)\r\n* [Introdução / Revisão Básico - Linguagem R](revisao_r.html)\r\n* [Introdução / Revisão Intermediário/ Avançado- Linguagem R](curso_revisao_r_intermediario.html)\r\n* [Estudos de Caso] - Em Breve\r\n* Arquivos\r\n   * [Dados](/dados/Dados_Curso_Auditoria_Dados.zip)\r\n   ",
+  "body": "### Bem-vindo ao Curso de Auditoria de Dados\r\n\r\nO objetivo deste curso é apresentar ao aluno o conhecimento inicial necessário para o trabalho do auditor interno de dados. O material está dividido em 3 encontros cujos links estão abaixo:\r\n\r\n* [Apresentação](apresentacao/data_audit_course.pdf)\r\n* [Introdução / Revisão Básico - Linguagem R](revisao_r.html)\r\n* [Introdução / Revisão Intermediário/ Avançado- Linguagem R](curso_revisao_r_intermediario.html)\r\n* [Estudos de Caso] - Em Breve\r\n* Arquivos\r\n   * [Dados](dados/Dados_Curso_Auditoria_Dados.zip)\r\n   ",
   "note": "Don't delete this file! It's used internally to help with page regeneration."
 }
