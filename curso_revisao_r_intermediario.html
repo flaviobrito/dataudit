@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<meta name="date" content="2016-12-10" />
+
+<title>Curso Auditoria de Dados - Revisão Linguagem R - Intermediário</title>
+
+<script src="curso_revisao_r_intermediario_files/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="curso_revisao_r_intermediario_files/bootstrap-3.3.5/css/cerulean.min.css" rel="stylesheet" />
+<script src="curso_revisao_r_intermediario_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="curso_revisao_r_intermediario_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="curso_revisao_r_intermediario_files/bootstrap-3.3.5/shim/respond.min.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+pre, code { background-color: #f8f8f8; }
+code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code > span.dt { color: #204a87; } /* DataType */
+code > span.dv { color: #0000cf; } /* DecVal */
+code > span.bn { color: #0000cf; } /* BaseN */
+code > span.fl { color: #0000cf; } /* Float */
+code > span.ch { color: #4e9a06; } /* Char */
+code > span.st { color: #4e9a06; } /* String */
+code > span.co { color: #8f5902; font-style: italic; } /* Comment */
+code > span.ot { color: #8f5902; } /* Other */
+code > span.al { color: #ef2929; } /* Alert */
+code > span.fu { color: #000000; } /* Function */
+code > span.er { color: #a40000; font-weight: bold; } /* Error */
+code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #000000; } /* Constant */
+code > span.sc { color: #000000; } /* SpecialChar */
+code > span.vs { color: #4e9a06; } /* VerbatimString */
+code > span.ss { color: #4e9a06; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #000000; } /* Variable */
+code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code > span.ex { } /* Extension */
+code > span.at { color: #c4a000; } /* Attribute */
+code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script src="curso_revisao_r_intermediario_files/navigation-1.0/tabsets.js"></script>
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="fluid-row" id="header">
+
+
+<h1 class="title">Curso Auditoria de Dados - Revisão Linguagem R - Intermediário</h1>
+<h4 class="date"><em>23/10/2016</em></h4>
+
+</div>
+
+<div id="TOC">
+<ul>
+<li><a href="#operacoes-com-data-frame"><span class="toc-section-number">1</span> Operações com Data Frame</a><ul>
+<li><a href="#arquivos-data-frames"><span class="toc-section-number">1.1</span> Arquivos / Data Frames</a><ul>
+<li><a href="#merge"><span class="toc-section-number">1.1.1</span> Merge</a></li>
+<li><a href="#combinando-conjuntos-de-dados"><span class="toc-section-number">1.1.2</span> Combinando Conjuntos de dados</a></li>
+<li><a href="#filtros-e-selecao-de-registros-e-atributos-em-data-frames"><span class="toc-section-number">1.1.3</span> Filtros e Seleção de Registros e Atributos em Data Frames</a></li>
+<li><a href="#split---dividindo-data-frames"><span class="toc-section-number">1.1.4</span> Split - Dividindo Data frames</a></li>
+<li><a href="#append-data-frames---anexando-data-frames"><span class="toc-section-number">1.1.5</span> Append Data frames - Anexando Data frames</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#usando-pacote-dplyr"><span class="toc-section-number">2</span> Usando pacote Dplyr</a><ul>
+<li><a href="#filtros-e-selecoes"><span class="toc-section-number">2.1</span> Filtros e Seleções</a><ul>
+<li><a href="#filtrando-linhas-usando-filter"><span class="toc-section-number">2.1.1</span> Filtrando linhas usando filter()</a></li>
+<li><a href="#selecionar-colunas-com-select"><span class="toc-section-number">2.1.2</span> Selecionar colunas com select ()</a></li>
+<li><a href="#extraia-linhas-distintas-unicas"><span class="toc-section-number">2.1.3</span> Extraia linhas distintas (únicas)</a></li>
+<li><a href="#adicionar-novas-colunas-com-mutate"><span class="toc-section-number">2.1.4</span> Adicionar novas colunas com mutate()</a></li>
+<li><a href="#totalize-valores-com-summarise"><span class="toc-section-number">2.1.5</span> Totalize valores com summarise()</a></li>
+<li><a href="#amostras---randomicamente-selecione-amostras-com-sample_n-e-sample_frac"><span class="toc-section-number">2.1.6</span> Amostras - randomicamente selecione amostras com sample_n() e sample_frac()</a></li>
+<li><a href="#operacoes-agrupadas"><span class="toc-section-number">2.1.7</span> Operações Agrupadas</a></li>
+<li><a href="#funcoes-janela"><span class="toc-section-number">2.1.8</span> Funções Janela</a></li>
+<li><a href="#top---maiores-valores"><span class="toc-section-number">2.1.9</span> Top - Maiores valores</a></li>
+<li><a href="#primeiro-registro"><span class="toc-section-number">2.1.10</span> Primeiro Registro</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+
+<div id="operacoes-com-data-frame" class="section level1">
+<h1><span class="header-section-number">1</span> Operações com Data Frame</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">getwd</span>()</code></pre></div>
+<pre><code>## [1] &quot;/Users/flaviobrito/Documents/Cursos/Auditoria_Dados&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setwd</span>(<span class="st">&quot;/Users/flaviobrito/Documents/Cursos/Auditoria_Dados/dados/&quot;</span>)
+
+Dados_A &lt;-<span class="st"> </span><span class="kw">read.csv2</span>(<span class="st">&quot;Dados_A.csv&quot;</span>, <span class="dt">sep=</span><span class="st">&quot;;&quot;</span>,<span class="dt">stringsAsFactors=</span><span class="ot">FALSE</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">na.strings =</span> <span class="st">&quot; &quot;</span>)
+
+Dados_A</code></pre></div>
+<pre><code>##   NUMFUNC NUMVINC SALARIO
+## 1  102929       1    1000
+## 2  109999       3    3000
+## 3  102929       2      NA
+## 4  119836       1     500</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Dados_B &lt;-<span class="st"> </span><span class="kw">read.csv2</span>(<span class="st">&quot;Dados_B.csv&quot;</span>, <span class="dt">sep=</span><span class="st">&quot;;&quot;</span>,<span class="dt">stringsAsFactors=</span><span class="ot">FALSE</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">na.strings =</span> <span class="st">&quot; &quot;</span>)
+
+Dados_B</code></pre></div>
+<pre><code>##   NUMFUNC NUMVINC     SETOR
+## 1  119836       1 SETOR_ABC
+## 2  109999       3   SETOR_C</code></pre>
+<div id="arquivos-data-frames" class="section level2">
+<h2><span class="header-section-number">1.1</span> Arquivos / Data Frames</h2>
+<div id="merge" class="section level3">
+<h3><span class="header-section-number">1.1.1</span> Merge</h3>
+<p>Como alguns nem sempre têm conhecimento o acesso a banco de dados, as operações abaixo são muito interessantes se comparadas com um JOIN (Banco de Dados).</p>
+<p>Para conseguir a saída abaixo, digite:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m &lt;-<span class="st"> </span><span class="kw">merge</span>(Dados_A,Dados_B, <span class="dt">all=</span><span class="ot">TRUE</span>)
+m</code></pre></div>
+<pre><code>##   NUMFUNC NUMVINC SALARIO     SETOR
+## 1  102929       1    1000      &lt;NA&gt;
+## 2  102929       2      NA      &lt;NA&gt;
+## 3  109999       3    3000   SETOR_C
+## 4  119836       1     500 SETOR_ABC</code></pre>
+<p>Para conseguir a saída abaixo, digite:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n &lt;-<span class="st"> </span><span class="kw">merge</span>(Dados_A,Dados_B, <span class="dt">all.Dados_A=</span><span class="ot">TRUE</span>)
+n</code></pre></div>
+<pre><code>##   NUMFUNC NUMVINC SALARIO     SETOR
+## 1  109999       3    3000   SETOR_C
+## 2  119836       1     500 SETOR_ABC</code></pre>
+<p>Através desse comando indicamos ao R que o data frame Dados_A possui os campos de junção que devem ser respeitados.</p>
+<p>O mesmo pode ser conseguido com o comando a seguir:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">o &lt;-<span class="st"> </span><span class="kw">merge</span>(Dados_A,Dados_B, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;NUMFUNC&quot;</span>,<span class="st">&quot;NUMVINC&quot;</span>))
+o</code></pre></div>
+<pre><code>##   NUMFUNC NUMVINC SALARIO     SETOR
+## 1  109999       3    3000   SETOR_C
+## 2  119836       1     500 SETOR_ABC</code></pre>
+<p>Para escolher um conjunto de saída específico utilizamos</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span>m[<span class="kw">c</span>(<span class="st">&quot;NUMFUNC&quot;</span>,<span class="st">&quot;NUMVINC&quot;</span>,<span class="st">&quot;SETOR&quot;</span>)]
+p</code></pre></div>
+<pre><code>##   NUMFUNC NUMVINC     SETOR
+## 1  102929       1      &lt;NA&gt;
+## 2  102929       2      &lt;NA&gt;
+## 3  109999       3   SETOR_C
+## 4  119836       1 SETOR_ABC</code></pre>
+<p>c (“NUMFUNC”,”NUMVINC”,”SETOR”) – cria um vetor com esses 3 campos. Repare que m é um data frame:</p>
+<p>Veja a estrutura de m com o comando:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(m)</code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    4 obs. of  4 variables:
+##  $ NUMFUNC: int  102929 102929 109999 119836
+##  $ NUMVINC: int  1 2 3 1
+##  $ SALARIO: int  1000 NA 3000 500
+##  $ SETOR  : chr  NA NA &quot;SETOR_C&quot; &quot;SETOR_ABC&quot;</code></pre>
+<p>Para conseguir a saída abaixo,usaremos o seguinte comando:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">q  &lt;-<span class="st"> </span><span class="kw">merge</span>(Dados_A,Dados_B, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;NUMFUNC&quot;</span>))
+q</code></pre></div>
+<pre><code>##   NUMFUNC NUMVINC.x SALARIO NUMVINC.y     SETOR
+## 1  109999         3    3000         3   SETOR_C
+## 2  119836         1     500         1 SETOR_ABC</code></pre>
+<p>Para conseguir a saída abaixo, digitaremos o seguinte comando:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">u  &lt;-<span class="st"> </span><span class="kw">merge</span>(Dados_A,Dados_B, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;NUMVINC&quot;</span>))
+u</code></pre></div>
+<pre><code>##   NUMVINC NUMFUNC.x SALARIO NUMFUNC.y     SETOR
+## 1       1    102929    1000    119836 SETOR_ABC
+## 2       1    119836     500    119836 SETOR_ABC
+## 3       3    109999    3000    109999   SETOR_C</code></pre>
+<p>Para conseguir a saída abaixo, usaremos o seguinte comando:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">v  &lt;-<span class="st">  </span><span class="kw">merge</span>(Dados_A,Dados_B, <span class="dt">by=</span><span class="ot">NULL</span>)
+v</code></pre></div>
+<pre><code>##   NUMFUNC.x NUMVINC.x SALARIO NUMFUNC.y NUMVINC.y     SETOR
+## 1    102929         1    1000    119836         1 SETOR_ABC
+## 2    109999         3    3000    119836         1 SETOR_ABC
+## 3    102929         2      NA    119836         1 SETOR_ABC
+## 4    119836         1     500    119836         1 SETOR_ABC
+## 5    102929         1    1000    109999         3   SETOR_C
+## 6    109999         3    3000    109999         3   SETOR_C
+## 7    102929         2      NA    109999         3   SETOR_C
+## 8    119836         1     500    109999         3   SETOR_C</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">v  &lt;-<span class="st">  </span><span class="kw">merge</span>(Dados_A,Dados_B, <span class="dt">by=</span><span class="st">&quot;NUMFUNC&quot;</span>, <span class="dt">all.y=</span><span class="ot">TRUE</span>)
+v</code></pre></div>
+<pre><code>##   NUMFUNC NUMVINC.x SALARIO NUMVINC.y     SETOR
+## 1  109999         3    3000         3   SETOR_C
+## 2  119836         1     500         1 SETOR_ABC</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">v  &lt;-<span class="st">  </span><span class="kw">merge</span>(Dados_A,Dados_B, <span class="dt">by=</span><span class="st">&quot;NUMFUNC&quot;</span>, <span class="dt">all.x=</span><span class="ot">TRUE</span>)
+v</code></pre></div>
+<pre><code>##   NUMFUNC NUMVINC.x SALARIO NUMVINC.y     SETOR
+## 1  102929         1    1000        NA      &lt;NA&gt;
+## 2  102929         2      NA        NA      &lt;NA&gt;
+## 3  109999         3    3000         3   SETOR_C
+## 4  119836         1     500         1 SETOR_ABC</code></pre>
+</div>
+<div id="combinando-conjuntos-de-dados" class="section level3">
+<h3><span class="header-section-number">1.1.2</span> Combinando Conjuntos de dados</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">suppressMessages</span>(<span class="kw">library</span>(dplyr))
+x1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>)
+x2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)
+a &lt;-<span class="st"> </span><span class="kw">data.frame</span>(x1,x2)
+
+x1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>)
+x3 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;T&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;T&quot;</span>)
+b &lt;-<span class="st"> </span><span class="kw">data.frame</span>(x1,x3)</code></pre></div>
+<div id="joins---juncoes-usando-dplyr" class="section level4">
+<h4><span class="header-section-number">1.1.2.1</span> Joins - Junções usando dplyr</h4>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">left_join</span>(a, b, <span class="dt">by =</span> <span class="st">&quot;x1&quot;</span>)</code></pre></div>
+<pre><code>##   x1 x2 x3
+## 1  A  1  T
+## 2  B  2  F
+## 3  C  3  T</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">right_join</span>(a, b, <span class="dt">by =</span> <span class="st">&quot;x1&quot;</span>)</code></pre></div>
+<pre><code>##   x1 x2 x3
+## 1  A  1  T
+## 2  B  2  F
+## 3  C  3  T</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">inner_join</span>(a, b, <span class="dt">by =</span> <span class="st">&quot;x1&quot;</span>)</code></pre></div>
+<pre><code>##   x1 x2 x3
+## 1  A  1  T
+## 2  B  2  F
+## 3  C  3  T</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">full_join</span>(a, b, <span class="dt">by =</span> <span class="st">&quot;x1&quot;</span>)</code></pre></div>
+<pre><code>##   x1 x2 x3
+## 1  A  1  T
+## 2  B  2  F
+## 3  C  3  T</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Joins filtrados</span>
+<span class="kw">semi_join</span>(a, b, <span class="dt">by =</span> <span class="st">&quot;x1&quot;</span>) <span class="co">#Todas as linhas em a que tem uma coincidência em b</span></code></pre></div>
+<pre><code>##   x1 x2
+## 1  A  1
+## 2  B  2
+## 3  C  3</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">anti_join</span>(a, b, <span class="dt">by =</span> <span class="st">&quot;x1&quot;</span>) <span class="co">#Todas as linhas em a que NÃO tem uma coincidência em b</span></code></pre></div>
+<pre><code>## [1] x1 x2
+## &lt;0 rows&gt; (or 0-length row.names)</code></pre>
+</div>
+<div id="operacoes-com-conjuntos" class="section level4">
+<h4><span class="header-section-number">1.1.2.2</span> Operações com Conjuntos</h4>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">z &lt;-<span class="st"> </span><span class="ot">NULL</span>
+x1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>)
+x2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)
+y &lt;-<span class="st"> </span><span class="kw">data.frame</span>(x1,x2, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)
+
+x1 &lt;-<span class="st"> </span><span class="kw">as.character</span>(<span class="kw">c</span>(<span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;D&quot;</span>))
+x2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>)
+z &lt;-<span class="st"> </span><span class="kw">data.frame</span>(x1,x2, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)
+
+<span class="co">#Intercessão</span>
+<span class="kw">intersect</span>(y, z) <span class="co">#Linhas em comum em y e z</span></code></pre></div>
+<pre><code>##   x1 x2
+## 1  B  2
+## 2  C  3</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#União</span>
+<span class="kw">union</span>(y, z) <span class="co"># Linhas que aparecem em y e também em z</span></code></pre></div>
+<pre><code>##   x1 x2
+## 1  D  4
+## 2  C  3
+## 3  B  2
+## 4  A  1</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Diferença</span>
+<span class="kw">setdiff</span>(y, z) <span class="co"># Linhas que aparecem em y e não em z</span></code></pre></div>
+<pre><code>##   x1 x2
+## 1  A  1</code></pre>
+</div>
+</div>
+<div id="filtros-e-selecao-de-registros-e-atributos-em-data-frames" class="section level3">
+<h3><span class="header-section-number">1.1.3</span> Filtros e Seleção de Registros e Atributos em Data Frames</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">suppressMessages</span>(<span class="kw">library</span>(dplyr))
+
+
+<span class="kw">library</span>(hflights)
+
+flights &lt;-<span class="st"> </span>hflights
+<span class="kw">dim</span>(hflights)</code></pre></div>
+<pre><code>## [1] 227496     21</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(hflights)</code></pre></div>
+<pre><code>##      Year Month DayofMonth DayOfWeek DepTime ArrTime UniqueCarrier
+## 5424 2011     1          1         6    1400    1500            AA
+## 5425 2011     1          2         7    1401    1501            AA
+## 5426 2011     1          3         1    1352    1502            AA
+## 5427 2011     1          4         2    1403    1513            AA
+## 5428 2011     1          5         3    1405    1507            AA
+## 5429 2011     1          6         4    1359    1503            AA
+##      FlightNum TailNum ActualElapsedTime AirTime ArrDelay DepDelay Origin
+## 5424       428  N576AA                60      40      -10        0    IAH
+## 5425       428  N557AA                60      45       -9        1    IAH
+## 5426       428  N541AA                70      48       -8       -8    IAH
+## 5427       428  N403AA                70      39        3        3    IAH
+## 5428       428  N492AA                62      44       -3        5    IAH
+## 5429       428  N262AA                64      45       -7       -1    IAH
+##      Dest Distance TaxiIn TaxiOut Cancelled CancellationCode Diverted
+## 5424  DFW      224      7      13         0                         0
+## 5425  DFW      224      6       9         0                         0
+## 5426  DFW      224      5      17         0                         0
+## 5427  DFW      224      9      22         0                         0
+## 5428  DFW      224      9       9         0                         0
+## 5429  DFW      224      6      13         0                         0</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Dados sobre o Data Frame hflights</span>
+
+<span class="co">#Número de Registros</span>
+<span class="kw">nrow</span>(flights)</code></pre></div>
+<pre><code>## [1] 227496</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Número de Variávei</span>
+<span class="kw">ncol</span>(flights)</code></pre></div>
+<pre><code>## [1] 21</code></pre>
+</div>
+<div id="split---dividindo-data-frames" class="section level3">
+<h3><span class="header-section-number">1.1.4</span> Split - Dividindo Data frames</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">split</span>(Dados_B, Dados_B$SETOR)</code></pre></div>
+<pre><code>## $SETOR_ABC
+##   NUMFUNC NUMVINC     SETOR
+## 1  119836       1 SETOR_ABC
+## 
+## $SETOR_C
+##   NUMFUNC NUMVINC   SETOR
+## 2  109999       3 SETOR_C</code></pre>
+</div>
+<div id="append-data-frames---anexando-data-frames" class="section level3">
+<h3><span class="header-section-number">1.1.5</span> Append Data frames - Anexando Data frames</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rbind</span>(Dados_A, Dados_A)</code></pre></div>
+<pre><code>##   NUMFUNC NUMVINC SALARIO
+## 1  102929       1    1000
+## 2  109999       3    3000
+## 3  102929       2      NA
+## 4  119836       1     500
+## 5  102929       1    1000
+## 6  109999       3    3000
+## 7  102929       2      NA
+## 8  119836       1     500</code></pre>
+</div>
+</div>
+</div>
+<div id="usando-pacote-dplyr" class="section level1">
+<h1><span class="header-section-number">2</span> Usando pacote Dplyr</h1>
+<div id="filtros-e-selecoes" class="section level2">
+<h2><span class="header-section-number">2.1</span> Filtros e Seleções</h2>
+<p>Dplyr tem como objectivo proporcionar uma função para cada verbo base para manipulação de dados:</p>
+<ul>
+<li>filter() (e slice())</li>
+<li>arrange()</li>
+<li>select() (e rename())</li>
+<li>distinct()</li>
+<li>mutate() (e transmute())</li>
+<li>summarise()</li>
+<li>sample_n() (e sample_frac())</li>
+</ul>
+<div id="filtrando-linhas-usando-filter" class="section level3">
+<h3><span class="header-section-number">2.1.1</span> Filtrando linhas usando filter()</h3>
+<p>filter () permite selecionar um subconjunto de linhas em um quadro de dados. O primeiro argumento é o nome do data frame. O segundo e subseqüentes argumentos são as expressões que filtram o data frame:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">attach</span>(flights)
+<span class="kw">filter</span>(flights, Month ==<span class="st"> </span><span class="dv">1</span>, DayofMonth ==<span class="st"> </span><span class="dv">1</span>) %&gt;%head</code></pre></div>
+<pre><code>##   Year Month DayofMonth DayOfWeek DepTime ArrTime UniqueCarrier FlightNum
+## 1 2011     1          1         6    1400    1500            AA       428
+## 2 2011     1          1         6     728     840            AA       460
+## 3 2011     1          1         6    1631    1736            AA      1121
+## 4 2011     1          1         6    1756    2112            AA      1294
+## 5 2011     1          1         6    1012    1347            AA      1700
+## 6 2011     1          1         6    1211    1325            AA      1820
+##   TailNum ActualElapsedTime AirTime ArrDelay DepDelay Origin Dest Distance
+## 1  N576AA                60      40      -10        0    IAH  DFW      224
+## 2  N520AA                72      41        5        8    IAH  DFW      224
+## 3  N4WVAA                65      37       -9        1    IAH  DFW      224
+## 4  N3DGAA               136     113       -3        1    IAH  MIA      964
+## 5  N3DAAA               155     117        7       -8    IAH  MIA      964
+## 6  N593AA                74      39       15        6    IAH  DFW      224
+##   TaxiIn TaxiOut Cancelled CancellationCode Diverted
+## 1      7      13         0                         0
+## 2      6      25         0                         0
+## 3     16      12         0                         0
+## 4      9      14         0                         0
+## 5     12      26         0                         0
+## 6      6      29         0                         0</code></pre>
+<p>Este é equivalente ao código mais detalhado na base de R:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights[flights$Month ==<span class="st"> </span><span class="dv">1</span> &amp;<span class="st"> </span>flights$DayofMonth ==<span class="st"> </span><span class="dv">1</span>, ] %&gt;%head</code></pre></div>
+<pre><code>##       Year Month DayofMonth DayOfWeek DepTime ArrTime UniqueCarrier
+## 5424  2011     1          1         6    1400    1500            AA
+## 6343  2011     1          1         6     728     840            AA
+## 19266 2011     1          1         6    1631    1736            AA
+## 23655 2011     1          1         6    1756    2112            AA
+## 33051 2011     1          1         6    1012    1347            AA
+## 35256 2011     1          1         6    1211    1325            AA
+##       FlightNum TailNum ActualElapsedTime AirTime ArrDelay DepDelay Origin
+## 5424        428  N576AA                60      40      -10        0    IAH
+## 6343        460  N520AA                72      41        5        8    IAH
+## 19266      1121  N4WVAA                65      37       -9        1    IAH
+## 23655      1294  N3DGAA               136     113       -3        1    IAH
+## 33051      1700  N3DAAA               155     117        7       -8    IAH
+## 35256      1820  N593AA                74      39       15        6    IAH
+##       Dest Distance TaxiIn TaxiOut Cancelled CancellationCode Diverted
+## 5424   DFW      224      7      13         0                         0
+## 6343   DFW      224      6      25         0                         0
+## 19266  DFW      224     16      12         0                         0
+## 23655  MIA      964      9      14         0                         0
+## 33051  MIA      964     12      26         0                         0
+## 35256  DFW      224      6      29         0                         0</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Método de assentamento para selecionar colunas e filtro UniqueCarrier e DepDisplay acima de 60 minutos</span>
+
+<span class="kw">filter</span>(<span class="kw">select</span>(flights, UniqueCarrier, DepDelay), DepDelay &gt;<span class="st"> </span><span class="dv">60</span>) %&gt;%head</code></pre></div>
+<pre><code>##   UniqueCarrier DepDelay
+## 1            AA       90
+## 2            AA       67
+## 3            AA       74
+## 4            AA      125
+## 5            AA       82
+## 6            AA       99</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># método de encadeamento</span>
+flights %&gt;%
+<span class="st">    </span><span class="kw">select</span>(UniqueCarrier, DepDelay) %&gt;%
+<span class="st">    </span><span class="kw">filter</span>(DepDelay &gt;<span class="st"> </span><span class="dv">60</span>) %&gt;%head</code></pre></div>
+<pre><code>##   UniqueCarrier DepDelay
+## 1            AA       90
+## 2            AA       67
+## 3            AA       74
+## 4            AA      125
+## 5            AA       82
+## 6            AA       99</code></pre>
+<p>filter () funciona de forma semelhante para o subconjunto () exceto que você pode dar qualquer número de condições de filtragem, que são unidas em conjunto com &amp; (não &amp;&amp; que é fácil de fazer acidentalmente!). Você também pode usar outros operadores booleanos:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">filter</span>(flights, Month ==<span class="st"> </span><span class="dv">1</span> |<span class="st"> </span>Month ==<span class="st"> </span><span class="dv">2</span>) %&gt;%head</code></pre></div>
+<pre><code>##   Year Month DayofMonth DayOfWeek DepTime ArrTime UniqueCarrier FlightNum
+## 1 2011     1          1         6    1400    1500            AA       428
+## 2 2011     1          2         7    1401    1501            AA       428
+## 3 2011     1          3         1    1352    1502            AA       428
+## 4 2011     1          4         2    1403    1513            AA       428
+## 5 2011     1          5         3    1405    1507            AA       428
+## 6 2011     1          6         4    1359    1503            AA       428
+##   TailNum ActualElapsedTime AirTime ArrDelay DepDelay Origin Dest Distance
+## 1  N576AA                60      40      -10        0    IAH  DFW      224
+## 2  N557AA                60      45       -9        1    IAH  DFW      224
+## 3  N541AA                70      48       -8       -8    IAH  DFW      224
+## 4  N403AA                70      39        3        3    IAH  DFW      224
+## 5  N492AA                62      44       -3        5    IAH  DFW      224
+## 6  N262AA                64      45       -7       -1    IAH  DFW      224
+##   TaxiIn TaxiOut Cancelled CancellationCode Diverted
+## 1      7      13         0                         0
+## 2      6       9         0                         0
+## 3      5      17         0                         0
+## 4      9      22         0                         0
+## 5      9       9         0                         0
+## 6      6      13         0                         0</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Para selecionar linhas de posição, o uso slice ():</span>
+
+<span class="kw">slice</span>(flights, <span class="dv">1</span>:<span class="dv">10</span>) %&gt;%head</code></pre></div>
+<pre><code>##   Year Month DayofMonth DayOfWeek DepTime ArrTime UniqueCarrier FlightNum
+## 1 2011     1          1         6    1400    1500            AA       428
+## 2 2011     1          2         7    1401    1501            AA       428
+## 3 2011     1          3         1    1352    1502            AA       428
+## 4 2011     1          4         2    1403    1513            AA       428
+## 5 2011     1          5         3    1405    1507            AA       428
+## 6 2011     1          6         4    1359    1503            AA       428
+##   TailNum ActualElapsedTime AirTime ArrDelay DepDelay Origin Dest Distance
+## 1  N576AA                60      40      -10        0    IAH  DFW      224
+## 2  N557AA                60      45       -9        1    IAH  DFW      224
+## 3  N541AA                70      48       -8       -8    IAH  DFW      224
+## 4  N403AA                70      39        3        3    IAH  DFW      224
+## 5  N492AA                62      44       -3        5    IAH  DFW      224
+## 6  N262AA                64      45       -7       -1    IAH  DFW      224
+##   TaxiIn TaxiOut Cancelled CancellationCode Diverted
+## 1      7      13         0                         0
+## 2      6       9         0                         0
+## 3      5      17         0                         0
+## 4      9      22         0                         0
+## 5      9       9         0                         0
+## 6      6      13         0                         0</code></pre>
+<p>``` ###Arrange rows with arrange()</p>
+<p>Arrange() funciona da mesma forma que o filter(), exceto que em vez de filtragem ou linhas selecionando, que reordena-los. É preciso um data frame, e um conjunto de nomes de colunas (ou expressões mais complicadas) para ordenar por. Se você fornecer mais de um nome de coluna, cada coluna adicional será usada para quebrar os laços nos valores das colunas precedentes:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">arrange</span>(flights, Year, Month, DayofMonth) %&gt;%head</code></pre></div>
+<pre><code>##   Year Month DayofMonth DayOfWeek DepTime ArrTime UniqueCarrier FlightNum
+## 1 2011     1          1         6    1400    1500            AA       428
+## 2 2011     1          1         6     728     840            AA       460
+## 3 2011     1          1         6    1631    1736            AA      1121
+## 4 2011     1          1         6    1756    2112            AA      1294
+## 5 2011     1          1         6    1012    1347            AA      1700
+## 6 2011     1          1         6    1211    1325            AA      1820
+##   TailNum ActualElapsedTime AirTime ArrDelay DepDelay Origin Dest Distance
+## 1  N576AA                60      40      -10        0    IAH  DFW      224
+## 2  N520AA                72      41        5        8    IAH  DFW      224
+## 3  N4WVAA                65      37       -9        1    IAH  DFW      224
+## 4  N3DGAA               136     113       -3        1    IAH  MIA      964
+## 5  N3DAAA               155     117        7       -8    IAH  MIA      964
+## 6  N593AA                74      39       15        6    IAH  DFW      224
+##   TaxiIn TaxiOut Cancelled CancellationCode Diverted
+## 1      7      13         0                         0
+## 2      6      25         0                         0
+## 3     16      12         0                         0
+## 4      9      14         0                         0
+## 5     12      26         0                         0
+## 6      6      29         0                         0</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Base de abordagem R para selecionar UniqueCarrier e DepDelay e classificar por DepDelay</span>
+
+<span class="kw">arrange</span>(flights, DepDelay, UniqueCarrier, DepDelay) %&gt;%head</code></pre></div>
+<pre><code>##   Year Month DayofMonth DayOfWeek DepTime ArrTime UniqueCarrier FlightNum
+## 1 2011    12         24         6    1112    1314            OO      5440
+## 2 2011     2         14         1    1917    2027            MQ      3328
+## 3 2011     4         10         7    2101    2206            XE      2669
+## 4 2011     8          3         3    1741    1810            XE      2603
+## 5 2011     1         18         2    1542    1936            CO      1688
+## 6 2011    10          4         2    1438    1813            EV      5412
+##   TailNum ActualElapsedTime AirTime ArrDelay DepDelay Origin Dest Distance
+## 1  N728SK               182     131      -25      -33    IAH  ASE      913
+## 2  N648MQ                70      49      -23      -23    HOU  DFW      247
+## 3  N13908                65      44      -12      -19    IAH  DFW      224
+## 4  N11107                89      73      -40      -19    IAH  HOB      501
+## 5  N27610               174     139      -17      -18    IAH  DTW     1076
+## 6  N134EV               155     139      -31      -18    IAH  DTW     1075
+##   TaxiIn TaxiOut Cancelled CancellationCode Diverted
+## 1      3      48         0                         0
+## 2     10      11         0                         0
+## 3      6      15         0                         0
+## 4      5      11         0                         0
+## 5      7      28         0                         0
+## 6      4      12         0                         0</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#ou método de encadeamento</span>
+
+flights %&gt;%
+<span class="st">    </span><span class="kw">select</span>(UniqueCarrier, DepDelay) %&gt;%
+<span class="st">    </span><span class="kw">arrange</span>(DepDelay) %&gt;%<span class="st"> </span>head</code></pre></div>
+<pre><code>##   UniqueCarrier DepDelay
+## 1            OO      -33
+## 2            MQ      -23
+## 3            XE      -19
+## 4            XE      -19
+## 5            CO      -18
+## 6            EV      -18</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Use desc () para ordenar uma coluna em ordem decrescente:</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">arrange</span>(flights, <span class="kw">desc</span>(ArrDelay)) %&gt;%head</code></pre></div>
+<pre><code>##   Year Month DayofMonth DayOfWeek DepTime ArrTime UniqueCarrier FlightNum
+## 1 2011    12         12         1     650     808            AA      1740
+## 2 2011     8          1         1     156     452            CO         1
+## 3 2011    11          8         2     721     948            MQ      3786
+## 4 2011     6         21         2    2334     124            UA       855
+## 5 2011     5         20         5     858    1027            MQ      3328
+## 6 2011     6          9         4    2029    2243            MQ      3859
+##   TailNum ActualElapsedTime AirTime ArrDelay DepDelay Origin Dest Distance
+## 1  N473AA                78      49      978      970    IAH  DFW      224
+## 2  N69063               476     461      957      981    IAH  HNL     3904
+## 3  N502MQ               147     120      918      931    IAH  ORD      925
+## 4  N670UA               230     216      861      869    IAH  SFO     1635
+## 5  N609MQ                89      55      822      803    HOU  DFW      247
+## 6  N6EAMQ               134     117      793      814    IAH  ORD      925
+##   TaxiIn TaxiOut Cancelled CancellationCode Diverted
+## 1     14      15         0                         0
+## 2      5      10         0                         0
+## 3      9      18         0                         0
+## 4      3      11         0                         0
+## 5     10      24         0                         0
+## 6      9       8         0                         0</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#ou pelo método de cadeia</span>
+
+flights %&gt;%
+<span class="st">    </span><span class="kw">select</span>(UniqueCarrier, DepDelay) %&gt;%
+<span class="st">    </span><span class="kw">arrange</span>(<span class="kw">desc</span>(DepDelay)) %&gt;%head</code></pre></div>
+<pre><code>##   UniqueCarrier DepDelay
+## 1            CO      981
+## 2            AA      970
+## 3            MQ      931
+## 4            UA      869
+## 5            MQ      814
+## 6            MQ      803</code></pre>
+<p>O código anterior é equivalente a:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights[<span class="kw">order</span>(flights$Year, flights$Month, flights$DayofMonth), ] %&gt;%head</code></pre></div>
+<pre><code>##       Year Month DayofMonth DayOfWeek DepTime ArrTime UniqueCarrier
+## 5424  2011     1          1         6    1400    1500            AA
+## 6343  2011     1          1         6     728     840            AA
+## 19266 2011     1          1         6    1631    1736            AA
+## 23655 2011     1          1         6    1756    2112            AA
+## 33051 2011     1          1         6    1012    1347            AA
+## 35256 2011     1          1         6    1211    1325            AA
+##       FlightNum TailNum ActualElapsedTime AirTime ArrDelay DepDelay Origin
+## 5424        428  N576AA                60      40      -10        0    IAH
+## 6343        460  N520AA                72      41        5        8    IAH
+## 19266      1121  N4WVAA                65      37       -9        1    IAH
+## 23655      1294  N3DGAA               136     113       -3        1    IAH
+## 33051      1700  N3DAAA               155     117        7       -8    IAH
+## 35256      1820  N593AA                74      39       15        6    IAH
+##       Dest Distance TaxiIn TaxiOut Cancelled CancellationCode Diverted
+## 5424   DFW      224      7      13         0                         0
+## 6343   DFW      224      6      25         0                         0
+## 19266  DFW      224     16      12         0                         0
+## 23655  MIA      964      9      14         0                         0
+## 33051  MIA      964     12      26         0                         0
+## 35256  DFW      224      6      29         0                         0</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights[<span class="kw">order</span>(flights$ArrDelay, <span class="dt">decreasing =</span> <span class="ot">TRUE</span>), ] %&gt;%head <span class="co">#ou</span></code></pre></div>
+<pre><code>##         Year Month DayofMonth DayOfWeek DepTime ArrTime UniqueCarrier
+## 5622757 2011    12         12         1     650     808            AA
+## 4086711 2011     8          1         1     156     452            CO
+## 5457943 2011    11          8         2     721     948            MQ
+## 2843667 2011     6         21         2    2334     124            UA
+## 2479980 2011     5         20         5     858    1027            MQ
+## 3016449 2011     6          9         4    2029    2243            MQ
+##         FlightNum TailNum ActualElapsedTime AirTime ArrDelay DepDelay
+## 5622757      1740  N473AA                78      49      978      970
+## 4086711         1  N69063               476     461      957      981
+## 5457943      3786  N502MQ               147     120      918      931
+## 2843667       855  N670UA               230     216      861      869
+## 2479980      3328  N609MQ                89      55      822      803
+## 3016449      3859  N6EAMQ               134     117      793      814
+##         Origin Dest Distance TaxiIn TaxiOut Cancelled CancellationCode
+## 5622757    IAH  DFW      224     14      15         0                 
+## 4086711    IAH  HNL     3904      5      10         0                 
+## 5457943    IAH  ORD      925      9      18         0                 
+## 2843667    IAH  SFO     1635      3      11         0                 
+## 2479980    HOU  DFW      247     10      24         0                 
+## 3016449    IAH  ORD      925      9       8         0                 
+##         Diverted
+## 5622757        0
+## 4086711        0
+## 5457943        0
+## 2843667        0
+## 2479980        0
+## 3016449        0</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights[<span class="kw">order</span>(-flights$ArrDelay), ] %&gt;%head</code></pre></div>
+<pre><code>##         Year Month DayofMonth DayOfWeek DepTime ArrTime UniqueCarrier
+## 5622757 2011    12         12         1     650     808            AA
+## 4086711 2011     8          1         1     156     452            CO
+## 5457943 2011    11          8         2     721     948            MQ
+## 2843667 2011     6         21         2    2334     124            UA
+## 2479980 2011     5         20         5     858    1027            MQ
+## 3016449 2011     6          9         4    2029    2243            MQ
+##         FlightNum TailNum ActualElapsedTime AirTime ArrDelay DepDelay
+## 5622757      1740  N473AA                78      49      978      970
+## 4086711         1  N69063               476     461      957      981
+## 5457943      3786  N502MQ               147     120      918      931
+## 2843667       855  N670UA               230     216      861      869
+## 2479980      3328  N609MQ                89      55      822      803
+## 3016449      3859  N6EAMQ               134     117      793      814
+##         Origin Dest Distance TaxiIn TaxiOut Cancelled CancellationCode
+## 5622757    IAH  DFW      224     14      15         0                 
+## 4086711    IAH  HNL     3904      5      10         0                 
+## 5457943    IAH  ORD      925      9      18         0                 
+## 2843667    IAH  SFO     1635      3      11         0                 
+## 2479980    HOU  DFW      247     10      24         0                 
+## 3016449    IAH  ORD      925      9       8         0                 
+##         Diverted
+## 5622757        0
+## 4086711        0
+## 5457943        0
+## 2843667        0
+## 2479980        0
+## 3016449        0</code></pre>
+</div>
+<div id="selecionar-colunas-com-select" class="section level3">
+<h3><span class="header-section-number">2.1.2</span> Selecionar colunas com select ()</h3>
+<p>Muitas vezes você trabalhar com grandes conjuntos de dados com muitas colunas, mas apenas alguns são realmente de interesse para você. select() permite-lhe ampliar rapidamente em um subconjunto útil usando operações que normalmente só funcionam em posições variáveis numéricas:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">select</span>(flights, DepTime, ArrTime, FlightNum) %&gt;%head</code></pre></div>
+<pre><code>##      DepTime ArrTime FlightNum
+## 5424    1400    1500       428
+## 5425    1401    1501       428
+## 5426    1352    1502       428
+## 5427    1403    1513       428
+## 5428    1405    1507       428
+## 5429    1359    1503       428</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">select</span>(flights, Year, Month, DayofMonth) %&gt;%head</code></pre></div>
+<pre><code>##      Year Month DayofMonth
+## 5424 2011     1          1
+## 5425 2011     1          2
+## 5426 2011     1          3
+## 5427 2011     1          4
+## 5428 2011     1          5
+## 5429 2011     1          6</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">select</span>(flights, Year:DayofMonth) %&gt;%head</code></pre></div>
+<pre><code>##      Year Month DayofMonth
+## 5424 2011     1          1
+## 5425 2011     1          2
+## 5426 2011     1          3
+## 5427 2011     1          4
+## 5428 2011     1          5
+## 5429 2011     1          6</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">select</span>(flights, -(Year:DayofMonth)) %&gt;%head</code></pre></div>
+<pre><code>##      DayOfWeek DepTime ArrTime UniqueCarrier FlightNum TailNum
+## 5424         6    1400    1500            AA       428  N576AA
+## 5425         7    1401    1501            AA       428  N557AA
+## 5426         1    1352    1502            AA       428  N541AA
+## 5427         2    1403    1513            AA       428  N403AA
+## 5428         3    1405    1507            AA       428  N492AA
+## 5429         4    1359    1503            AA       428  N262AA
+##      ActualElapsedTime AirTime ArrDelay DepDelay Origin Dest Distance
+## 5424                60      40      -10        0    IAH  DFW      224
+## 5425                60      45       -9        1    IAH  DFW      224
+## 5426                70      48       -8       -8    IAH  DFW      224
+## 5427                70      39        3        3    IAH  DFW      224
+## 5428                62      44       -3        5    IAH  DFW      224
+## 5429                64      45       -7       -1    IAH  DFW      224
+##      TaxiIn TaxiOut Cancelled CancellationCode Diverted
+## 5424      7      13         0                         0
+## 5425      6       9         0                         0
+## 5426      5      17         0                         0
+## 5427      9      22         0                         0
+## 5428      9       9         0                         0
+## 5429      6      13         0                         0</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Seleciona somente as variáveis cujo nome contem o texto especificado</span>
+
+<span class="kw">select</span>(flights, Year:DayofMonth, <span class="kw">contains</span>(<span class="st">&quot;Taxi&quot;</span>), <span class="kw">contains</span>(<span class="st">&quot;Delay&quot;</span>)) %&gt;%<span class="st"> </span>head</code></pre></div>
+<pre><code>##      Year Month DayofMonth TaxiIn TaxiOut ArrDelay DepDelay
+## 5424 2011     1          1      7      13      -10        0
+## 5425 2011     1          2      6       9       -9        1
+## 5426 2011     1          3      5      17       -8       -8
+## 5427 2011     1          4      9      22        3        3
+## 5428 2011     1          5      9       9       -3        5
+## 5429 2011     1          6      6      13       -7       -1</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Você pode renomear variáveis com select () usando argumentos nomeados:</span>
+
+<span class="kw">select</span>(flights, <span class="dt">tail_num =</span> TailNum) %&gt;%head</code></pre></div>
+<pre><code>##      tail_num
+## 5424   N576AA
+## 5425   N557AA
+## 5426   N541AA
+## 5427   N403AA
+## 5428   N492AA
+## 5429   N262AA</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Mas porque select() elimina todas as variáveis não explicitamente mencionadas, não é assim tão útil. Em vez disso, o uso rename():</span>
+
+<span class="kw">rename</span>(flights, <span class="dt">tail_num =</span> TailNum) %&gt;%head</code></pre></div>
+<pre><code>##      Year Month DayofMonth DayOfWeek DepTime ArrTime UniqueCarrier
+## 5424 2011     1          1         6    1400    1500            AA
+## 5425 2011     1          2         7    1401    1501            AA
+## 5426 2011     1          3         1    1352    1502            AA
+## 5427 2011     1          4         2    1403    1513            AA
+## 5428 2011     1          5         3    1405    1507            AA
+## 5429 2011     1          6         4    1359    1503            AA
+##      FlightNum tail_num ActualElapsedTime AirTime ArrDelay DepDelay Origin
+## 5424       428   N576AA                60      40      -10        0    IAH
+## 5425       428   N557AA                60      45       -9        1    IAH
+## 5426       428   N541AA                70      48       -8       -8    IAH
+## 5427       428   N403AA                70      39        3        3    IAH
+## 5428       428   N492AA                62      44       -3        5    IAH
+## 5429       428   N262AA                64      45       -7       -1    IAH
+##      Dest Distance TaxiIn TaxiOut Cancelled CancellationCode Diverted
+## 5424  DFW      224      7      13         0                         0
+## 5425  DFW      224      6       9         0                         0
+## 5426  DFW      224      5      17         0                         0
+## 5427  DFW      224      9      22         0                         0
+## 5428  DFW      224      9       9         0                         0
+## 5429  DFW      224      6      13         0                         0</code></pre>
+</div>
+<div id="extraia-linhas-distintas-unicas" class="section level3">
+<h3><span class="header-section-number">2.1.3</span> Extraia linhas distintas (únicas)</h3>
+<p>Use distinct () para encontrar valores exclusivos em uma tabela:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">distinct</span>(flights, TailNum) %&gt;%head</code></pre></div>
+<pre><code>##   Year Month DayofMonth DayOfWeek DepTime ArrTime UniqueCarrier FlightNum
+## 1 2011     1          1         6    1400    1500            AA       428
+## 2 2011     1          2         7    1401    1501            AA       428
+## 3 2011     1          3         1    1352    1502            AA       428
+## 4 2011     1          4         2    1403    1513            AA       428
+## 5 2011     1          5         3    1405    1507            AA       428
+## 6 2011     1          6         4    1359    1503            AA       428
+##   TailNum ActualElapsedTime AirTime ArrDelay DepDelay Origin Dest Distance
+## 1  N576AA                60      40      -10        0    IAH  DFW      224
+## 2  N557AA                60      45       -9        1    IAH  DFW      224
+## 3  N541AA                70      48       -8       -8    IAH  DFW      224
+## 4  N403AA                70      39        3        3    IAH  DFW      224
+## 5  N492AA                62      44       -3        5    IAH  DFW      224
+## 6  N262AA                64      45       -7       -1    IAH  DFW      224
+##   TaxiIn TaxiOut Cancelled CancellationCode Diverted
+## 1      7      13         0                         0
+## 2      6       9         0                         0
+## 3      5      17         0                         0
+## 4      9      22         0                         0
+## 5      9       9         0                         0
+## 6      6      13         0                         0</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">distinct</span>(flights, Origin, Dest==<span class="st">&quot;GIG&quot;</span>) %&gt;%head</code></pre></div>
+<pre><code>##   Year Month DayofMonth DayOfWeek DepTime ArrTime UniqueCarrier FlightNum
+## 1 2011     1          1         6    1400    1500            AA       428
+## 2 2011     1          1         6     654    1124            B6       620
+##   TailNum ActualElapsedTime AirTime ArrDelay DepDelay Origin Dest Distance
+## 1  N576AA                60      40      -10        0    IAH  DFW      224
+## 2  N324JB               210     181        5       -6    HOU  JFK     1428
+##   TaxiIn TaxiOut Cancelled CancellationCode Diverted Dest == &quot;GIG&quot;
+## 1      7      13         0                         0         FALSE
+## 2      6      23         0                         0         FALSE</code></pre>
+</div>
+<div id="adicionar-novas-colunas-com-mutate" class="section level3">
+<h3><span class="header-section-number">2.1.4</span> Adicionar novas colunas com mutate()</h3>
+<p>Além de selecionar conjuntos de colunas existentes, muitas vezes é útil para adicionar novas colunas que são funções de colunas existentes. Este é o trabalho de mutate ():</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mutate</span>(flights,
+  <span class="dt">gain =</span> ArrDelay -<span class="st"> </span>DepDelay,
+  <span class="dt">speed =</span> Distance /<span class="st"> </span>AirTime *<span class="st"> </span><span class="dv">60</span>) %&gt;%head</code></pre></div>
+<pre><code>##   Year Month DayofMonth DayOfWeek DepTime ArrTime UniqueCarrier FlightNum
+## 1 2011     1          1         6    1400    1500            AA       428
+## 2 2011     1          2         7    1401    1501            AA       428
+## 3 2011     1          3         1    1352    1502            AA       428
+## 4 2011     1          4         2    1403    1513            AA       428
+## 5 2011     1          5         3    1405    1507            AA       428
+## 6 2011     1          6         4    1359    1503            AA       428
+##   TailNum ActualElapsedTime AirTime ArrDelay DepDelay Origin Dest Distance
+## 1  N576AA                60      40      -10        0    IAH  DFW      224
+## 2  N557AA                60      45       -9        1    IAH  DFW      224
+## 3  N541AA                70      48       -8       -8    IAH  DFW      224
+## 4  N403AA                70      39        3        3    IAH  DFW      224
+## 5  N492AA                62      44       -3        5    IAH  DFW      224
+## 6  N262AA                64      45       -7       -1    IAH  DFW      224
+##   TaxiIn TaxiOut Cancelled CancellationCode Diverted gain    speed
+## 1      7      13         0                         0  -10 336.0000
+## 2      6       9         0                         0  -10 298.6667
+## 3      5      17         0                         0    0 280.0000
+## 4      9      22         0                         0    0 344.6154
+## 5      9       9         0                         0   -8 305.4545
+## 6      6      13         0                         0   -6 298.6667</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># A abordagem com dplyr (imprime a nova variável, mas não armazená-lo)</span>
+flights %&gt;%
+<span class="st">    </span><span class="kw">select</span>(Distance, AirTime) %&gt;%
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">Speed =</span> Distance/AirTime*<span class="dv">60</span>) %&gt;%head</code></pre></div>
+<pre><code>##   Distance AirTime    Speed
+## 1      224      40 336.0000
+## 2      224      45 298.6667
+## 3      224      48 280.0000
+## 4      224      39 344.6154
+## 5      224      44 305.4545
+## 6      224      45 298.6667</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Armazena uma nova variável</span>
+flights &lt;-<span class="st"> </span>flights %&gt;%<span class="st"> </span><span class="kw">mutate</span>(<span class="dt">Speed =</span> Distance/AirTime*<span class="dv">60</span>) %&gt;%head</code></pre></div>
+<p>A principal diferença entre a mutate () e transform () é que mutate() permite que você se referira as colunas que você acabou de criar:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mutate</span>(flights,
+  <span class="dt">gain =</span> ArrDelay -<span class="st"> </span>DepDelay,
+  <span class="dt">gain_per_hour =</span> gain /<span class="st"> </span>(AirTime /<span class="st"> </span><span class="dv">60</span>) %&gt;%head
+)</code></pre></div>
+<pre><code>##   Year Month DayofMonth DayOfWeek DepTime ArrTime UniqueCarrier FlightNum
+## 1 2011     1          1         6    1400    1500            AA       428
+## 2 2011     1          2         7    1401    1501            AA       428
+## 3 2011     1          3         1    1352    1502            AA       428
+## 4 2011     1          4         2    1403    1513            AA       428
+## 5 2011     1          5         3    1405    1507            AA       428
+## 6 2011     1          6         4    1359    1503            AA       428
+##   TailNum ActualElapsedTime AirTime ArrDelay DepDelay Origin Dest Distance
+## 1  N576AA                60      40      -10        0    IAH  DFW      224
+## 2  N557AA                60      45       -9        1    IAH  DFW      224
+## 3  N541AA                70      48       -8       -8    IAH  DFW      224
+## 4  N403AA                70      39        3        3    IAH  DFW      224
+## 5  N492AA                62      44       -3        5    IAH  DFW      224
+## 6  N262AA                64      45       -7       -1    IAH  DFW      224
+##   TaxiIn TaxiOut Cancelled CancellationCode Diverted    Speed gain
+## 1      7      13         0                         0 336.0000  -10
+## 2      6       9         0                         0 298.6667  -10
+## 3      5      17         0                         0 280.0000    0
+## 4      9      22         0                         0 344.6154    0
+## 5      9       9         0                         0 305.4545   -8
+## 6      6      13         0                         0 298.6667   -6
+##   gain_per_hour
+## 1     -15.00000
+## 2     -13.33333
+## 3       0.00000
+## 4       0.00000
+## 5     -10.90909
+## 6      -8.00000</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Deverá gerar um erro</span></code></pre></div>
+<p>Se você só quer manter as novas variáveis, utilize transmute():</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">transmute</span>(flights,
+  <span class="dt">gain =</span> ArrDelay -<span class="st"> </span>DepDelay,
+  <span class="dt">gain_per_hour =</span> gain /<span class="st"> </span>(AirTime /<span class="st"> </span><span class="dv">60</span>)
+ ) %&gt;%head</code></pre></div>
+<pre><code>##   gain gain_per_hour
+## 1  -10     -15.00000
+## 2  -10     -13.33333
+## 3    0       0.00000
+## 4    0       0.00000
+## 5   -8     -10.90909
+## 6   -6      -8.00000</code></pre>
+</div>
+<div id="totalize-valores-com-summarise" class="section level3">
+<h3><span class="header-section-number">2.1.5</span> Totalize valores com summarise()</h3>
+<p>O último verbo é summarise(). Ele recolhe um data frame a uma única linha (este é exatamente equivalente a plyr :: summarise ()) group_by cria os grupos que serão operados. summarise utiliza a função de agregação fornecida para resumir cada grupo.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summarise</span>(flights,
+  <span class="dt">delay =</span> <span class="kw">mean</span>(DepDelay, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</code></pre></div>
+<pre><code>##   delay
+## 1     0</code></pre>
+</div>
+<div id="amostras---randomicamente-selecione-amostras-com-sample_n-e-sample_frac" class="section level3">
+<h3><span class="header-section-number">2.1.6</span> Amostras - randomicamente selecione amostras com sample_n() e sample_frac()</h3>
+<p>Você pode utilizar sample_n() and sample_frac() para gerar uma amostra aleatória de registros: utilize sample_n() para um número fixo e sample_frac() para uma fração fixa.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample_n</span>(flights, <span class="dv">5</span>)</code></pre></div>
+<pre><code>##   Year Month DayofMonth DayOfWeek DepTime ArrTime UniqueCarrier FlightNum
+## 4 2011     1          4         2    1403    1513            AA       428
+## 1 2011     1          1         6    1400    1500            AA       428
+## 6 2011     1          6         4    1359    1503            AA       428
+## 5 2011     1          5         3    1405    1507            AA       428
+## 2 2011     1          2         7    1401    1501            AA       428
+##   TailNum ActualElapsedTime AirTime ArrDelay DepDelay Origin Dest Distance
+## 4  N403AA                70      39        3        3    IAH  DFW      224
+## 1  N576AA                60      40      -10        0    IAH  DFW      224
+## 6  N262AA                64      45       -7       -1    IAH  DFW      224
+## 5  N492AA                62      44       -3        5    IAH  DFW      224
+## 2  N557AA                60      45       -9        1    IAH  DFW      224
+##   TaxiIn TaxiOut Cancelled CancellationCode Diverted    Speed
+## 4      9      22         0                         0 344.6154
+## 1      7      13         0                         0 336.0000
+## 6      6      13         0                         0 298.6667
+## 5      9       9         0                         0 305.4545
+## 2      6       9         0                         0 298.6667</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample_frac</span>(flights, <span class="fl">0.01</span>)</code></pre></div>
+<pre><code>##  [1] Year              Month             DayofMonth       
+##  [4] DayOfWeek         DepTime           ArrTime          
+##  [7] UniqueCarrier     FlightNum         TailNum          
+## [10] ActualElapsedTime AirTime           ArrDelay         
+## [13] DepDelay          Origin            Dest             
+## [16] Distance          TaxiIn            TaxiOut          
+## [19] Cancelled         CancellationCode  Diverted         
+## [22] Speed            
+## &lt;0 rows&gt; (or 0-length row.names)</code></pre>
+<p>Use replace = TRUE para executar uma amostra de bootstrap. Se necessário, você pode pesar a amostra com o argumento de peso.</p>
+</div>
+<div id="operacoes-agrupadas" class="section level3">
+<h3><span class="header-section-number">2.1.7</span> Operações Agrupadas</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#A abordagem com dplyr: criar uma tabela agrupados por Dest, e depois resumir cada grupo tomando a média de ArrDelay</span>
+
+flights %&gt;%
+<span class="st">    </span><span class="kw">group_by</span>(Dest) %&gt;%
+<span class="st">    </span><span class="kw">summarise</span>(<span class="dt">avg_delay =</span> <span class="kw">mean</span>(ArrDelay, <span class="dt">na.rm=</span><span class="ot">TRUE</span>))</code></pre></div>
+<pre><code>## Source: local data frame [1 x 2]
+## 
+##    Dest avg_delay
+##   (chr)     (dbl)
+## 1   DFW -5.666667</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Para cada operadora, calcule o atraso nas partidas mínimo e máximo e chegada</span>
+flights %&gt;%
+<span class="st">    </span><span class="kw">group_by</span>(UniqueCarrier) %&gt;%
+<span class="st">    </span><span class="kw">summarise_each</span>(<span class="kw">funs</span>(<span class="kw">min</span>(., <span class="dt">na.rm=</span><span class="ot">TRUE</span>), <span class="kw">max</span>(., <span class="dt">na.rm=</span><span class="ot">TRUE</span>)), <span class="kw">matches</span>(<span class="st">&quot;Delay&quot;</span>))</code></pre></div>
+<pre><code>## Source: local data frame [1 x 5]
+## 
+##   UniqueCarrier ArrDelay_min DepDelay_min ArrDelay_max DepDelay_max
+##           (chr)        (int)        (int)        (int)        (int)
+## 1            AA          -10           -8            3            5</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#A função n () conta o número de linhas em um grupo</span>
+<span class="co">#A função n_distinct (vector) conta o número de itens exclusivos nesse vector</span>
+
+<span class="co"># Para cada dia do ano, contar o número total de voos, e classificar em ordem decrescente</span>
+
+flights %&gt;%
+<span class="st">    </span><span class="kw">group_by</span>(Month, DayofMonth) %&gt;%
+<span class="st">    </span><span class="kw">summarise</span>(<span class="dt">flight_count =</span> <span class="kw">n</span>()) %&gt;%
+<span class="st">    </span><span class="kw">arrange</span>(<span class="kw">desc</span>(flight_count))</code></pre></div>
+<pre><code>## Source: local data frame [6 x 3]
+## Groups: Month [1]
+## 
+##   Month DayofMonth flight_count
+##   (int)      (int)        (int)
+## 1     1          1            1
+## 2     1          2            1
+## 3     1          3            1
+## 4     1          4            1
+## 5     1          5            1
+## 6     1          6            1</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Para cada destino, contar o número total de voos eo número de planos distintos que voavam lá</span>
+
+flights %&gt;%
+<span class="st">    </span><span class="kw">group_by</span>(Dest) %&gt;%
+<span class="st">    </span><span class="kw">summarise</span>(<span class="dt">flight_count =</span> <span class="kw">n</span>(), <span class="dt">plane_count =</span> <span class="kw">n_distinct</span>(TailNum)) </code></pre></div>
+<pre><code>## Source: local data frame [1 x 3]
+## 
+##    Dest flight_count plane_count
+##   (chr)        (int)       (int)
+## 1   DFW            6           6</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Para cada destino, mostram o número de vôos cancelados e Não cancelada</span>
+
+flights %&gt;%
+<span class="st">    </span><span class="kw">group_by</span>(Dest) %&gt;%
+<span class="st">    </span><span class="kw">select</span>(Cancelled) %&gt;%
+<span class="st">    </span><span class="kw">table</span>() %&gt;%head</code></pre></div>
+<pre><code>##      Cancelled
+## Dest  0
+##   DFW 6</code></pre>
+</div>
+<div id="funcoes-janela" class="section level3">
+<h3><span class="header-section-number">2.1.8</span> Funções Janela</h3>
+<p>função de aggregate (como média) tem n entradas e retorna 1 valor Função de janela tem n entradas e retorna n valores</p>
+<p>Inclui funções de ranking e ordenação (como min_rank), compensado funções (lead e lag), e agregações acumuladas (como cummean).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">by_tailnum &lt;-<span class="st"> </span><span class="kw">group_by</span>(flights, TailNum)
+delay &lt;-<span class="st"> </span><span class="kw">summarise</span>(by_tailnum,
+  <span class="dt">count =</span> <span class="kw">n</span>(),
+  <span class="dt">dist =</span> <span class="kw">mean</span>(Distance, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),
+  <span class="dt">delay =</span> <span class="kw">mean</span>(ArrDelay, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))
+
+delay &lt;-<span class="st"> </span><span class="kw">filter</span>(delay, count &gt;<span class="st"> </span><span class="dv">20</span>, dist &lt;<span class="st"> </span><span class="dv">2000</span>)
+
+<span class="co"># Para cada operadora, calcule qual dos dois dias do ano eles tinham seus maiores atrasos de partida.</span>
+
+<span class="co"># Nota: O valor menor (e não maior)  é classificado como 1, então você tem que usar &quot;desc&quot; para classificar pelo maior valor</span>
+
+<span class="co">#2 para cada grupo</span>
+flights %&gt;%
+<span class="st">    </span><span class="kw">group_by</span>(UniqueCarrier) %&gt;%
+<span class="st">    </span><span class="kw">select</span>(Month, DayofMonth, DepDelay) %&gt;%
+<span class="st">    </span><span class="kw">filter</span>(<span class="kw">min_rank</span>(<span class="kw">desc</span>(DepDelay)) &lt;=<span class="st"> </span><span class="dv">2</span>) %&gt;%
+<span class="st">    </span><span class="kw">arrange</span>(UniqueCarrier, <span class="kw">desc</span>(DepDelay)) %&gt;%head</code></pre></div>
+<pre><code>## Source: local data frame [2 x 4]
+## Groups: UniqueCarrier [1]
+## 
+##   UniqueCarrier Month DayofMonth DepDelay
+##           (chr) (int)      (int)    (int)
+## 1            AA     1          5        5
+## 2            AA     1          4        3</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Reescrito de maneira mais simples usando a função top_n</span>
+
+flights %&gt;%
+<span class="st">    </span><span class="kw">group_by</span>(UniqueCarrier) %&gt;%
+<span class="st">    </span><span class="kw">select</span>(Month, DayofMonth, DepDelay) %&gt;%
+<span class="st">    </span><span class="kw">top_n</span>(<span class="dv">2</span>) %&gt;%
+<span class="st">    </span><span class="kw">arrange</span>(UniqueCarrier, <span class="kw">desc</span>(DepDelay)) %&gt;%head</code></pre></div>
+<pre><code>## Selecting by DepDelay</code></pre>
+<pre><code>## Source: local data frame [2 x 4]
+## Groups: UniqueCarrier [1]
+## 
+##   UniqueCarrier Month DayofMonth DepDelay
+##           (chr) (int)      (int)    (int)
+## 1            AA     1          5        5
+## 2            AA     1          4        3</code></pre>
+</div>
+<div id="top---maiores-valores" class="section level3">
+<h3><span class="header-section-number">2.1.9</span> Top - Maiores valores</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Maiores Atrasos na Partida</span>
+<span class="kw">top_n</span>(flights, <span class="dv">2</span>, flights$DepDelay)</code></pre></div>
+<pre><code>##   Year Month DayofMonth DayOfWeek DepTime ArrTime UniqueCarrier FlightNum
+## 1 2011     1          4         2    1403    1513            AA       428
+## 2 2011     1          5         3    1405    1507            AA       428
+##   TailNum ActualElapsedTime AirTime ArrDelay DepDelay Origin Dest Distance
+## 1  N403AA                70      39        3        3    IAH  DFW      224
+## 2  N492AA                62      44       -3        5    IAH  DFW      224
+##   TaxiIn TaxiOut Cancelled CancellationCode Diverted    Speed
+## 1      9      22         0                         0 344.6154
+## 2      9       9         0                         0 305.4545</code></pre>
+</div>
+<div id="primeiro-registro" class="section level3">
+<h3><span class="header-section-number">2.1.10</span> Primeiro Registro</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">first</span>(flights$Distance)</code></pre></div>
+<pre><code>## [1] 224</code></pre>
+</div>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

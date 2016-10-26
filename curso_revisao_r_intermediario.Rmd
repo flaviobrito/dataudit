@@ -1,0 +1,485 @@
+---
+title: "Curso  Auditoria de Dados - Revisão Linguagem R - Intermediário"
+date: "23/10/2016"
+output:
+  html_document:
+    toc: true
+    number_sections: true
+    theme: cerulean
+    highlight: tango
+    fig_width: 10
+    fig_height: 3
+    self_contained: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#Operações com Data Frame
+
+```{r}
+getwd()
+setwd("/Users/flaviobrito/Documents/Cursos/Auditoria_Dados/dados/")
+
+Dados_A <- read.csv2("Dados_A.csv", sep=";",stringsAsFactors=FALSE, header = TRUE, na.strings = " ")
+
+Dados_A
+
+Dados_B <- read.csv2("Dados_B.csv", sep=";",stringsAsFactors=FALSE, header = TRUE, na.strings = " ")
+
+Dados_B
+
+```
+##Arquivos / Data Frames
+
+### Merge
+Como alguns nem sempre têm conhecimento o acesso a banco de dados, as operações abaixo são muito interessantes se comparadas com um JOIN (Banco de Dados).
+
+Para conseguir a saída abaixo, digite:
+
+```{r}
+
+m <- merge(Dados_A,Dados_B, all=TRUE)
+m
+```
+Para conseguir a saída abaixo, digite:
+
+```{r}
+n <- merge(Dados_A,Dados_B, all.Dados_A=TRUE)
+n
+```
+Através desse comando indicamos ao R que o data frame Dados_A possui os campos de junção que devem ser respeitados.
+
+O mesmo pode ser conseguido com o comando a seguir:
+
+```{r}
+o <- merge(Dados_A,Dados_B, by = c("NUMFUNC","NUMVINC"))
+o
+```
+
+Para escolher um conjunto de saída específico utilizamos
+
+```{r}
+p <- m[c("NUMFUNC","NUMVINC","SETOR")]
+p
+```
+c (“NUMFUNC”,”NUMVINC”,”SETOR”) – cria um vetor com esses 3 campos. Repare que m é um data frame:
+
+Veja a estrutura de m com o comando:
+
+```{r}
+str(m)
+```
+Para conseguir a saída abaixo,usaremos o seguinte comando:
+
+```{r}
+q  <- merge(Dados_A,Dados_B, by = c("NUMFUNC"))
+q
+```
+
+Para conseguir a saída abaixo, digitaremos o seguinte comando:
+```{r}
+u  <- merge(Dados_A,Dados_B, by = c("NUMVINC"))
+u
+```
+
+Para conseguir a saída abaixo, usaremos o seguinte comando:
+
+```{r}
+v  <-  merge(Dados_A,Dados_B, by=NULL)
+v
+v  <-  merge(Dados_A,Dados_B, by="NUMFUNC", all.y=TRUE)
+v
+v  <-  merge(Dados_A,Dados_B, by="NUMFUNC", all.x=TRUE)
+v
+
+```
+
+
+### Combinando Conjuntos de dados
+```{r}
+suppressMessages(library(dplyr))
+x1 <- c("A", "B", "C")
+x2 <- c(1,2,3)
+a <- data.frame(x1,x2)
+
+x1 <- c("A", "B", "C")
+x3 <- c("T","F","T")
+b <- data.frame(x1,x3)
+
+
+```
+
+#### Joins - Junções usando dplyr
+
+```{r}
+left_join(a, b, by = "x1")
+
+right_join(a, b, by = "x1")
+
+inner_join(a, b, by = "x1")
+
+full_join(a, b, by = "x1")
+
+# Joins filtrados
+semi_join(a, b, by = "x1") #Todas as linhas em a que tem uma coincidência em b
+
+anti_join(a, b, by = "x1") #Todas as linhas em a que NÃO tem uma coincidência em b
+
+```
+
+#### Operações com Conjuntos
+```{r}
+
+z <- NULL
+x1 <- c("A", "B", "C")
+x2 <- c(1,2,3)
+y <- data.frame(x1,x2, stringsAsFactors = FALSE)
+
+x1 <- as.character(c("B", "C", "D"))
+x2 <- c(2,3,4)
+z <- data.frame(x1,x2, stringsAsFactors = FALSE)
+
+#Intercessão
+intersect(y, z) #Linhas em comum em y e z
+
+#União
+union(y, z) # Linhas que aparecem em y e também em z
+
+#Diferença
+setdiff(y, z) # Linhas que aparecem em y e não em z
+```
+
+
+
+
+
+
+
+
+### Filtros e Seleção de Registros e Atributos em Data Frames
+
+```{r}
+suppressMessages(library(dplyr))
+
+
+library(hflights)
+
+flights <- hflights
+dim(hflights)
+head(hflights)
+
+#Dados sobre o Data Frame hflights
+
+#Número de Registros
+nrow(flights)
+
+#Número de Variávei
+ncol(flights)
+
+```
+
+
+###Split - Dividindo Data frames
+```{r}
+split(Dados_B, Dados_B$SETOR)
+
+
+```
+### Append Data frames - Anexando Data frames
+```{r}
+rbind(Dados_A, Dados_A)
+
+```
+
+
+
+# Usando  pacote Dplyr
+## Filtros e Seleções
+
+Dplyr tem como objectivo proporcionar uma função para cada  verbo base para manipulação de dados:
+
+* filter() (e slice())
+* arrange()
+* select() (e rename())
+* distinct()
+* mutate() (e transmute())
+* summarise()
+* sample_n() (e sample_frac())
+
+###Filtrando linhas usando filter()
+
+filter () permite selecionar um subconjunto de linhas em um quadro de dados. O primeiro argumento é o nome do data frame. O segundo e subseqüentes argumentos são as expressões que filtram o data frame:
+
+
+```{r}
+attach(flights)
+filter(flights, Month == 1, DayofMonth == 1) %>%head
+```
+Este é equivalente ao código mais detalhado na base de R:
+
+```{r}
+flights[flights$Month == 1 & flights$DayofMonth == 1, ] %>%head
+
+# Método de assentamento para selecionar colunas e filtro UniqueCarrier e DepDisplay acima de 60 minutos
+
+filter(select(flights, UniqueCarrier, DepDelay), DepDelay > 60) %>%head
+
+# método de encadeamento
+flights %>%
+    select(UniqueCarrier, DepDelay) %>%
+    filter(DepDelay > 60) %>%head
+
+```
+filter () funciona de forma semelhante para o subconjunto () exceto que você pode dar qualquer número de condições de filtragem, que são unidas em conjunto com & (não && que é fácil de fazer acidentalmente!). Você também pode usar outros operadores booleanos:
+```{r}
+filter(flights, Month == 1 | Month == 2) %>%head
+
+# Para selecionar linhas de posição, o uso slice ():
+
+slice(flights, 1:10) %>%head
+
+```
+
+```
+###Arrange rows with arrange()
+
+Arrange() funciona da mesma forma que o filter(), exceto que em vez de filtragem ou linhas selecionando, que reordena-los. É preciso um data frame, e um conjunto de nomes de colunas (ou expressões mais complicadas) para ordenar por. Se você fornecer mais de um nome de coluna, cada coluna adicional será usada para quebrar os laços nos valores das colunas precedentes:
+  
+```{r}
+arrange(flights, Year, Month, DayofMonth) %>%head
+
+# Base de abordagem R para selecionar UniqueCarrier e DepDelay e classificar por DepDelay
+
+arrange(flights, DepDelay, UniqueCarrier, DepDelay) %>%head
+
+#ou método de encadeamento
+
+flights %>%
+    select(UniqueCarrier, DepDelay) %>%
+    arrange(DepDelay) %>% head
+
+# Use desc () para ordenar uma coluna em ordem decrescente:
+ 
+```{r}
+
+arrange(flights, desc(ArrDelay)) %>%head
+
+#ou pelo método de cadeia
+
+flights %>%
+    select(UniqueCarrier, DepDelay) %>%
+    arrange(desc(DepDelay)) %>%head
+
+```
+
+O código anterior é equivalente a:
+
+```{r}
+flights[order(flights$Year, flights$Month, flights$DayofMonth), ] %>%head
+flights[order(flights$ArrDelay, decreasing = TRUE), ] %>%head #ou
+flights[order(-flights$ArrDelay), ] %>%head
+
+```
+
+
+### Selecionar colunas com select ()
+
+Muitas vezes você trabalhar com grandes conjuntos de dados com muitas colunas, mas apenas alguns são realmente de interesse para você. select() permite-lhe ampliar rapidamente em um subconjunto útil usando operações que normalmente só funcionam em posições variáveis numéricas:
+
+
+```{r}
+
+select(flights, DepTime, ArrTime, FlightNum) %>%head
+
+select(flights, Year, Month, DayofMonth) %>%head
+
+select(flights, Year:DayofMonth) %>%head
+
+select(flights, -(Year:DayofMonth)) %>%head
+
+#Seleciona somente as variáveis cujo nome contem o texto especificado
+
+select(flights, Year:DayofMonth, contains("Taxi"), contains("Delay")) %>% head
+
+# Você pode renomear variáveis com select () usando argumentos nomeados:
+
+select(flights, tail_num = TailNum) %>%head
+
+# Mas porque select() elimina todas as variáveis não explicitamente mencionadas, não é assim tão útil. Em vez disso, o uso rename():
+
+rename(flights, tail_num = TailNum) %>%head
+
+```
+### Extraia linhas distintas (únicas)
+
+Use distinct () para encontrar valores exclusivos em uma tabela:
+
+```{r}
+distinct(flights, TailNum) %>%head
+
+distinct(flights, Origin, Dest=="GIG") %>%head
+
+
+```
+
+### Adicionar novas colunas com mutate()
+
+Além de selecionar conjuntos de colunas existentes, muitas vezes é útil para adicionar novas colunas que são funções de colunas existentes. Este é o trabalho de mutate ():
+
+```{r}
+
+mutate(flights,
+  gain = ArrDelay - DepDelay,
+  speed = Distance / AirTime * 60) %>%head
+
+# A abordagem com dplyr (imprime a nova variável, mas não armazená-lo)
+flights %>%
+    select(Distance, AirTime) %>%
+    mutate(Speed = Distance/AirTime*60) %>%head
+
+# Armazena uma nova variável
+flights <- flights %>% mutate(Speed = Distance/AirTime*60) %>%head
+
+```
+A principal diferença entre a mutate () e transform () é que mutate() permite que você se referira as colunas que você acabou de criar:
+
+```{r}
+
+mutate(flights,
+  gain = ArrDelay - DepDelay,
+  gain_per_hour = gain / (AirTime / 60) %>%head
+)
+
+#Deverá gerar um erro
+
+```
+Se você só quer manter as novas variáveis, utilize transmute():
+
+```{r}
+transmute(flights,
+  gain = ArrDelay - DepDelay,
+  gain_per_hour = gain / (AirTime / 60)
+ ) %>%head
+
+```
+
+
+###Totalize valores com summarise()
+
+O último verbo é summarise(). Ele recolhe um data frame a uma única linha (este é exatamente equivalente a plyr :: summarise ())
+group_by cria os grupos que serão operados. summarise utiliza a função de agregação fornecida para resumir cada grupo.
+
+
+```{r}
+summarise(flights,
+  delay = mean(DepDelay, na.rm = TRUE))
+
+
+
+```
+
+### Amostras - randomicamente selecione amostras com sample_n() e sample_frac()
+
+Você pode utilizar sample_n() and sample_frac() para gerar uma amostra aleatória de registros: utilize sample_n() para um número fixo e sample_frac() para uma fração fixa.
+
+```{r}
+sample_n(flights, 5)
+
+sample_frac(flights, 0.01)
+
+```
+
+Use replace = TRUE para executar uma amostra de bootstrap. Se necessário, você pode pesar a amostra com o argumento de peso.
+
+### Operações Agrupadas
+
+
+```{r}
+
+#A abordagem com dplyr: criar uma tabela agrupados por Dest, e depois resumir cada grupo tomando a média de ArrDelay
+
+flights %>%
+    group_by(Dest) %>%
+    summarise(avg_delay = mean(ArrDelay, na.rm=TRUE))
+
+# Para cada operadora, calcule o atraso nas partidas mínimo e máximo e chegada
+flights %>%
+    group_by(UniqueCarrier) %>%
+    summarise_each(funs(min(., na.rm=TRUE), max(., na.rm=TRUE)), matches("Delay"))
+
+#A função n () conta o número de linhas em um grupo
+#A função n_distinct (vector) conta o número de itens exclusivos nesse vector
+
+# Para cada dia do ano, contar o número total de voos, e classificar em ordem decrescente
+
+flights %>%
+    group_by(Month, DayofMonth) %>%
+    summarise(flight_count = n()) %>%
+    arrange(desc(flight_count))
+
+# Para cada destino, contar o número total de voos eo número de planos distintos que voavam lá
+
+flights %>%
+    group_by(Dest) %>%
+    summarise(flight_count = n(), plane_count = n_distinct(TailNum)) 
+
+# Para cada destino, mostram o número de vôos cancelados e Não cancelada
+
+flights %>%
+    group_by(Dest) %>%
+    select(Cancelled) %>%
+    table() %>%head
+
+```
+### Funções Janela
+função de aggregate (como média) tem n entradas e retorna 1 valor
+Função de janela tem n entradas e retorna n valores
+
+Inclui funções de ranking e ordenação (como min_rank), compensado funções (lead e lag), e agregações acumuladas (como cummean).
+
+```{r}
+by_tailnum <- group_by(flights, TailNum)
+delay <- summarise(by_tailnum,
+  count = n(),
+  dist = mean(Distance, na.rm = TRUE),
+  delay = mean(ArrDelay, na.rm = TRUE))
+
+delay <- filter(delay, count > 20, dist < 2000)
+
+# Para cada operadora, calcule qual dos dois dias do ano eles tinham seus maiores atrasos de partida.
+
+# Nota: O valor menor (e não maior)  é classificado como 1, então você tem que usar "desc" para classificar pelo maior valor
+
+#2 para cada grupo
+flights %>%
+    group_by(UniqueCarrier) %>%
+    select(Month, DayofMonth, DepDelay) %>%
+    filter(min_rank(desc(DepDelay)) <= 2) %>%
+    arrange(UniqueCarrier, desc(DepDelay)) %>%head
+
+# Reescrito de maneira mais simples usando a função top_n
+
+flights %>%
+    group_by(UniqueCarrier) %>%
+    select(Month, DayofMonth, DepDelay) %>%
+    top_n(2) %>%
+    arrange(UniqueCarrier, desc(DepDelay)) %>%head
+
+
+
+```
+
+### Top - Maiores valores
+```{r}
+
+# Maiores Atrasos na Partida
+top_n(flights, 2, flights$DepDelay)
+```
+### Primeiro Registro
+```{r}
+first(flights$Distance)
+```
+
+

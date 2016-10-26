@@ -1,0 +1,590 @@
+---
+title: "Introdução e Revisão - Linguagem R"
+author: "Flávio Brito"
+date: "23/10/2016"
+output:
+  html_document:
+    toc: true
+    number_sections: true
+    theme: cerulean
+    highlight: tango
+    fig_width: 10
+    fig_height: 3
+    self_contained: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Operador de Associação
+
+```{r}
+
+curso <- "Curso de Auditoria de Dados"
+
+Data <- "23/10/2016"
+
+hora <- "15:09"
+
+Valor <- "R$ 1.650,00"
+
+`Duração do curso` <- "3d"
+
+```
+#Ambiente R
+
+```{r}
+# Imprime seu diretório corrente 
+getwd() 
+# Lista os objetos em memória
+ls()    
+#Muda de diretório
+# muda para o diretório dados
+#setwd("./dados/")      
+# Perceba / ao invés de  \ no Windows 
+#setwd("c:/docs/mydir")"
+# no  MAC OS ou Gnu Linux
+#setwd("./dados/")
+# Visualiza e Grava as opções do ambiente
+# Ajuda com as opções disponíveis
+help(options) 
+#Lista as OpçÕes disponívies
+#options() 
+#Configura o número de dígitos para serem impressos na saída
+#options(digits=3) 
+# Lista o histórico de comandos
+#history() # Apresenta os últimos 25 comandos executados
+# Apresenta todos os comandos executados
+#history(max.show=Inf) 
+# Grava o histórico de comandos no arquivo 
+#savehistory(file="meu_log.txt") # o padrão é ".Rhistory" 
+
+# Recarrega  a lista de comandos dados
+#loadhistory(file="meu_log.txt") # o padrão é ".Rhistory"
+# Grava os objetos do ambiente de trabalho no arquivo.RData no diretório corrente 
+#save.image()
+
+#Grava objetos específicos em uma arquivo
+#Se não for especificado o caminho, o diretório corrente será utilizado
+#lista <- ls()
+#save(lista,file="meu_ambiente_trabalho.RData")
+# Carrega o ambinete de trabalho para a sessão atual
+# load a workspace into the current session
+# if you don't specify the path, the cwd is assumed 
+#load("meu_ambiente_trabalho.RData")
+#Sai do R. O R perguntará se deseja gravar o ambiente de trabalho
+#q() 
+
+```
+
+
+# Dados
+## Associação
+### Tamanho do objeto associado a variável
+
+```{r}
+
+# Número de caracters associados a variável quando esta é um caracter
+
+#curso
+nchar(curso)
+#Data
+nchar(Data)
+#hora
+nchar(hora)
+#Duração
+nchar(`Duração do curso`)
+
+
+
+```
+
+
+##Tipos de Dados
+
+### Descobrindo o tipo da variável
+```{r}
+#curso
+class(curso)
+#Data
+class(Data)
+#hora
+class(hora)
+#Duração
+class(`Duração do curso`)
+
+```
+
+###Tipos
+
+### Caracter
+```{r}
+curso <- "Curso de Auditoria de Dados"
+
+print(curso)
+
+class(curso)
+
+is.character(curso)
+
+
+```
+
+
+### Numérico
+
+```{r}
+x <- 10.2
+print(x)
+class(x)
+```
+
+
+### Inteiro
+```{r}
+y <- 8
+print(y)
+class(y)
+
+```
+### Complexo
+Sem aplicação no contexto do curso
+
+### Lógico
+```{r}
+logico <-  T
+
+print(logico)
+
+l <-  FALSE
+print(l)
+
+```
+
+
+
+### Data
+```{r}
+
+
+#Associa
+Data <- "23/10/2016"
+
+#Testa o Tipo
+class(Data)
+
+#Será necessário converter o tipo da variável para Data
+Data <- as.Date(Data,"%d/%m/%Y")
+
+#Testa o tipo
+class(Data)
+
+#Imprime
+print(Data)
+
+#Formata a Saída
+format(Data, "%d/%m%/%Y")
+
+#Formata a Saída
+format(Sys.Date(), "%a %b %d")
+format(Sys.Date(), "%d%b%Y")
+format(Sys.Date(), "%d/%m/%Y")
+
+weekdays(Sys.Date())
+months(Sys.Date())
+as.Date(.leap.seconds)
+
+z <- Sys.Date()
+print(z)
+w<- z+10
+print(w)
+
+#Diferença
+
+data1 <- strptime("25/10/2016", format="%d/%m/%Y")
+data2 <- strptime("04/11/2016", format="%d/%m/%Y")
+difftime(data2,data1,units="days")
+difftime(data2,data1,units="week")
+
+# Nota: podemos usar a função trunc() para truncar o valor do resultado da diferença em semanas que no exemplo acima ficou com decimais.
+
+
+```
+
+
+### Vetor
+
+```{r}
+c(2, 3, 5) 
+
+# Vetor Lógico
+c(TRUE, FALSE, TRUE, FALSE, FALSE) 
+ 
+#Vetor de caracteres
+c("aa", "bb", "cc", "dd", "ee") 
+
+#Tamanho do Vetor
+length(c("aa", "bb", "cc", "dd", "ee")) 
+
+ 
+```
+
+###Combinando Vetores
+```{r}
+
+n <- c(2, 3, 5) 
+s <- c("aa", "bb", "cc", "dd", "ee") 
+
+#Combinando
+c(n, s) 
+
+
+```
+
+### Operações com Vetores
+
+```{r}
+#Criando vetores
+a <- c(2, 3, 5) 
+b <- c(6, 1, 3) 
+
+
+#Soma
+a + b
+
+#Subtração
+b - a
+#Multiplicação
+5*a
+a * b
+
+#Divisão
+a/b
+
+#Regra de Reciclagem
+u <- c(10, 20, 30) 
+v <- c(1, 2, 3, 4, 5, 6, 7, 8, 9) 
+u + v
+ 
+
+
+```
+### Índice de Vetores
+```{r}
+
+
+n <- c(2, 3, 5) 
+s <- c("aa", "bb", "cc", "dd", "ee") 
+
+s[3]
+
+#Índice Negativo
+
+s[-3] #Todos menos o elemento listado no índice
+
+# Fora dos Limites
+
+s[10] 
+
+#Listando mais elementos
+
+s[c(2, 3)] 
+
+s[c(2, 3, 3)] 
+
+# Fora dos Limites
+
+s[c(2, 1, 3)] 
+
+# Índice por faixa
+s[2:4] 
+
+#Nomes nos Vetores
+v <- c("Governo", "RJ") 
+v 
+
+# Temos agora nomear o primeiro membro como primeiro e o segundo como último
+
+names(v) = c("Primeiro", "Último") 
+v 
+
+# Então, podemos recuperar o primeiro membro pelo seu nome.
+
+v["Primeiro"] 
+
+# Além disso, podemos inverter a ordem com um vector caráter índice string.
+
+v[c("Último", "Primeiro")] 
+
+
+
+```
+
+
+
+## Matriz
+```{r}
+A <- matrix(
+  c(2, 4, 3, 1, 5, 7), # os dados dos elementos
+  nrow=2,              # número de linhas
+  ncol=3,              # número de colunas 
+  byrow = TRUE)        # preenche a matriz por linhas
+
+A
+
+A[2, 3]      # elemento da segunda linha e terceira coluna
+
+A[2, ]       # a segunda linha
+
+A[ ,3]       # a terceira coluna
+
+A[ ,c(1,3)] # A primeira e terceira coluna
+ 
+
+```
+
+ 
+ 
+## Lista
+
+```{r}
+n  <-  c(2, 3, 5) 
+s <-  c("aa", "bb", "cc", "dd", "ee") 
+b <-  c(TRUE, FALSE, TRUE, FALSE, FALSE) 
+x <-  list(n, s, b, 3)   # x contains copies of n, s, b
+
+x[c(2, 4)] 
+
+
+#Referência
+
+x[[2]]
+
+x[[2]][1] <- "ta" 
+
+#Membros de uma Lista
+
+v <-  list(nivel=c(2, 3, 5), cargo=c("NIVEL-1", "NIVEL-2")) 
+
+v["nivel"]
+ 
+v[["nivel"]] 
+
+v$nivel 
+
+ 
+
+```
+
+
+## Data Frame
+
+```{r}
+n <- c(2, 3, 5) 
+s <- c("aa", "bb", "cc") 
+b <- c(TRUE, FALSE, TRUE) 
+df <- data.frame(n, s, b)  
+
+df
+
+
+#Data frame de carros - Motor Trend Car Road Tests
+mtcars
+
+#Seleciona a linha 1 e coluna 2
+mtcars[1, 2] 
+
+#Seleciona o carro e a coluna cyl (cilindradas)
+mtcars["Mazda RX4", "cyl"] 
+
+nrow(mtcars) # número de linhas
+ncol(mtcars) # número de colunas
+help(mtcars) # informações sobre este dataframe
+
+#Visualização
+head(mtcars)
+```
+### Coluna do Dataframe
+
+```{r}
+#Seleciona a coluna por número de ordem
+#Seleciona os carros automáticos
+mtcars[[9]] 
+
+#Somente carros automáticos (9 coluna)
+mtcars[["am"]] 
+
+mtcars$am 
+
+mtcars[,"am"] 
+
+#Por Índice
+mtcars[1] # Seleciona a coluna 1 - mpg
+
+mtcars["mpg"] 
+
+mtcars[c("mpg", "hp")] 
+
+#Índice numérico
+
+mtcars[24,] # Seleciona o registro de número 24 (linha 24 do data frame)
+
+mtcars[c(3, 24),] # Seleciona os registros 3 e 24
+
+# Filtrando
+mtcars["Camaro Z28",] # Seleciona um carro específico
+
+mtcars[c("Datsun 710", "Camaro Z28"),]  #Seleciona um conjunto de carros
+
+
+
+
+ 
+
+```
+
+
+
+
+
+## Manipulação de dados
+```{r}
+x<-c(1.6123,2.244,4.109,8.9,16 )
+round(x,2)                                # Arredonda os valores de x para n casas decimais
+ceiling(x)                                # Vector x de menor inteiro> x
+floor(x)                                  # Vetor x de maior inteiro <x
+as.integer(x)                             # Truncado x real para inteiros (em comparação com rodada)
+x%in%y                     # Testa cada elemento x para a adesão em y
+y%in%x                     # Testa cada elemento de y para a adesão em x
+all(x%in%y)                #true se x é um subconjunto apropriado de y
+all(x)                     # Para um vetor de valores lógicos, eles são tudo verdade?
+any(x)                     # Para um vector de valores lógicos, é, pelo menos, um verdadeiro?
+
+```
+
+
+
+#Strings
+<pre>
+\ ': Aspas simples. Você não precisa escapar aspas simples dentro de uma string entre aspas, por isso também pode usar "" "no exemplo anterior.
+\ ":. Aspas Da mesma forma, aspas duplas podem ser usados dentro de um único citado corda, ou seja, '"'.
+\ N: nova linha.
+\ R: retorno de carro.
+\ T: caractere de tabulação.
+</pre>
+
+## Quantificadores
+### Especificam quantas repetições de um padrão ocorrem.
+
+<pre>
+*: Corresponde a pelo menos 0 vezes.
++: Corresponde a pelo menos 1 vezes.
+?: Corresponde, no máximo, 1 vezes.
+{N}: corresponde exatamente n vezes.
+{N,}: corresponde a pelo menos n vezes.
+{N, m}: corresponde entre N e m vezes.
+
+</pre>
+```{r}
+strings <- c("a", "ab", "acb", "accb", "acccb", "accccb")
+strings
+grep("ac*b", strings, value = TRUE)
+grep("ac+b", strings, value = TRUE)
+grep("ac?b", strings, value = TRUE)
+grep("ac{2}b", strings, value = TRUE)
+grep("ac{2,}b", strings, value = TRUE)
+grep("ac{2,3}b", strings, value = TRUE)
+stringr::str_extract_all(strings, "ac{2,3}b", simplify = TRUE)
+
+```
+
+
+###Posição de um padrão dentro de uma string
+*  ^: corresponde ao início da cadeia.
+*  $: corresponde ao fim da cadeia.
+* \b: corresponde a seqüência vazia em uma ou outra extremidade de uma palavra. Não confundir com ^ $ que marca a extremidade de uma corda.
+* \B: corresponde a seqüência vazia desde que não seja em uma borda de uma palavra.
+
+Para o último exemplo, \ b não é um caractere de escape reconhecido, por isso precisamos de barra dupla que \\ b.
+```{r}
+
+strings <- c("abcd", "cdab", "cabd", "c abd")
+strings
+grep("ab", strings, value = TRUE)
+grep("^ab", strings, value = TRUE)
+grep("ab$", strings, value = TRUE)
+grep("\\bab", strings, value = TRUE)
+```
+
+
+##Classes de Caracteres
+
+<pre>
+* [:digit:] or \d: digits, 0 1 2 3 4 5 6 7 8 9, equivalent to [0-9]. \D: non-digits, equivalent to [^0-9]
+* [:lower:]: lower-case letters, equivalent to [a-z]
+* [:upper:]: upper-case letters, equivalent to [A-Z]
+* [:alpha:]: alphabetic characters, equivalent to [[:lower:][:upper:]] or [A-z]
+* [:alnum:]: alphanumeric characters
+* [:xdigit:]: hexadecimal digits (base 16) 0 1 2 3 4 5 6 7 8 9 A B C D E F a b c d e f equivalent to [0-9A-Fa-f]
+* [:blank:]: blank characters, i.e. space and tab
+* [:space:]: space characters: tab, newline, vertical tab, form feed, carriage return space \s space ` ` \S not space
+[:punct:]: punctuation characters, # ! " # $ % & ’ ( ) * + , - . / : ; < = > ? @ [  ] ^ _ ` { | } ~
+* [:graph:]: # graphical (human readable) characters: equivalent to [[:alnum:][:punct:]]
+* [:print:]: printable characters, equivalent to [[:alnum:][:punct:]\\s]
+* [:cntrl:]: control characters, like \n or \r, [\x00-\x1F\x7F]
+</pre>
+Note:
+
+*  [:...:] has to be used inside square brackets, e.g. [[:digit:]]. \ itself is a special character that needs escape, e.g. \\d. Do not confuse these regular expressions with R escape sequences such as \t.
+
+```{r}
+
+
+strings <- c("^ab", "ab", "abc", "abd", "abe", "ab 12")
+strings
+grep("ab.", strings, value = TRUE)
+grep("ab[c-e]", strings, value = TRUE)
+grep("ab[^c]", strings, value = TRUE)
+grep("^ab", strings, value = TRUE)
+grep("\\^ab", strings, value = TRUE)
+grep("abc|abd", strings, value = TRUE)
+gsub("(ab) 12", "\\1 34", strings)
+
+
+
+```
+
+#Funções Estatísticas e Transformações
+<pre>
+max()
+min()
+mean()
+median()
+sum()
+var()                                             # Produz a covariância variância matrix
+sd()                                              # desvio padrão
+mad()                                             # (Desvio absoluto mediano)
+fivenum()                                         #Tukey fivenumbers min, lowerhinge, median, upper hinge, max
+table()                                           contagem de frequência, de preferência as entradas são fatores (ainda que trabalha com números inteiros ou até mesmo reais)
+cumsum(x)                                         #cumulative sum, etc.
+cumprod(x)
+cummax(x)
+cummin(x)
+rev(x)                                            #reverse the order of values in x
+cor(x,y,use="pair")                               #correlation matrix
+aov(x~y,data=datafile)                            #onde x e y podem ser matrizes
+aov.ex1 = aov(DV~IV,data=data.ex1)                
+aov.ex2 = aov(DV~IV1*IV21,data=data.ex2)          #Two way analysis of variance
+summary(aov.ex1)                                  #Tabela resumo
+boxplot(DV~IV,data=data.ex1)                      #boxplot
+lm(x~y,data=dataset)                              #regressão linear
+t.test(x,g)                                       #Teste t
+pairwise.t.test(x,g)
+power.anova.test(groups = NULL, n = NULL, between.var = NULL,
+                 within.var = NULL, sig.level = 0.05, power = NULL)
+power.t.test(n = NULL, delta = NULL, sd = 1, sig.level = 0.05,
+             power = NULL, type = c("two.sample", "one.sample", "paired"),
+             alternative = c("two.sided", "one.sided"),strict = FALSE)
+</pre>
+

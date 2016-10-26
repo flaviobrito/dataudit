@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="author" content="Flávio Brito" />
+
+<meta name="date" content="2016-12-10" />
+
+<title>Introdução e Revisão - Linguagem R</title>
+
+<script src="revisao_r_files/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="revisao_r_files/bootstrap-3.3.5/css/cerulean.min.css" rel="stylesheet" />
+<script src="revisao_r_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="revisao_r_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="revisao_r_files/bootstrap-3.3.5/shim/respond.min.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+pre, code { background-color: #f8f8f8; }
+code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code > span.dt { color: #204a87; } /* DataType */
+code > span.dv { color: #0000cf; } /* DecVal */
+code > span.bn { color: #0000cf; } /* BaseN */
+code > span.fl { color: #0000cf; } /* Float */
+code > span.ch { color: #4e9a06; } /* Char */
+code > span.st { color: #4e9a06; } /* String */
+code > span.co { color: #8f5902; font-style: italic; } /* Comment */
+code > span.ot { color: #8f5902; } /* Other */
+code > span.al { color: #ef2929; } /* Alert */
+code > span.fu { color: #000000; } /* Function */
+code > span.er { color: #a40000; font-weight: bold; } /* Error */
+code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #000000; } /* Constant */
+code > span.sc { color: #000000; } /* SpecialChar */
+code > span.vs { color: #4e9a06; } /* VerbatimString */
+code > span.ss { color: #4e9a06; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #000000; } /* Variable */
+code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code > span.ex { } /* Extension */
+code > span.at { color: #c4a000; } /* Attribute */
+code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script src="revisao_r_files/navigation-1.0/tabsets.js"></script>
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="fluid-row" id="header">
+
+
+<h1 class="title">Introdução e Revisão - Linguagem R</h1>
+<h4 class="author"><em>Flávio Brito</em></h4>
+<h4 class="date"><em>23/10/2016</em></h4>
+
+</div>
+
+<div id="TOC">
+<ul>
+<li><a href="#operador-de-associacao"><span class="toc-section-number">1</span> Operador de Associação</a></li>
+<li><a href="#ambiente-r"><span class="toc-section-number">2</span> Ambiente R</a></li>
+<li><a href="#dados"><span class="toc-section-number">3</span> Dados</a><ul>
+<li><a href="#associacao"><span class="toc-section-number">3.1</span> Associação</a><ul>
+<li><a href="#tamanho-do-objeto-associado-a-variavel"><span class="toc-section-number">3.1.1</span> Tamanho do objeto associado a variável</a></li>
+</ul></li>
+<li><a href="#tipos-de-dados"><span class="toc-section-number">3.2</span> Tipos de Dados</a><ul>
+<li><a href="#descobrindo-o-tipo-da-variavel"><span class="toc-section-number">3.2.1</span> Descobrindo o tipo da variável</a></li>
+<li><a href="#tipos"><span class="toc-section-number">3.2.2</span> Tipos</a></li>
+<li><a href="#caracter"><span class="toc-section-number">3.2.3</span> Caracter</a></li>
+<li><a href="#numerico"><span class="toc-section-number">3.2.4</span> Numérico</a></li>
+<li><a href="#inteiro"><span class="toc-section-number">3.2.5</span> Inteiro</a></li>
+<li><a href="#complexo"><span class="toc-section-number">3.2.6</span> Complexo</a></li>
+<li><a href="#logico"><span class="toc-section-number">3.2.7</span> Lógico</a></li>
+<li><a href="#data"><span class="toc-section-number">3.2.8</span> Data</a></li>
+<li><a href="#vetor"><span class="toc-section-number">3.2.9</span> Vetor</a></li>
+<li><a href="#combinando-vetores"><span class="toc-section-number">3.2.10</span> Combinando Vetores</a></li>
+<li><a href="#operacoes-com-vetores"><span class="toc-section-number">3.2.11</span> Operações com Vetores</a></li>
+<li><a href="#indice-de-vetores"><span class="toc-section-number">3.2.12</span> Índice de Vetores</a></li>
+</ul></li>
+<li><a href="#matriz"><span class="toc-section-number">3.3</span> Matriz</a></li>
+<li><a href="#lista"><span class="toc-section-number">3.4</span> Lista</a></li>
+<li><a href="#data-frame"><span class="toc-section-number">3.5</span> Data Frame</a><ul>
+<li><a href="#coluna-do-dataframe"><span class="toc-section-number">3.5.1</span> Coluna do Dataframe</a></li>
+</ul></li>
+<li><a href="#manipulacao-de-dados"><span class="toc-section-number">3.6</span> Manipulação de dados</a></li>
+</ul></li>
+<li><a href="#strings"><span class="toc-section-number">4</span> Strings</a><ul>
+<li><a href="#quantificadores"><span class="toc-section-number">4.1</span> Quantificadores</a><ul>
+<li><a href="#especificam-quantas-repeticoes-de-um-padrao-ocorrem."><span class="toc-section-number">4.1.1</span> Especificam quantas repetições de um padrão ocorrem.</a></li>
+<li><a href="#posicao-de-um-padrao-dentro-de-uma-string"><span class="toc-section-number">4.1.2</span> Posição de um padrão dentro de uma string</a></li>
+</ul></li>
+<li><a href="#classes-de-caracteres"><span class="toc-section-number">4.2</span> Classes de Caracteres</a></li>
+</ul></li>
+<li><a href="#funcoes-estatisticas-e-transformacoes"><span class="toc-section-number">5</span> Funções Estatísticas e Transformações</a></li>
+</ul>
+</div>
+
+<div id="operador-de-associacao" class="section level1">
+<h1><span class="header-section-number">1</span> Operador de Associação</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">curso &lt;-<span class="st"> &quot;Curso de Auditoria de Dados&quot;</span>
+
+Data &lt;-<span class="st"> &quot;23/10/2016&quot;</span>
+
+hora &lt;-<span class="st"> &quot;15:09&quot;</span>
+
+Valor &lt;-<span class="st"> &quot;R$ 1.650,00&quot;</span>
+
+<span class="st">`</span><span class="dt">Duração do curso</span><span class="st">`</span> &lt;-<span class="st"> &quot;3d&quot;</span></code></pre></div>
+</div>
+<div id="ambiente-r" class="section level1">
+<h1><span class="header-section-number">2</span> Ambiente R</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Imprime seu diretório corrente </span>
+<span class="kw">getwd</span>() </code></pre></div>
+<pre><code>## [1] &quot;/Users/flaviobrito/Documents/Cursos/Auditoria_Dados&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Lista os objetos em memória</span>
+<span class="kw">ls</span>()    </code></pre></div>
+<pre><code>## [1] &quot;curso&quot;            &quot;Data&quot;             &quot;Duração do curso&quot;
+## [4] &quot;hora&quot;             &quot;Valor&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Muda de diretório</span>
+<span class="co"># muda para o diretório dados</span>
+<span class="co">#setwd(&quot;./dados/&quot;)      </span>
+<span class="co"># Perceba / ao invés de  \ no Windows </span>
+<span class="co">#setwd(&quot;c:/docs/mydir&quot;)&quot;</span>
+<span class="co"># no  MAC OS ou Gnu Linux</span>
+<span class="co">#setwd(&quot;./dados/&quot;)</span>
+<span class="co"># Visualiza e Grava as opções do ambiente</span>
+<span class="co"># Ajuda com as opções disponíveis</span>
+<span class="kw">help</span>(options) 
+<span class="co">#Lista as OpçÕes disponívies</span>
+<span class="co">#options() </span>
+<span class="co">#Configura o número de dígitos para serem impressos na saída</span>
+<span class="co">#options(digits=3) </span>
+<span class="co"># Lista o histórico de comandos</span>
+<span class="co">#history() # Apresenta os últimos 25 comandos executados</span>
+<span class="co"># Apresenta todos os comandos executados</span>
+<span class="co">#history(max.show=Inf) </span>
+<span class="co"># Grava o histórico de comandos no arquivo </span>
+<span class="co">#savehistory(file=&quot;meu_log.txt&quot;) # o padrão é &quot;.Rhistory&quot; </span>
+
+<span class="co"># Recarrega  a lista de comandos dados</span>
+<span class="co">#loadhistory(file=&quot;meu_log.txt&quot;) # o padrão é &quot;.Rhistory&quot;</span>
+<span class="co"># Grava os objetos do ambiente de trabalho no arquivo.RData no diretório corrente </span>
+<span class="co">#save.image()</span>
+
+<span class="co">#Grava objetos específicos em uma arquivo</span>
+<span class="co">#Se não for especificado o caminho, o diretório corrente será utilizado</span>
+<span class="co">#lista &lt;- ls()</span>
+<span class="co">#save(lista,file=&quot;meu_ambiente_trabalho.RData&quot;)</span>
+<span class="co"># Carrega o ambinete de trabalho para a sessão atual</span>
+<span class="co"># load a workspace into the current session</span>
+<span class="co"># if you don&#39;t specify the path, the cwd is assumed </span>
+<span class="co">#load(&quot;meu_ambiente_trabalho.RData&quot;)</span>
+<span class="co">#Sai do R. O R perguntará se deseja gravar o ambiente de trabalho</span>
+<span class="co">#q() </span></code></pre></div>
+</div>
+<div id="dados" class="section level1">
+<h1><span class="header-section-number">3</span> Dados</h1>
+<div id="associacao" class="section level2">
+<h2><span class="header-section-number">3.1</span> Associação</h2>
+<div id="tamanho-do-objeto-associado-a-variavel" class="section level3">
+<h3><span class="header-section-number">3.1.1</span> Tamanho do objeto associado a variável</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Número de caracters associados a variável quando esta é um caracter</span>
+
+<span class="co">#curso</span>
+<span class="kw">nchar</span>(curso)</code></pre></div>
+<pre><code>## [1] 27</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Data</span>
+<span class="kw">nchar</span>(Data)</code></pre></div>
+<pre><code>## [1] 10</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#hora</span>
+<span class="kw">nchar</span>(hora)</code></pre></div>
+<pre><code>## [1] 5</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Duração</span>
+<span class="kw">nchar</span>(<span class="st">`</span><span class="dt">Duração do curso</span><span class="st">`</span>)</code></pre></div>
+<pre><code>## [1] 2</code></pre>
+</div>
+</div>
+<div id="tipos-de-dados" class="section level2">
+<h2><span class="header-section-number">3.2</span> Tipos de Dados</h2>
+<div id="descobrindo-o-tipo-da-variavel" class="section level3">
+<h3><span class="header-section-number">3.2.1</span> Descobrindo o tipo da variável</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#curso</span>
+<span class="kw">class</span>(curso)</code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Data</span>
+<span class="kw">class</span>(Data)</code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#hora</span>
+<span class="kw">class</span>(hora)</code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Duração</span>
+<span class="kw">class</span>(<span class="st">`</span><span class="dt">Duração do curso</span><span class="st">`</span>)</code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+</div>
+<div id="tipos" class="section level3">
+<h3><span class="header-section-number">3.2.2</span> Tipos</h3>
+</div>
+<div id="caracter" class="section level3">
+<h3><span class="header-section-number">3.2.3</span> Caracter</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">curso &lt;-<span class="st"> &quot;Curso de Auditoria de Dados&quot;</span>
+
+<span class="kw">print</span>(curso)</code></pre></div>
+<pre><code>## [1] &quot;Curso de Auditoria de Dados&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(curso)</code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">is.character</span>(curso)</code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+</div>
+<div id="numerico" class="section level3">
+<h3><span class="header-section-number">3.2.4</span> Numérico</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="fl">10.2</span>
+<span class="kw">print</span>(x)</code></pre></div>
+<pre><code>## [1] 10.2</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(x)</code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+</div>
+<div id="inteiro" class="section level3">
+<h3><span class="header-section-number">3.2.5</span> Inteiro</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y &lt;-<span class="st"> </span><span class="dv">8</span>
+<span class="kw">print</span>(y)</code></pre></div>
+<pre><code>## [1] 8</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(y)</code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+</div>
+<div id="complexo" class="section level3">
+<h3><span class="header-section-number">3.2.6</span> Complexo</h3>
+<p>Sem aplicação no contexto do curso</p>
+</div>
+<div id="logico" class="section level3">
+<h3><span class="header-section-number">3.2.7</span> Lógico</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">logico &lt;-<span class="st">  </span>T
+
+<span class="kw">print</span>(logico)</code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">l &lt;-<span class="st">  </span><span class="ot">FALSE</span>
+<span class="kw">print</span>(l)</code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+</div>
+<div id="data" class="section level3">
+<h3><span class="header-section-number">3.2.8</span> Data</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Associa</span>
+Data &lt;-<span class="st"> &quot;23/10/2016&quot;</span>
+
+<span class="co">#Testa o Tipo</span>
+<span class="kw">class</span>(Data)</code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Será necessário converter o tipo da variável para Data</span>
+Data &lt;-<span class="st"> </span><span class="kw">as.Date</span>(Data,<span class="st">&quot;%d/%m/%Y&quot;</span>)
+
+<span class="co">#Testa o tipo</span>
+<span class="kw">class</span>(Data)</code></pre></div>
+<pre><code>## [1] &quot;Date&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Imprime</span>
+<span class="kw">print</span>(Data)</code></pre></div>
+<pre><code>## [1] &quot;2016-10-23&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Formata a Saída</span>
+<span class="kw">format</span>(Data, <span class="st">&quot;%d/%m%/%Y&quot;</span>)</code></pre></div>
+<pre><code>## [1] &quot;23/10/2016&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Formata a Saída</span>
+<span class="kw">format</span>(<span class="kw">Sys.Date</span>(), <span class="st">&quot;%a %b %d&quot;</span>)</code></pre></div>
+<pre><code>## [1] &quot;Qua Out 26&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">format</span>(<span class="kw">Sys.Date</span>(), <span class="st">&quot;%d%b%Y&quot;</span>)</code></pre></div>
+<pre><code>## [1] &quot;26Out2016&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">format</span>(<span class="kw">Sys.Date</span>(), <span class="st">&quot;%d/%m/%Y&quot;</span>)</code></pre></div>
+<pre><code>## [1] &quot;26/10/2016&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">weekdays</span>(<span class="kw">Sys.Date</span>())</code></pre></div>
+<pre><code>## [1] &quot;Quarta Feira&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">months</span>(<span class="kw">Sys.Date</span>())</code></pre></div>
+<pre><code>## [1] &quot;Outubro&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">as.Date</span>(.leap.seconds)</code></pre></div>
+<pre><code>##  [1] &quot;1972-07-01&quot; &quot;1973-01-01&quot; &quot;1974-01-01&quot; &quot;1975-01-01&quot; &quot;1976-01-01&quot;
+##  [6] &quot;1977-01-01&quot; &quot;1978-01-01&quot; &quot;1979-01-01&quot; &quot;1980-01-01&quot; &quot;1981-07-01&quot;
+## [11] &quot;1982-07-01&quot; &quot;1983-07-01&quot; &quot;1985-07-01&quot; &quot;1988-01-01&quot; &quot;1990-01-01&quot;
+## [16] &quot;1991-01-01&quot; &quot;1992-07-01&quot; &quot;1993-07-01&quot; &quot;1994-07-01&quot; &quot;1996-01-01&quot;
+## [21] &quot;1997-07-01&quot; &quot;1999-01-01&quot; &quot;2006-01-01&quot; &quot;2009-01-01&quot; &quot;2012-07-01&quot;
+## [26] &quot;2015-07-01&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">z &lt;-<span class="st"> </span><span class="kw">Sys.Date</span>()
+<span class="kw">print</span>(z)</code></pre></div>
+<pre><code>## [1] &quot;2016-10-26&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">w&lt;-<span class="st"> </span>z<span class="dv">+10</span>
+<span class="kw">print</span>(w)</code></pre></div>
+<pre><code>## [1] &quot;2016-11-05&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Diferença</span>
+
+data1 &lt;-<span class="st"> </span><span class="kw">strptime</span>(<span class="st">&quot;25/10/2016&quot;</span>, <span class="dt">format=</span><span class="st">&quot;%d/%m/%Y&quot;</span>)
+data2 &lt;-<span class="st"> </span><span class="kw">strptime</span>(<span class="st">&quot;04/11/2016&quot;</span>, <span class="dt">format=</span><span class="st">&quot;%d/%m/%Y&quot;</span>)
+<span class="kw">difftime</span>(data2,data1,<span class="dt">units=</span><span class="st">&quot;days&quot;</span>)</code></pre></div>
+<pre><code>## Time difference of 10 days</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">difftime</span>(data2,data1,<span class="dt">units=</span><span class="st">&quot;week&quot;</span>)</code></pre></div>
+<pre><code>## Time difference of 1.428571 weeks</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Nota: podemos usar a função trunc() para truncar o valor do resultado da diferença em semanas que no exemplo acima ficou com decimais.</span></code></pre></div>
+</div>
+<div id="vetor" class="section level3">
+<h3><span class="header-section-number">3.2.9</span> Vetor</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>) </code></pre></div>
+<pre><code>## [1] 2 3 5</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Vetor Lógico</span>
+<span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>) </code></pre></div>
+<pre><code>## [1]  TRUE FALSE  TRUE FALSE FALSE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Vetor de caracteres</span>
+<span class="kw">c</span>(<span class="st">&quot;aa&quot;</span>, <span class="st">&quot;bb&quot;</span>, <span class="st">&quot;cc&quot;</span>, <span class="st">&quot;dd&quot;</span>, <span class="st">&quot;ee&quot;</span>) </code></pre></div>
+<pre><code>## [1] &quot;aa&quot; &quot;bb&quot; &quot;cc&quot; &quot;dd&quot; &quot;ee&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Tamanho do Vetor</span>
+<span class="kw">length</span>(<span class="kw">c</span>(<span class="st">&quot;aa&quot;</span>, <span class="st">&quot;bb&quot;</span>, <span class="st">&quot;cc&quot;</span>, <span class="st">&quot;dd&quot;</span>, <span class="st">&quot;ee&quot;</span>)) </code></pre></div>
+<pre><code>## [1] 5</code></pre>
+</div>
+<div id="combinando-vetores" class="section level3">
+<h3><span class="header-section-number">3.2.10</span> Combinando Vetores</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>) 
+s &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;aa&quot;</span>, <span class="st">&quot;bb&quot;</span>, <span class="st">&quot;cc&quot;</span>, <span class="st">&quot;dd&quot;</span>, <span class="st">&quot;ee&quot;</span>) 
+
+<span class="co">#Combinando</span>
+<span class="kw">c</span>(n, s) </code></pre></div>
+<pre><code>## [1] &quot;2&quot;  &quot;3&quot;  &quot;5&quot;  &quot;aa&quot; &quot;bb&quot; &quot;cc&quot; &quot;dd&quot; &quot;ee&quot;</code></pre>
+</div>
+<div id="operacoes-com-vetores" class="section level3">
+<h3><span class="header-section-number">3.2.11</span> Operações com Vetores</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Criando vetores</span>
+a &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>) 
+b &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">6</span>, <span class="dv">1</span>, <span class="dv">3</span>) 
+
+
+<span class="co">#Soma</span>
+a +<span class="st"> </span>b</code></pre></div>
+<pre><code>## [1] 8 4 8</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Subtração</span>
+b -<span class="st"> </span>a</code></pre></div>
+<pre><code>## [1]  4 -2 -2</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Multiplicação</span>
+<span class="dv">5</span>*a</code></pre></div>
+<pre><code>## [1] 10 15 25</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a *<span class="st"> </span>b</code></pre></div>
+<pre><code>## [1] 12  3 15</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Divisão</span>
+a/b</code></pre></div>
+<pre><code>## [1] 0.3333333 3.0000000 1.6666667</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Regra de Reciclagem</span>
+u &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>) 
+v &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>) 
+u +<span class="st"> </span>v</code></pre></div>
+<pre><code>## [1] 11 22 33 14 25 36 17 28 39</code></pre>
+</div>
+<div id="indice-de-vetores" class="section level3">
+<h3><span class="header-section-number">3.2.12</span> Índice de Vetores</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>) 
+s &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;aa&quot;</span>, <span class="st">&quot;bb&quot;</span>, <span class="st">&quot;cc&quot;</span>, <span class="st">&quot;dd&quot;</span>, <span class="st">&quot;ee&quot;</span>) 
+
+s[<span class="dv">3</span>]</code></pre></div>
+<pre><code>## [1] &quot;cc&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Índice Negativo</span>
+
+s[-<span class="dv">3</span>] <span class="co">#Todos menos o elemento listado no índice</span></code></pre></div>
+<pre><code>## [1] &quot;aa&quot; &quot;bb&quot; &quot;dd&quot; &quot;ee&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Fora dos Limites</span>
+
+s[<span class="dv">10</span>] </code></pre></div>
+<pre><code>## [1] NA</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Listando mais elementos</span>
+
+s[<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>)] </code></pre></div>
+<pre><code>## [1] &quot;bb&quot; &quot;cc&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">s[<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>)] </code></pre></div>
+<pre><code>## [1] &quot;bb&quot; &quot;cc&quot; &quot;cc&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Fora dos Limites</span>
+
+s[<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">3</span>)] </code></pre></div>
+<pre><code>## [1] &quot;bb&quot; &quot;aa&quot; &quot;cc&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Índice por faixa</span>
+s[<span class="dv">2</span>:<span class="dv">4</span>] </code></pre></div>
+<pre><code>## [1] &quot;bb&quot; &quot;cc&quot; &quot;dd&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Nomes nos Vetores</span>
+v &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Governo&quot;</span>, <span class="st">&quot;RJ&quot;</span>) 
+v </code></pre></div>
+<pre><code>## [1] &quot;Governo&quot; &quot;RJ&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Temos agora nomear o primeiro membro como primeiro e o segundo como último</span>
+
+<span class="kw">names</span>(v) =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Primeiro&quot;</span>, <span class="st">&quot;Último&quot;</span>) 
+v </code></pre></div>
+<pre><code>##  Primeiro    Último 
+## &quot;Governo&quot;      &quot;RJ&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Então, podemos recuperar o primeiro membro pelo seu nome.</span>
+
+v[<span class="st">&quot;Primeiro&quot;</span>] </code></pre></div>
+<pre><code>##  Primeiro 
+## &quot;Governo&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Além disso, podemos inverter a ordem com um vector caráter índice string.</span>
+
+v[<span class="kw">c</span>(<span class="st">&quot;Último&quot;</span>, <span class="st">&quot;Primeiro&quot;</span>)] </code></pre></div>
+<pre><code>##    Último  Primeiro 
+##      &quot;RJ&quot; &quot;Governo&quot;</code></pre>
+</div>
+</div>
+<div id="matriz" class="section level2">
+<h2><span class="header-section-number">3.3</span> Matriz</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">A &lt;-<span class="st"> </span><span class="kw">matrix</span>(
+  <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">7</span>), <span class="co"># os dados dos elementos</span>
+  <span class="dt">nrow=</span><span class="dv">2</span>,              <span class="co"># número de linhas</span>
+  <span class="dt">ncol=</span><span class="dv">3</span>,              <span class="co"># número de colunas </span>
+  <span class="dt">byrow =</span> <span class="ot">TRUE</span>)        <span class="co"># preenche a matriz por linhas</span>
+
+A</code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    2    4    3
+## [2,]    1    5    7</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">A[<span class="dv">2</span>, <span class="dv">3</span>]      <span class="co"># elemento da segunda linha e terceira coluna</span></code></pre></div>
+<pre><code>## [1] 7</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">A[<span class="dv">2</span>, ]       <span class="co"># a segunda linha</span></code></pre></div>
+<pre><code>## [1] 1 5 7</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">A[ ,<span class="dv">3</span>]       <span class="co"># a terceira coluna</span></code></pre></div>
+<pre><code>## [1] 3 7</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">A[ ,<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>)] <span class="co"># A primeira e terceira coluna</span></code></pre></div>
+<pre><code>##      [,1] [,2]
+## [1,]    2    3
+## [2,]    1    7</code></pre>
+</div>
+<div id="lista" class="section level2">
+<h2><span class="header-section-number">3.4</span> Lista</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n  &lt;-<span class="st">  </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>) 
+s &lt;-<span class="st">  </span><span class="kw">c</span>(<span class="st">&quot;aa&quot;</span>, <span class="st">&quot;bb&quot;</span>, <span class="st">&quot;cc&quot;</span>, <span class="st">&quot;dd&quot;</span>, <span class="st">&quot;ee&quot;</span>) 
+b &lt;-<span class="st">  </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>) 
+x &lt;-<span class="st">  </span><span class="kw">list</span>(n, s, b, <span class="dv">3</span>)   <span class="co"># x contains copies of n, s, b</span>
+
+x[<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>)] </code></pre></div>
+<pre><code>## [[1]]
+## [1] &quot;aa&quot; &quot;bb&quot; &quot;cc&quot; &quot;dd&quot; &quot;ee&quot;
+## 
+## [[2]]
+## [1] 3</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Referência</span>
+
+x[[<span class="dv">2</span>]]</code></pre></div>
+<pre><code>## [1] &quot;aa&quot; &quot;bb&quot; &quot;cc&quot; &quot;dd&quot; &quot;ee&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x[[<span class="dv">2</span>]][<span class="dv">1</span>] &lt;-<span class="st"> &quot;ta&quot;</span> 
+
+<span class="co">#Membros de uma Lista</span>
+
+v &lt;-<span class="st">  </span><span class="kw">list</span>(<span class="dt">nivel=</span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>), <span class="dt">cargo=</span><span class="kw">c</span>(<span class="st">&quot;NIVEL-1&quot;</span>, <span class="st">&quot;NIVEL-2&quot;</span>)) 
+
+v[<span class="st">&quot;nivel&quot;</span>]</code></pre></div>
+<pre><code>## $nivel
+## [1] 2 3 5</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">v[[<span class="st">&quot;nivel&quot;</span>]] </code></pre></div>
+<pre><code>## [1] 2 3 5</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">v$nivel </code></pre></div>
+<pre><code>## [1] 2 3 5</code></pre>
+</div>
+<div id="data-frame" class="section level2">
+<h2><span class="header-section-number">3.5</span> Data Frame</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>) 
+s &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;aa&quot;</span>, <span class="st">&quot;bb&quot;</span>, <span class="st">&quot;cc&quot;</span>) 
+b &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>) 
+df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(n, s, b)  
+
+df</code></pre></div>
+<pre><code>##   n  s     b
+## 1 2 aa  TRUE
+## 2 3 bb FALSE
+## 3 5 cc  TRUE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Data frame de carros - Motor Trend Car Road Tests</span>
+mtcars</code></pre></div>
+<pre><code>##                      mpg cyl  disp  hp drat    wt  qsec vs am gear carb
+## Mazda RX4           21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag       21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4
+## Datsun 710          22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1
+## Hornet 4 Drive      21.4   6 258.0 110 3.08 3.215 19.44  1  0    3    1
+## Hornet Sportabout   18.7   8 360.0 175 3.15 3.440 17.02  0  0    3    2
+## Valiant             18.1   6 225.0 105 2.76 3.460 20.22  1  0    3    1
+## Duster 360          14.3   8 360.0 245 3.21 3.570 15.84  0  0    3    4
+## Merc 240D           24.4   4 146.7  62 3.69 3.190 20.00  1  0    4    2
+## Merc 230            22.8   4 140.8  95 3.92 3.150 22.90  1  0    4    2
+## Merc 280            19.2   6 167.6 123 3.92 3.440 18.30  1  0    4    4
+## Merc 280C           17.8   6 167.6 123 3.92 3.440 18.90  1  0    4    4
+## Merc 450SE          16.4   8 275.8 180 3.07 4.070 17.40  0  0    3    3
+## Merc 450SL          17.3   8 275.8 180 3.07 3.730 17.60  0  0    3    3
+## Merc 450SLC         15.2   8 275.8 180 3.07 3.780 18.00  0  0    3    3
+## Cadillac Fleetwood  10.4   8 472.0 205 2.93 5.250 17.98  0  0    3    4
+## Lincoln Continental 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4
+## Chrysler Imperial   14.7   8 440.0 230 3.23 5.345 17.42  0  0    3    4
+## Fiat 128            32.4   4  78.7  66 4.08 2.200 19.47  1  1    4    1
+## Honda Civic         30.4   4  75.7  52 4.93 1.615 18.52  1  1    4    2
+## Toyota Corolla      33.9   4  71.1  65 4.22 1.835 19.90  1  1    4    1
+## Toyota Corona       21.5   4 120.1  97 3.70 2.465 20.01  1  0    3    1
+## Dodge Challenger    15.5   8 318.0 150 2.76 3.520 16.87  0  0    3    2
+## AMC Javelin         15.2   8 304.0 150 3.15 3.435 17.30  0  0    3    2
+## Camaro Z28          13.3   8 350.0 245 3.73 3.840 15.41  0  0    3    4
+## Pontiac Firebird    19.2   8 400.0 175 3.08 3.845 17.05  0  0    3    2
+## Fiat X1-9           27.3   4  79.0  66 4.08 1.935 18.90  1  1    4    1
+## Porsche 914-2       26.0   4 120.3  91 4.43 2.140 16.70  0  1    5    2
+## Lotus Europa        30.4   4  95.1 113 3.77 1.513 16.90  1  1    5    2
+## Ford Pantera L      15.8   8 351.0 264 4.22 3.170 14.50  0  1    5    4
+## Ferrari Dino        19.7   6 145.0 175 3.62 2.770 15.50  0  1    5    6
+## Maserati Bora       15.0   8 301.0 335 3.54 3.570 14.60  0  1    5    8
+## Volvo 142E          21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Seleciona a linha 1 e coluna 2</span>
+mtcars[<span class="dv">1</span>, <span class="dv">2</span>] </code></pre></div>
+<pre><code>## [1] 6</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Seleciona o carro e a coluna cyl (cilindradas)</span>
+mtcars[<span class="st">&quot;Mazda RX4&quot;</span>, <span class="st">&quot;cyl&quot;</span>] </code></pre></div>
+<pre><code>## [1] 6</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nrow</span>(mtcars) <span class="co"># número de linhas</span></code></pre></div>
+<pre><code>## [1] 32</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ncol</span>(mtcars) <span class="co"># número de colunas</span></code></pre></div>
+<pre><code>## [1] 11</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">help</span>(mtcars) <span class="co"># informações sobre este dataframe</span>
+
+<span class="co">#Visualização</span>
+<span class="kw">head</span>(mtcars)</code></pre></div>
+<pre><code>##                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
+## Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+## Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+## Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+## Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+## Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre>
+<div id="coluna-do-dataframe" class="section level3">
+<h3><span class="header-section-number">3.5.1</span> Coluna do Dataframe</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Seleciona a coluna por número de ordem</span>
+<span class="co">#Seleciona os carros automáticos</span>
+mtcars[[<span class="dv">9</span>]] </code></pre></div>
+<pre><code>##  [1] 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Somente carros automáticos (9 coluna)</span>
+mtcars[[<span class="st">&quot;am&quot;</span>]] </code></pre></div>
+<pre><code>##  [1] 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mtcars$am </code></pre></div>
+<pre><code>##  [1] 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mtcars[,<span class="st">&quot;am&quot;</span>] </code></pre></div>
+<pre><code>##  [1] 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Por Índice</span>
+mtcars[<span class="dv">1</span>] <span class="co"># Seleciona a coluna 1 - mpg</span></code></pre></div>
+<pre><code>##                      mpg
+## Mazda RX4           21.0
+## Mazda RX4 Wag       21.0
+## Datsun 710          22.8
+## Hornet 4 Drive      21.4
+## Hornet Sportabout   18.7
+## Valiant             18.1
+## Duster 360          14.3
+## Merc 240D           24.4
+## Merc 230            22.8
+## Merc 280            19.2
+## Merc 280C           17.8
+## Merc 450SE          16.4
+## Merc 450SL          17.3
+## Merc 450SLC         15.2
+## Cadillac Fleetwood  10.4
+## Lincoln Continental 10.4
+## Chrysler Imperial   14.7
+## Fiat 128            32.4
+## Honda Civic         30.4
+## Toyota Corolla      33.9
+## Toyota Corona       21.5
+## Dodge Challenger    15.5
+## AMC Javelin         15.2
+## Camaro Z28          13.3
+## Pontiac Firebird    19.2
+## Fiat X1-9           27.3
+## Porsche 914-2       26.0
+## Lotus Europa        30.4
+## Ford Pantera L      15.8
+## Ferrari Dino        19.7
+## Maserati Bora       15.0
+## Volvo 142E          21.4</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mtcars[<span class="st">&quot;mpg&quot;</span>] </code></pre></div>
+<pre><code>##                      mpg
+## Mazda RX4           21.0
+## Mazda RX4 Wag       21.0
+## Datsun 710          22.8
+## Hornet 4 Drive      21.4
+## Hornet Sportabout   18.7
+## Valiant             18.1
+## Duster 360          14.3
+## Merc 240D           24.4
+## Merc 230            22.8
+## Merc 280            19.2
+## Merc 280C           17.8
+## Merc 450SE          16.4
+## Merc 450SL          17.3
+## Merc 450SLC         15.2
+## Cadillac Fleetwood  10.4
+## Lincoln Continental 10.4
+## Chrysler Imperial   14.7
+## Fiat 128            32.4
+## Honda Civic         30.4
+## Toyota Corolla      33.9
+## Toyota Corona       21.5
+## Dodge Challenger    15.5
+## AMC Javelin         15.2
+## Camaro Z28          13.3
+## Pontiac Firebird    19.2
+## Fiat X1-9           27.3
+## Porsche 914-2       26.0
+## Lotus Europa        30.4
+## Ford Pantera L      15.8
+## Ferrari Dino        19.7
+## Maserati Bora       15.0
+## Volvo 142E          21.4</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mtcars[<span class="kw">c</span>(<span class="st">&quot;mpg&quot;</span>, <span class="st">&quot;hp&quot;</span>)] </code></pre></div>
+<pre><code>##                      mpg  hp
+## Mazda RX4           21.0 110
+## Mazda RX4 Wag       21.0 110
+## Datsun 710          22.8  93
+## Hornet 4 Drive      21.4 110
+## Hornet Sportabout   18.7 175
+## Valiant             18.1 105
+## Duster 360          14.3 245
+## Merc 240D           24.4  62
+## Merc 230            22.8  95
+## Merc 280            19.2 123
+## Merc 280C           17.8 123
+## Merc 450SE          16.4 180
+## Merc 450SL          17.3 180
+## Merc 450SLC         15.2 180
+## Cadillac Fleetwood  10.4 205
+## Lincoln Continental 10.4 215
+## Chrysler Imperial   14.7 230
+## Fiat 128            32.4  66
+## Honda Civic         30.4  52
+## Toyota Corolla      33.9  65
+## Toyota Corona       21.5  97
+## Dodge Challenger    15.5 150
+## AMC Javelin         15.2 150
+## Camaro Z28          13.3 245
+## Pontiac Firebird    19.2 175
+## Fiat X1-9           27.3  66
+## Porsche 914-2       26.0  91
+## Lotus Europa        30.4 113
+## Ford Pantera L      15.8 264
+## Ferrari Dino        19.7 175
+## Maserati Bora       15.0 335
+## Volvo 142E          21.4 109</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Índice numérico</span>
+
+mtcars[<span class="dv">24</span>,] <span class="co"># Seleciona o registro de número 24 (linha 24 do data frame)</span></code></pre></div>
+<pre><code>##             mpg cyl disp  hp drat   wt  qsec vs am gear carb
+## Camaro Z28 13.3   8  350 245 3.73 3.84 15.41  0  0    3    4</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mtcars[<span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">24</span>),] <span class="co"># Seleciona os registros 3 e 24</span></code></pre></div>
+<pre><code>##             mpg cyl disp  hp drat   wt  qsec vs am gear carb
+## Datsun 710 22.8   4  108  93 3.85 2.32 18.61  1  1    4    1
+## Camaro Z28 13.3   8  350 245 3.73 3.84 15.41  0  0    3    4</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Filtrando</span>
+mtcars[<span class="st">&quot;Camaro Z28&quot;</span>,] <span class="co"># Seleciona um carro específico</span></code></pre></div>
+<pre><code>##             mpg cyl disp  hp drat   wt  qsec vs am gear carb
+## Camaro Z28 13.3   8  350 245 3.73 3.84 15.41  0  0    3    4</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mtcars[<span class="kw">c</span>(<span class="st">&quot;Datsun 710&quot;</span>, <span class="st">&quot;Camaro Z28&quot;</span>),]  <span class="co">#Seleciona um conjunto de carros</span></code></pre></div>
+<pre><code>##             mpg cyl disp  hp drat   wt  qsec vs am gear carb
+## Datsun 710 22.8   4  108  93 3.85 2.32 18.61  1  1    4    1
+## Camaro Z28 13.3   8  350 245 3.73 3.84 15.41  0  0    3    4</code></pre>
+</div>
+</div>
+<div id="manipulacao-de-dados" class="section level2">
+<h2><span class="header-section-number">3.6</span> Manipulação de dados</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x&lt;-<span class="kw">c</span>(<span class="fl">1.6123</span>,<span class="fl">2.244</span>,<span class="fl">4.109</span>,<span class="fl">8.9</span>,<span class="dv">16</span> )
+<span class="kw">round</span>(x,<span class="dv">2</span>)                                <span class="co"># Arredonda os valores de x para n casas decimais</span></code></pre></div>
+<pre><code>## [1]  1.61  2.24  4.11  8.90 16.00</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ceiling</span>(x)                                <span class="co"># Vector x de menor inteiro&gt; x</span></code></pre></div>
+<pre><code>## [1]  2  3  5  9 16</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">floor</span>(x)                                  <span class="co"># Vetor x de maior inteiro &lt;x</span></code></pre></div>
+<pre><code>## [1]  1  2  4  8 16</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">as.integer</span>(x)                             <span class="co"># Truncado x real para inteiros (em comparação com rodada)</span></code></pre></div>
+<pre><code>## [1]  1  2  4  8 16</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x%in%y                     <span class="co"># Testa cada elemento x para a adesão em y</span></code></pre></div>
+<pre><code>## [1] FALSE FALSE FALSE FALSE FALSE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y%in%x                     <span class="co"># Testa cada elemento de y para a adesão em x</span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">all</span>(x%in%y)                <span class="co">#true se x é um subconjunto apropriado de y</span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">all</span>(x)                     <span class="co"># Para um vetor de valores lógicos, eles são tudo verdade?</span></code></pre></div>
+<pre><code>## Warning in all(x): coerção de argumento de tipo &#39;double&#39; para lógico</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">any</span>(x)                     <span class="co"># Para um vector de valores lógicos, é, pelo menos, um verdadeiro?</span></code></pre></div>
+<pre><code>## Warning in any(x): coerção de argumento de tipo &#39;double&#39; para lógico</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+</div>
+</div>
+<div id="strings" class="section level1">
+<h1><span class="header-section-number">4</span> Strings</h1>
+<pre>
+\ ': Aspas simples. Você não precisa escapar aspas simples dentro de uma string entre aspas, por isso também pode usar "" "no exemplo anterior.
+\ ":. Aspas Da mesma forma, aspas duplas podem ser usados dentro de um único citado corda, ou seja, '"'.
+\ N: nova linha.
+\ R: retorno de carro.
+\ T: caractere de tabulação.
+</pre>
+<div id="quantificadores" class="section level2">
+<h2><span class="header-section-number">4.1</span> Quantificadores</h2>
+<div id="especificam-quantas-repeticoes-de-um-padrao-ocorrem." class="section level3">
+<h3><span class="header-section-number">4.1.1</span> Especificam quantas repetições de um padrão ocorrem.</h3>
+<pre>
+*: Corresponde a pelo menos 0 vezes.
++: Corresponde a pelo menos 1 vezes.
+?: Corresponde, no máximo, 1 vezes.
+{N}: corresponde exatamente n vezes.
+{N,}: corresponde a pelo menos n vezes.
+{N, m}: corresponde entre N e m vezes.
+
+</pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">strings &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;ab&quot;</span>, <span class="st">&quot;acb&quot;</span>, <span class="st">&quot;accb&quot;</span>, <span class="st">&quot;acccb&quot;</span>, <span class="st">&quot;accccb&quot;</span>)
+strings</code></pre></div>
+<pre><code>## [1] &quot;a&quot;      &quot;ab&quot;     &quot;acb&quot;    &quot;accb&quot;   &quot;acccb&quot;  &quot;accccb&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">grep</span>(<span class="st">&quot;ac*b&quot;</span>, strings, <span class="dt">value =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>## [1] &quot;ab&quot;     &quot;acb&quot;    &quot;accb&quot;   &quot;acccb&quot;  &quot;accccb&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">grep</span>(<span class="st">&quot;ac+b&quot;</span>, strings, <span class="dt">value =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>## [1] &quot;acb&quot;    &quot;accb&quot;   &quot;acccb&quot;  &quot;accccb&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">grep</span>(<span class="st">&quot;ac?b&quot;</span>, strings, <span class="dt">value =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>## [1] &quot;ab&quot;  &quot;acb&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">grep</span>(<span class="st">&quot;ac{2}b&quot;</span>, strings, <span class="dt">value =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>## [1] &quot;accb&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">grep</span>(<span class="st">&quot;ac{2,}b&quot;</span>, strings, <span class="dt">value =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>## [1] &quot;accb&quot;   &quot;acccb&quot;  &quot;accccb&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">grep</span>(<span class="st">&quot;ac{2,3}b&quot;</span>, strings, <span class="dt">value =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>## [1] &quot;accb&quot;  &quot;acccb&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">stringr::<span class="kw">str_extract_all</span>(strings, <span class="st">&quot;ac{2,3}b&quot;</span>, <span class="dt">simplify =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>##      [,1]   
+## [1,] &quot;&quot;     
+## [2,] &quot;&quot;     
+## [3,] &quot;&quot;     
+## [4,] &quot;accb&quot; 
+## [5,] &quot;acccb&quot;
+## [6,] &quot;&quot;</code></pre>
+</div>
+<div id="posicao-de-um-padrao-dentro-de-uma-string" class="section level3">
+<h3><span class="header-section-number">4.1.2</span> Posição de um padrão dentro de uma string</h3>
+<ul>
+<li>^: corresponde ao início da cadeia.</li>
+<li>$: corresponde ao fim da cadeia.</li>
+<li>: corresponde a seqüência vazia em uma ou outra extremidade de uma palavra. Não confundir com ^ $ que marca a extremidade de uma corda.</li>
+<li>: corresponde a seqüência vazia desde que não seja em uma borda de uma palavra.</li>
+</ul>
+<p>Para o último exemplo,  b não é um caractere de escape reconhecido, por isso precisamos de barra dupla que \ b.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">strings &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;abcd&quot;</span>, <span class="st">&quot;cdab&quot;</span>, <span class="st">&quot;cabd&quot;</span>, <span class="st">&quot;c abd&quot;</span>)
+strings</code></pre></div>
+<pre><code>## [1] &quot;abcd&quot;  &quot;cdab&quot;  &quot;cabd&quot;  &quot;c abd&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">grep</span>(<span class="st">&quot;ab&quot;</span>, strings, <span class="dt">value =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>## [1] &quot;abcd&quot;  &quot;cdab&quot;  &quot;cabd&quot;  &quot;c abd&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">grep</span>(<span class="st">&quot;^ab&quot;</span>, strings, <span class="dt">value =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>## [1] &quot;abcd&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">grep</span>(<span class="st">&quot;ab$&quot;</span>, strings, <span class="dt">value =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>## [1] &quot;cdab&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">grep</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">bab&quot;</span>, strings, <span class="dt">value =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>## [1] &quot;abcd&quot;  &quot;c abd&quot;</code></pre>
+</div>
+</div>
+<div id="classes-de-caracteres" class="section level2">
+<h2><span class="header-section-number">4.2</span> Classes de Caracteres</h2>
+<pre>
+* [:digit:] or \d: digits, 0 1 2 3 4 5 6 7 8 9, equivalent to [0-9]. \D: non-digits, equivalent to [^0-9]
+* [:lower:]: lower-case letters, equivalent to [a-z]
+* [:upper:]: upper-case letters, equivalent to [A-Z]
+* [:alpha:]: alphabetic characters, equivalent to [[:lower:][:upper:]] or [A-z]
+* [:alnum:]: alphanumeric characters
+* [:xdigit:]: hexadecimal digits (base 16) 0 1 2 3 4 5 6 7 8 9 A B C D E F a b c d e f equivalent to [0-9A-Fa-f]
+* [:blank:]: blank characters, i.e. space and tab
+* [:space:]: space characters: tab, newline, vertical tab, form feed, carriage return space \s space ` ` \S not space
+[:punct:]: punctuation characters, # ! " # $ % & ’ ( ) * + , - . / : ; < = > ? @ [  ] ^ _ ` { | } ~
+* [:graph:]: # graphical (human readable) characters: equivalent to [[:alnum:][:punct:]]
+* [:print:]: printable characters, equivalent to [[:alnum:][:punct:]\\s]
+* [:cntrl:]: control characters, like \n or \r, [\x00-\x1F\x7F]
+</pre>
+<p>Note:</p>
+<ul>
+<li>[:…:] has to be used inside square brackets, e.g. [[:digit:]].  itself is a special character that needs escape, e.g. \d. Do not confuse these regular expressions with R escape sequences such as .</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">strings &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;^ab&quot;</span>, <span class="st">&quot;ab&quot;</span>, <span class="st">&quot;abc&quot;</span>, <span class="st">&quot;abd&quot;</span>, <span class="st">&quot;abe&quot;</span>, <span class="st">&quot;ab 12&quot;</span>)
+strings</code></pre></div>
+<pre><code>## [1] &quot;^ab&quot;   &quot;ab&quot;    &quot;abc&quot;   &quot;abd&quot;   &quot;abe&quot;   &quot;ab 12&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">grep</span>(<span class="st">&quot;ab.&quot;</span>, strings, <span class="dt">value =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>## [1] &quot;abc&quot;   &quot;abd&quot;   &quot;abe&quot;   &quot;ab 12&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">grep</span>(<span class="st">&quot;ab[c-e]&quot;</span>, strings, <span class="dt">value =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>## [1] &quot;abc&quot; &quot;abd&quot; &quot;abe&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">grep</span>(<span class="st">&quot;ab[^c]&quot;</span>, strings, <span class="dt">value =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>## [1] &quot;abd&quot;   &quot;abe&quot;   &quot;ab 12&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">grep</span>(<span class="st">&quot;^ab&quot;</span>, strings, <span class="dt">value =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>## [1] &quot;ab&quot;    &quot;abc&quot;   &quot;abd&quot;   &quot;abe&quot;   &quot;ab 12&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">grep</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">^ab&quot;</span>, strings, <span class="dt">value =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>## [1] &quot;^ab&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">grep</span>(<span class="st">&quot;abc|abd&quot;</span>, strings, <span class="dt">value =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>## [1] &quot;abc&quot; &quot;abd&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">gsub</span>(<span class="st">&quot;(ab) 12&quot;</span>, <span class="st">&quot;</span><span class="ch">\\</span><span class="st">1 34&quot;</span>, strings)</code></pre></div>
+<pre><code>## [1] &quot;^ab&quot;   &quot;ab&quot;    &quot;abc&quot;   &quot;abd&quot;   &quot;abe&quot;   &quot;ab 34&quot;</code></pre>
+</div>
+</div>
+<div id="funcoes-estatisticas-e-transformacoes" class="section level1">
+<h1><span class="header-section-number">5</span> Funções Estatísticas e Transformações</h1>
+<pre>
+max()
+min()
+mean()
+median()
+sum()
+var()                                             # Produz a covariância variância matrix
+sd()                                              # desvio padrão
+mad()                                             # (Desvio absoluto mediano)
+fivenum()                                         #Tukey fivenumbers min, lowerhinge, median, upper hinge, max
+table()                                           contagem de frequência, de preferência as entradas são fatores (ainda que trabalha com números inteiros ou até mesmo reais)
+cumsum(x)                                         #cumulative sum, etc.
+cumprod(x)
+cummax(x)
+cummin(x)
+rev(x)                                            #reverse the order of values in x
+cor(x,y,use="pair")                               #correlation matrix
+aov(x~y,data=datafile)                            #onde x e y podem ser matrizes
+aov.ex1 = aov(DV~IV,data=data.ex1)                
+aov.ex2 = aov(DV~IV1*IV21,data=data.ex2)          #Two way analysis of variance
+summary(aov.ex1)                                  #Tabela resumo
+boxplot(DV~IV,data=data.ex1)                      #boxplot
+lm(x~y,data=dataset)                              #regressão linear
+t.test(x,g)                                       #Teste t
+pairwise.t.test(x,g)
+power.anova.test(groups = NULL, n = NULL, between.var = NULL,
+                 within.var = NULL, sig.level = 0.05, power = NULL)
+power.t.test(n = NULL, delta = NULL, sd = 1, sig.level = 0.05,
+             power = NULL, type = c("two.sample", "one.sample", "paired"),
+             alternative = c("two.sided", "one.sided"),strict = FALSE)
+</pre>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
