@@ -161,6 +161,7 @@ $(document).ready(function () {
 <li><a href="#exibe-a-tabela-de-frequencia-calculada-acima"><span class="toc-section-number">9</span> Exibe a tabela de frequência calculada acima</a></li>
 <li><a href="#calcula-os-percentuais-utilizando-as-frequencias-ja-calculadas"><span class="toc-section-number">10</span> Calcula os percentuais utilizando as frequências já calculadas</a></li>
 <li><a href="#une-as-tabelas-pelas-colunas"><span class="toc-section-number">11</span> Une as tabelas pelas colunas</a></li>
+<li><a href="#estudo-de-caso-2"><span class="toc-section-number">12</span> Estudo de Caso #2</a></li>
 </ul>
 </div>
 
@@ -196,12 +197,12 @@ RH &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class=
 
 <span class="kw">head</span>(RH)</code></pre></div>
 <pre><code>##   ID    IDADE       CARGO    FORMACAO   DEPARTAMENTO
-## 1  1 41.01494  ASSISTENTE      LETRAS DEPARTAMENTO B
-## 2  2 38.13579     GERENTE     DIREITO DEPARTAMENTO C
-## 3  3 55.53255     GERENTE     DIREITO DEPARTAMENTO E
-## 4  4 48.42489 COORDENADOR     DIREITO DEPARTAMENTO A
-## 5  5 39.59511  ASSISTENTE ESTATISTICA DEPARTAMENTO B
-## 6  6 43.84840     TECNICO    ECONOMIA DEPARTAMENTO B</code></pre>
+## 1  1 42.00488     TECNICO ESTATISTICA DEPARTAMENTO A
+## 2  2 38.94571  ASSISTENTE    SISTEMAS DEPARTAMENTO C
+## 3  3 46.94256     TECNICO    SISTEMAS DEPARTAMENTO E
+## 4  4 42.14371     TECNICO     DIREITO DEPARTAMENTO C
+## 5  5 44.37232 COORDENADOR  ENGENHARIA DEPARTAMENTO C
+## 6  6 69.22638     GERENTE ESTATISTICA DEPARTAMENTO E</code></pre>
 </div>
 </div>
 <div id="outra-forma-de-gerar-o-mesmo-data-frame" class="section level1">
@@ -216,12 +217,12 @@ RH2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(ID, IDADE, 
 
 <span class="kw">head</span>(RH2)</code></pre></div>
 <pre><code>##   ID    IDADE      CARGO    FORMACAO   DEPARTAMENTO
-## 1  1 42.07191 ASSISTENTE    SISTEMAS DEPARTAMENTO D
-## 2  2 53.65066    TECNICO   PROFESSOR DEPARTAMENTO E
-## 3  3 47.15209 ASSISTENTE    ECONOMIA DEPARTAMENTO B
-## 4  4 43.19047    TECNICO  MATEMATICA DEPARTAMENTO D
-## 5  5 40.74133   AUXILIAR ESTATISTICA DEPARTAMENTO A
-## 6  6 41.93310 ASSISTENTE ESTATISTICA DEPARTAMENTO C</code></pre>
+## 1  1 41.15783 ASSISTENTE    SISTEMAS DEPARTAMENTO E
+## 2  2 30.43975    GERENTE  MATEMATICA DEPARTAMENTO B
+## 3  3 38.35535    TECNICO ESTATISTICA DEPARTAMENTO E
+## 4  4 43.69359    GERENTE  MATEMATICA DEPARTAMENTO E
+## 5  5 37.19106    GERENTE  ENGENHARIA DEPARTAMENTO E
+## 6  6 44.40202   AUXILIAR     DIREITO DEPARTAMENTO D</code></pre>
 </div>
 <div id="gera-propositamente-10-missings-values-na-em-idade" class="section level1">
 <h1><span class="header-section-number">3</span> Gera propositamente 10 Missings Values (NA) em IDADE</h1>
@@ -230,20 +231,20 @@ RH2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(ID, IDADE, 
 <div id="gera-um-sumario" class="section level1">
 <h1><span class="header-section-number">4</span> Gera um Sumário</h1>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(RH)</code></pre></div>
-<pre><code>##        ID             IDADE               CARGO           FORMACAO  
-##  Min.   :   1.0   Min.   :27.21   TECNICO    :220   SISTEMAS  :180  
-##  1st Qu.: 250.8   1st Qu.:41.29   ASSISTENTE :220   LETRAS    :160  
-##  Median : 500.5   Median :45.50   COORDENADOR:140   MATEMATICA:160  
-##  Mean   : 500.5   Mean   :45.27   AUXILIAR   :240   ECONOMIA  :140  
-##  3rd Qu.: 750.2   3rd Qu.:49.27   GERENTE    :180   DIREITO   :100  
-##  Max.   :1000.0   Max.   :63.74                     ENGENHARIA:100  
-##                   NA&#39;s   :10                        (Other)   :160  
+<pre><code>##        ID             IDADE               CARGO            FORMACAO  
+##  Min.   :   1.0   Min.   :28.17   TECNICO    :300   SISTEMAS   :300  
+##  1st Qu.: 250.8   1st Qu.:40.84   ASSISTENTE :220   ECONOMIA   :200  
+##  Median : 500.5   Median :44.69   COORDENADOR:200   ESTATISTICA:140  
+##  Mean   : 500.5   Mean   :44.92   AUXILIAR   :120   ENGENHARIA :120  
+##  3rd Qu.: 750.2   3rd Qu.:48.96   GERENTE    :160   PROFESSOR  :100  
+##  Max.   :1000.0   Max.   :69.23                     DIREITO    : 60  
+##                   NA&#39;s   :10                        (Other)    : 80  
 ##          DEPARTAMENTO
-##  DEPARTAMENTO A:210  
-##  DEPARTAMENTO B:230  
-##  DEPARTAMENTO C:190  
-##  DEPARTAMENTO D:120  
-##  DEPARTAMENTO E:250  
+##  DEPARTAMENTO A:190  
+##  DEPARTAMENTO B:270  
+##  DEPARTAMENTO C:170  
+##  DEPARTAMENTO D:220  
+##  DEPARTAMENTO E:150  
 ##                      
 ## </code></pre>
 </div>
@@ -252,39 +253,39 @@ RH2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(ID, IDADE, 
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(RH$DEPARTAMENTO)</code></pre></div>
 <pre><code>## 
 ## DEPARTAMENTO A DEPARTAMENTO B DEPARTAMENTO C DEPARTAMENTO D DEPARTAMENTO E 
-##            210            230            190            120            250</code></pre>
+##            190            270            170            220            150</code></pre>
 </div>
 <div id="calcula-a-frequencia-do-campo-idade-para-valores-menores-que-50" class="section level1">
 <h1><span class="header-section-number">6</span> Calcula a Frequência do campo IDADE para valores menores que 50</h1>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(RH$IDADE &lt;<span class="st"> </span><span class="dv">50</span>)</code></pre></div>
 <pre><code>## 
 ## FALSE  TRUE 
-##   213   777</code></pre>
+##   190   800</code></pre>
 <div id="ao-utilizar-o-argumento---usena-queremos-que-tambem-seja-apresentada-a-coluna-de-missings-na-na-tabela-de-frequencias" class="section level2">
 <h2><span class="header-section-number">6.1</span> Ao utilizar o argumento -&gt; useNA queremos que também seja apresentada a coluna de missings (NA) na tabela de frequências</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(RH$IDADE &lt;<span class="st"> </span><span class="dv">50</span>, <span class="dt">useNA =</span> <span class="st">&quot;always&quot;</span>)</code></pre></div>
 <pre><code>## 
 ## FALSE  TRUE  &lt;NA&gt; 
-##   213   777    10</code></pre>
+##   190   800    10</code></pre>
 </div>
 <div id="tabela-de-missings-por-idade" class="section level2">
 <h2><span class="header-section-number">6.2</span> tabela de Missings por IDADE</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(RH$DEPARTAMENTO, <span class="kw">is.na</span>(RH$IDADE))</code></pre></div>
 <pre><code>##                 
 ##                  FALSE TRUE
-##   DEPARTAMENTO A   209    1
-##   DEPARTAMENTO B   228    2
-##   DEPARTAMENTO C   189    1
-##   DEPARTAMENTO D   117    3
-##   DEPARTAMENTO E   247    3</code></pre>
+##   DEPARTAMENTO A   189    1
+##   DEPARTAMENTO B   266    4
+##   DEPARTAMENTO C   168    2
+##   DEPARTAMENTO D   219    1
+##   DEPARTAMENTO E   148    2</code></pre>
 </div>
 </div>
 <div id="departamento-com-o-maior-numero-de-missings---maior-para-menor-frequencia" class="section level1">
 <h1><span class="header-section-number">7</span> DEPARTAMENTO com o maior número de missings -&gt; maior para menor frequencia</h1>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sort</span>(<span class="kw">table</span>(RH$DEPARTAMENTO, <span class="kw">is.na</span>(RH$IDADE))[, <span class="dv">2</span>],
      <span class="dt">decreasing =</span> <span class="ot">TRUE</span>)</code></pre></div>
-<pre><code>## DEPARTAMENTO D DEPARTAMENTO E DEPARTAMENTO B DEPARTAMENTO A DEPARTAMENTO C 
-##              3              3              2              1              1</code></pre>
+<pre><code>## DEPARTAMENTO B DEPARTAMENTO C DEPARTAMENTO E DEPARTAMENTO A DEPARTAMENTO D 
+##              4              2              2              1              1</code></pre>
 </div>
 <div id="tabela-com-a-distribuicao-de-missings-por-idade-e-departamento" class="section level1">
 <h1><span class="header-section-number">8</span> Tabela com a distribuição de missings por IDADE e DEPARTAMENTO</h1>
@@ -295,11 +296,11 @@ RH2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(ID, IDADE, 
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(freq1)</code></pre></div>
 <pre><code>##                 
 ##                  FALSE TRUE
-##   DEPARTAMENTO A   209    1
-##   DEPARTAMENTO B   228    2
-##   DEPARTAMENTO C   189    1
-##   DEPARTAMENTO D   117    3
-##   DEPARTAMENTO E   247    3</code></pre>
+##   DEPARTAMENTO A   189    1
+##   DEPARTAMENTO B   266    4
+##   DEPARTAMENTO C   168    2
+##   DEPARTAMENTO D   219    1
+##   DEPARTAMENTO E   148    2</code></pre>
 </div>
 <div id="calcula-os-percentuais-utilizando-as-frequencias-ja-calculadas" class="section level1">
 <h1><span class="header-section-number">10</span> Calcula os percentuais utilizando as frequências já calculadas</h1>
@@ -309,11 +310,615 @@ RH2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(ID, IDADE, 
 <h1><span class="header-section-number">11</span> Une as tabelas pelas colunas</h1>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cbind</span>(freq1,prob1)</code></pre></div>
 <pre><code>##                FALSE TRUE FALSE  TRUE
-## DEPARTAMENTO A   209    1 0.209 0.001
-## DEPARTAMENTO B   228    2 0.228 0.002
-## DEPARTAMENTO C   189    1 0.189 0.001
-## DEPARTAMENTO D   117    3 0.117 0.003
-## DEPARTAMENTO E   247    3 0.247 0.003</code></pre>
+## DEPARTAMENTO A   189    1 0.189 0.001
+## DEPARTAMENTO B   266    4 0.266 0.004
+## DEPARTAMENTO C   168    2 0.168 0.002
+## DEPARTAMENTO D   219    1 0.219 0.001
+## DEPARTAMENTO E   148    2 0.148 0.002</code></pre>
+</div>
+<div id="estudo-de-caso-2" class="section level1">
+<h1><span class="header-section-number">12</span> Estudo de Caso #2</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cargos &lt;-<span class="ot">NULL</span>
+<span class="co"># Carrega os dados </span>
+cargos &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;https://raw.githubusercontent.com/flaviobrito/dataudit/master/dados/PROTOTIPO.txt&quot;</span>, <span class="dt">sep=</span><span class="st">&#39;</span><span class="ch">\t</span><span class="st">&#39;</span>, <span class="dt">header=</span><span class="ot">TRUE</span>)
+
+
+
+<span class="co">#-------------------------------------------------------------------------------</span>
+<span class="co"># Pré-processamento</span>
+<span class="co">#-------------------------------------------------------------------------------</span>
+<span class="co"># Excluir os brancos antes e depois dos nomes</span>
+dados &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(<span class="kw">apply</span>(cargos, <span class="dv">2</span>, function(x)<span class="kw">gsub</span>(<span class="st">&quot; +$&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="kw">gsub</span>(<span class="st">&quot;^ +&quot;</span>, <span class="st">&quot;&quot;</span> , x))))
+
+<span class="co">#Renomeia a variável</span>
+<span class="kw">names</span>(dados)[<span class="dv">2</span>] &lt;-<span class="st"> &quot;DEPT&quot;</span>
+
+<span class="co">#Limpa caracteres especiais</span>
+dados$SALARIO &lt;-<span class="st"> </span><span class="kw">sub</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">.&quot;</span>, <span class="st">&quot;&quot;</span>, dados$SALARIO)
+dados$SALARIO &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">sub</span>(<span class="st">&quot;,&quot;</span>, <span class="st">&quot;.&quot;</span>, dados$SALARIO))
+
+<span class="co">#Filtra registros</span>
+cargos &lt;-<span class="st"> </span><span class="kw">subset</span>(dados, SALARIO &gt;<span class="st"> </span><span class="dv">200</span>) <span class="co"># &#39;cargos um subconjunto de &#39;dados&#39;</span>
+
+<span class="co">#Cria variáveis a partir de faixas</span>
+cargos &lt;-<span class="st"> </span><span class="kw">transform</span>(cargos,
+                    <span class="dt">CLASSE =</span> <span class="kw">cut</span>(SALARIO, <span class="dt">breaks=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">300</span>,<span class="dv">400</span>,<span class="dv">500</span>,<span class="dv">600</span>,<span class="dv">700</span>,<span class="dv">800</span>,<span class="dv">900</span>,<span class="dv">1000</span>,<span class="dv">2000</span>,<span class="dv">3000</span>,<span class="dv">4000</span>,<span class="dv">5000</span>,<span class="dv">6000</span>,<span class="dv">7000</span>, <span class="ot">Inf</span>),<span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;NIVEL-1&quot;</span>,<span class="st">&quot;NIVEL-2&quot;</span>,<span class="st">&quot;NIVEL-3&quot;</span>,<span class="st">&quot;NIVEL-4&quot;</span>,<span class="st">&quot;NIVEL-5&quot;</span>,<span class="st">&quot;NIVEL-6&quot;</span>,<span class="st">&quot;NIVEL-7&quot;</span>,<span class="st">&quot;NIVEL-8&quot;</span>,<span class="st">&quot;GER-1&quot;</span>,<span class="st">&quot;GER-2&quot;</span>,<span class="st">&quot;GER-3&quot;</span>,<span class="st">&quot;GER-4&quot;</span>,<span class="st">&quot;DIR-1&quot;</span>,<span class="st">&quot;DIR-6&quot;</span>, <span class="st">&quot;OUT&quot;</span>)))
+
+<span class="co"># Cria novo DF sem os maiores valores</span>
+cargos_sem_out &lt;-<span class="st"> </span>cargos[!cargos$CLASSE==<span class="st">&quot;OUT&quot;</span>,]
+
+<span class="co"># Carrega DF novo para o antigo</span>
+cargos&lt;-cargos_sem_out
+
+<span class="co">#Boxplot</span>
+<span class="kw">boxplot</span>(SALARIO ~<span class="st"> </span>CLASSE, <span class="dt">data=</span>cargos, <span class="dt">las=</span><span class="dv">2</span>, <span class="dt">cex.axis=</span><span class="fl">0.8</span>)</code></pre></div>
+<p><img src="Curso_Auditoria_Dados_Estudo_Caso_RecursosHumanos_files/figure-html/unnamed-chunk-16-1.png" title="" alt="" width="960" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Quantidade de cargos de cada tipo</span>
+<span class="kw">barplot</span>(<span class="kw">with</span>(cargos, <span class="kw">table</span>(cargos$CLASSE)), <span class="dt">cex.names=</span><span class="fl">0.7</span>)</code></pre></div>
+<p><img src="Curso_Auditoria_Dados_Estudo_Caso_RecursosHumanos_files/figure-html/unnamed-chunk-16-2.png" title="" alt="" width="960" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Valor dos cargos de cada tipo</span>
+<span class="kw">barplot</span>(<span class="kw">with</span>(cargos, <span class="kw">tapply</span>(SALARIO, CLASSE, sum, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)), <span class="dt">cex.names=</span><span class="fl">0.7</span>)</code></pre></div>
+<p><img src="Curso_Auditoria_Dados_Estudo_Caso_RecursosHumanos_files/figure-html/unnamed-chunk-16-3.png" title="" alt="" width="960" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Lista registros iniciais do DF</span>
+
+<span class="kw">head</span>(cargos)</code></pre></div>
+<pre><code>##   SISTEMA      DEPT   SETOR SALARIO CLASSE
+## 1      RH DEPT. MKT SETOR_A 1807.00  GER-1
+## 2      RH DEPT. MKT SETOR_A 5475.83  DIR-1
+## 3      RH DEPT. MKT SETOR_A 2600.00  GER-2
+## 4      RH DEPT. MKT SETOR_A 1329.25  GER-1
+## 5      RH DEPT. MKT SETOR_A 1820.00  GER-1
+## 6      RH DEPT. MKT SETOR_A 3770.00  GER-3</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">with</span>(cargos, <span class="kw">table</span>(SISTEMA,DEPT,CLASSE)) -&gt;<span class="st"> </span>tabela
+<span class="kw">ftable</span>(tabela)</code></pre></div>
+<pre><code>##                        CLASSE NIVEL-1 NIVEL-2 NIVEL-3 NIVEL-4 NIVEL-5 NIVEL-6 NIVEL-7 NIVEL-8 GER-1 GER-2 GER-3 GER-4 DIR-1 DIR-6 OUT
+## SISTEMA DEPT                                                                                                                         
+## RH      DEPT. ATCLIENT              0       0       0       0       0       1      80       6    58     4     6     2     2     2   0
+##         DEPT. CMP                   0       0       0       2       1       3       0      25    76    55    44    12     4     6   0
+##         DEPT. FIN                   0       0       0       1       0       0       0       3     6     8     8     3     2     0   0
+##         DEPT. LOG                   0       9       1       1       8     185      98      91   306    42    17    14     3     1   0
+##         DEPT. MKT                   0       0       0       0       0       0       0       0    11     2     2     1     1     2   0
+##         DEPT. TI                    0       0       0       0       1       1       0       2     9     8     6     2     1     1   0
+##         DEPT.RH                     0       0       0       0       3       6       5      11   196    56    26     5    11     5   0</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">with</span>(cargos, <span class="kw">table</span>(DEPT, CLASSE))</code></pre></div>
+<pre><code>##                 CLASSE
+## DEPT             NIVEL-1 NIVEL-2 NIVEL-3 NIVEL-4 NIVEL-5 NIVEL-6 NIVEL-7
+##   DEPT. ATCLIENT       0       0       0       0       0       1      80
+##   DEPT. CMP            0       0       0       2       1       3       0
+##   DEPT. FIN            0       0       0       1       0       0       0
+##   DEPT. LOG            0       9       1       1       8     185      98
+##   DEPT. MKT            0       0       0       0       0       0       0
+##   DEPT. TI             0       0       0       0       1       1       0
+##   DEPT.RH              0       0       0       0       3       6       5
+##                 CLASSE
+## DEPT             NIVEL-8 GER-1 GER-2 GER-3 GER-4 DIR-1 DIR-6 OUT
+##   DEPT. ATCLIENT       6    58     4     6     2     2     2   0
+##   DEPT. CMP           25    76    55    44    12     4     6   0
+##   DEPT. FIN            3     6     8     8     3     2     0   0
+##   DEPT. LOG           91   306    42    17    14     3     1   0
+##   DEPT. MKT            0    11     2     2     1     1     2   0
+##   DEPT. TI             2     9     8     6     2     1     1   0
+##   DEPT.RH             11   196    56    26     5    11     5   0</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#------------------------------------------------------------------------------</span>
+<span class="co">#</span>
+<span class="co"># ESTATÍSTICAS DESCRITIVAS DOS VALORES</span>
+<span class="co">#</span>
+<span class="co">#------------------------------------------------------------------------------</span>
+<span class="kw">library</span>(dplyr)</code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">TBL &lt;-<span class="st"> </span>cargos %&gt;%
+<span class="st">  </span><span class="kw">group_by</span>(SISTEMA, DEPT, CLASSE) %&gt;%
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">N       =</span> <span class="kw">n</span>(),
+            <span class="dt">MEDIA   =</span> <span class="kw">mean</span>(SALARIO, <span class="dt">na.rm=</span><span class="ot">TRUE</span>),
+            <span class="dt">SD      =</span> <span class="kw">sd</span>(SALARIO, <span class="dt">na.rm=</span><span class="ot">TRUE</span>),
+            <span class="dt">Q1      =</span> <span class="kw">quantile</span>(SALARIO, <span class="dt">probs=</span><span class="fl">0.25</span>, <span class="dt">na.rm=</span><span class="ot">TRUE</span>),
+            <span class="dt">MEDIANA =</span> <span class="kw">median</span>(SALARIO, <span class="dt">na.rm=</span><span class="ot">TRUE</span>),
+            <span class="dt">Q2      =</span> <span class="kw">quantile</span>(SALARIO, <span class="dt">probs=</span><span class="fl">0.75</span>, <span class="dt">na.rm=</span><span class="ot">TRUE</span>),
+            <span class="dt">TOTAL   =</span> <span class="kw">sum</span>(SALARIO, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)
+  )
+TBL</code></pre></div>
+<pre><code>## Source: local data frame [64 x 10]
+## Groups: SISTEMA, DEPT [?]
+## 
+##    SISTEMA           DEPT  CLASSE     N    MEDIA        SD       Q1
+##     (fctr)         (fctr)  (fctr) (int)    (dbl)     (dbl)    (dbl)
+## 1       RH DEPT. ATCLIENT NIVEL-6     1  715.000        NA  715.000
+## 2       RH DEPT. ATCLIENT NIVEL-7    80  877.500   0.00000  877.500
+## 3       RH DEPT. ATCLIENT NIVEL-8     6  926.250  17.80098  910.000
+## 4       RH DEPT. ATCLIENT   GER-1    58 1375.917 186.92709 1267.500
+## 5       RH DEPT. ATCLIENT   GER-2     4 2191.990 144.91460 2067.000
+## 6       RH DEPT. ATCLIENT   GER-3     6 3814.237 111.55792 3717.188
+## 7       RH DEPT. ATCLIENT   GER-4     2 4156.750  59.75052 4135.625
+## 8       RH DEPT. ATCLIENT   DIR-1     2 5770.375 209.12683 5696.438
+## 9       RH DEPT. ATCLIENT   DIR-6     2 6085.625  29.87526 6075.062
+## 10      RH      DEPT. CMP NIVEL-4     2  557.350  39.10300  543.525
+## ..     ...            ...     ...   ...      ...       ...      ...
+## Variables not shown: MEDIANA (dbl), Q2 (dbl), TOTAL (dbl)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Cria novo DF</span>
+cargos2 &lt;-<span class="st"> </span>cargos
+
+<span class="co">#Cria nova variável a partir de um filtro por string</span>
+cargos2$Formacao &lt;-<span class="st"> </span><span class="kw">with</span>(cargos2,
+                         <span class="kw">ifelse</span>(CLASSE %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;GER-3&quot;</span>,<span class="st">&quot;GER-4&quot;</span>,<span class="kw">levels</span>(cargos2$CLASSE)[<span class="kw">grep</span>(<span class="st">&quot;DIR-&quot;</span>,<span class="kw">levels</span>(cargos2$CLASSE))]), <span class="st">&quot;SUP.COMPLETO&quot;</span>,
+                            <span class="kw">ifelse</span>(CLASSE %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;NIVEL-1&quot;</span>,<span class="st">&quot;NIVEL2&quot;</span>), <span class="st">&quot;FUNDAMENTAL&quot;</span>,<span class="st">&quot;MÉDIO&quot;</span>)))
+                   
+
+<span class="co">#Cria variável </span>
+cargos$IDADE &lt;-<span class="kw">as.numeric</span>(<span class="dv">0</span>)
+cargos$IDADE &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">c</span>(<span class="kw">rep</span>(<span class="kw">seq</span>(<span class="dv">25</span>,<span class="dv">60</span>,<span class="dv">20</span>),<span class="dv">157</span>)))
+cargos$IDADE &lt;-<span class="st"> </span><span class="kw">trunc</span>(cargos$IDADE)
+
+<span class="co">#Cria variável com base em categoria</span>
+cargos$IDADE_CAT[cargos$IDADE &gt;<span class="st"> </span><span class="dv">75</span>] &lt;-<span class="st"> &quot;Sênior&quot;</span>
+cargos$IDADE_CAT[cargos$IDADE&gt;<span class="st"> </span><span class="dv">45</span> &amp;<span class="st"> </span>cargos$IDADE &lt;=<span class="st"> </span><span class="dv">75</span>] &lt;-<span class="st"> &quot;Idade Mediana&quot;</span>
+cargos$IDADE_CAT[cargos$IDADE&lt;=<span class="st"> </span><span class="dv">45</span>] &lt;-<span class="st"> &quot;Jovem&quot;</span>
+
+<span class="co">#Lista Maior Salário</span>
+
+maior_salario &lt;-<span class="st"> </span>cargos[cargos$SALARIO ==<span class="st"> </span><span class="kw">max</span>(cargos$SALARIO),]
+maior_salario</code></pre></div>
+<pre><code>##   SISTEMA      DEPT   SETOR SALARIO CLASSE IDADE IDADE_CAT
+## 9      RH DEPT. MKT SETOR_A 6997.39  DIR-6    25     Jovem</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">max</span>(cargos[cargos[,<span class="st">&quot;CLASSE&quot;</span>]==<span class="st">&quot;DIR-6&quot;</span>, <span class="st">&quot;SALARIO&quot;</span>]) </code></pre></div>
+<pre><code>## [1] 6997.39</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">max</span>(cargos$SALARIO[cargos$CLASSE ==<span class="st">&quot;DIR-6&quot;</span>])</code></pre></div>
+<pre><code>## [1] 6997.39</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Cria novo DF</span>
+rh &lt;-<span class="st"> </span>cargos
+
+<span class="co"># AGREGAR DADOS / SUMARIZAÇÃO DE DADOS / TABULAÇÃO CRUZADA</span>
+<span class="co">#==========================================================================</span>
+
+<span class="co"># 1. Tabulação Cruzada (contagem de frequências)</span>
+<span class="kw">with</span>(rh, <span class="kw">table</span>(CLASSE)) <span class="co"># uma variável categórica</span></code></pre></div>
+<pre><code>## CLASSE
+## NIVEL-1 NIVEL-2 NIVEL-3 NIVEL-4 NIVEL-5 NIVEL-6 NIVEL-7 NIVEL-8   GER-1 
+##       0       9       1       4      13     196     183     138     662 
+##   GER-2   GER-3   GER-4   DIR-1   DIR-6     OUT 
+##     175     109      39      24      17       0</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">with</span>(rh, <span class="kw">table</span>(CLASSE, IDADE_CAT))</code></pre></div>
+<pre><code>##          IDADE_CAT
+## CLASSE    Jovem
+##   NIVEL-1     0
+##   NIVEL-2     9
+##   NIVEL-3     1
+##   NIVEL-4     4
+##   NIVEL-5    13
+##   NIVEL-6   196
+##   NIVEL-7   183
+##   NIVEL-8   138
+##   GER-1     662
+##   GER-2     175
+##   GER-3     109
+##   GER-4      39
+##   DIR-1      24
+##   DIR-6      17
+##   OUT         0</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">xtabs</span>( ~<span class="st"> </span>IDADE_CAT, <span class="dt">data=</span>rh)</code></pre></div>
+<pre><code>## IDADE_CAT
+## Jovem 
+##  1570</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">xtabs</span>(SALARIO ~<span class="st"> </span>DEPT , <span class="dt">data=</span>rh)</code></pre></div>
+<pre><code>## DEPT
+## DEPT. ATCLIENT      DEPT. CMP      DEPT. FIN      DEPT. LOG      DEPT. MKT 
+##      219954.54      547208.63       86476.00      982767.43       54800.19 
+##       DEPT. TI        DEPT.RH 
+##       80818.82      640931.04</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">xtabs</span>(SALARIO ~<span class="st"> </span>DEPT +<span class="st"> </span>CLASSE , <span class="dt">data=</span>rh)</code></pre></div>
+<pre><code>##                 CLASSE
+## DEPT               NIVEL-1   NIVEL-2   NIVEL-3   NIVEL-4   NIVEL-5
+##   DEPT. ATCLIENT      0.00      0.00      0.00      0.00      0.00
+##   DEPT. CMP           0.00      0.00      0.00   1114.70    650.00
+##   DEPT. FIN           0.00      0.00      0.00    520.00      0.00
+##   DEPT. LOG           0.00   3282.50    438.75    543.40   5355.09
+##   DEPT. MKT           0.00      0.00      0.00      0.00      0.00
+##   DEPT. TI            0.00      0.00      0.00      0.00    614.25
+##   DEPT.RH             0.00      0.00      0.00      0.00   1946.10
+##                 CLASSE
+## DEPT               NIVEL-6   NIVEL-7   NIVEL-8     GER-1     GER-2
+##   DEPT. ATCLIENT    715.00  70200.00   5557.50  79803.16   8767.96
+##   DEPT. CMP        2210.00      0.00  23292.75 112987.77 140757.50
+##   DEPT. FIN           0.00      0.00   2925.00   9821.50  21320.00
+##   DEPT. LOG      133874.70  84490.77  86923.54 426058.82  99951.91
+##   DEPT. MKT           0.00      0.00      0.00  18138.25   5200.00
+##   DEPT. TI          747.50      0.00   1885.00  12090.00  22231.30
+##   DEPT.RH          4413.50   4225.00  10465.00 278947.33 136045.65
+##                 CLASSE
+## DEPT                 GER-3     GER-4     DIR-1     DIR-6       OUT
+##   DEPT. ATCLIENT  22885.42   8313.50  11540.75  12171.25      0.00
+##   DEPT. CMP      153158.85  51910.30  21680.95  39445.81      0.00
+##   DEPT. FIN       27709.50  13130.00  11050.00      0.00      0.00
+##   DEPT. LOG       58534.11  60784.84  15912.00   6617.00      0.00
+##   DEPT. MKT        7345.00   4972.50   5475.83  13668.61      0.00
+##   DEPT. TI        22444.50   8830.43   5475.83   6500.01      0.00
+##   DEPT.RH         89880.05  23289.50  59485.74  32233.17      0.00</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">with</span>(rh, <span class="kw">table</span>(DEPT, IDADE, CLASSE))</code></pre></div>
+<pre><code>## , , CLASSE = NIVEL-1
+## 
+##                 IDADE
+## DEPT              25  45
+##   DEPT. ATCLIENT   0   0
+##   DEPT. CMP        0   0
+##   DEPT. FIN        0   0
+##   DEPT. LOG        0   0
+##   DEPT. MKT        0   0
+##   DEPT. TI         0   0
+##   DEPT.RH          0   0
+## 
+## , , CLASSE = NIVEL-2
+## 
+##                 IDADE
+## DEPT              25  45
+##   DEPT. ATCLIENT   0   0
+##   DEPT. CMP        0   0
+##   DEPT. FIN        0   0
+##   DEPT. LOG        5   4
+##   DEPT. MKT        0   0
+##   DEPT. TI         0   0
+##   DEPT.RH          0   0
+## 
+## , , CLASSE = NIVEL-3
+## 
+##                 IDADE
+## DEPT              25  45
+##   DEPT. ATCLIENT   0   0
+##   DEPT. CMP        0   0
+##   DEPT. FIN        0   0
+##   DEPT. LOG        0   1
+##   DEPT. MKT        0   0
+##   DEPT. TI         0   0
+##   DEPT.RH          0   0
+## 
+## , , CLASSE = NIVEL-4
+## 
+##                 IDADE
+## DEPT              25  45
+##   DEPT. ATCLIENT   0   0
+##   DEPT. CMP        2   0
+##   DEPT. FIN        1   0
+##   DEPT. LOG        1   0
+##   DEPT. MKT        0   0
+##   DEPT. TI         0   0
+##   DEPT.RH          0   0
+## 
+## , , CLASSE = NIVEL-5
+## 
+##                 IDADE
+## DEPT              25  45
+##   DEPT. ATCLIENT   0   0
+##   DEPT. CMP        1   0
+##   DEPT. FIN        0   0
+##   DEPT. LOG        2   6
+##   DEPT. MKT        0   0
+##   DEPT. TI         1   0
+##   DEPT.RH          1   2
+## 
+## , , CLASSE = NIVEL-6
+## 
+##                 IDADE
+## DEPT              25  45
+##   DEPT. ATCLIENT   1   0
+##   DEPT. CMP        0   3
+##   DEPT. FIN        0   0
+##   DEPT. LOG       94  91
+##   DEPT. MKT        0   0
+##   DEPT. TI         0   1
+##   DEPT.RH          2   4
+## 
+## , , CLASSE = NIVEL-7
+## 
+##                 IDADE
+## DEPT              25  45
+##   DEPT. ATCLIENT  41  39
+##   DEPT. CMP        0   0
+##   DEPT. FIN        0   0
+##   DEPT. LOG       48  50
+##   DEPT. MKT        0   0
+##   DEPT. TI         0   0
+##   DEPT.RH          1   4
+## 
+## , , CLASSE = NIVEL-8
+## 
+##                 IDADE
+## DEPT              25  45
+##   DEPT. ATCLIENT   2   4
+##   DEPT. CMP       12  13
+##   DEPT. FIN        1   2
+##   DEPT. LOG       42  49
+##   DEPT. MKT        0   0
+##   DEPT. TI         2   0
+##   DEPT.RH          5   6
+## 
+## , , CLASSE = GER-1
+## 
+##                 IDADE
+## DEPT              25  45
+##   DEPT. ATCLIENT  29  29
+##   DEPT. CMP       38  38
+##   DEPT. FIN        4   2
+##   DEPT. LOG      158 148
+##   DEPT. MKT        5   6
+##   DEPT. TI         4   5
+##   DEPT.RH         96 100
+## 
+## , , CLASSE = GER-2
+## 
+##                 IDADE
+## DEPT              25  45
+##   DEPT. ATCLIENT   1   3
+##   DEPT. CMP       28  27
+##   DEPT. FIN        4   4
+##   DEPT. LOG       17  25
+##   DEPT. MKT        2   0
+##   DEPT. TI         3   5
+##   DEPT.RH         30  26
+## 
+## , , CLASSE = GER-3
+## 
+##                 IDADE
+## DEPT              25  45
+##   DEPT. ATCLIENT   2   4
+##   DEPT. CMP       25  19
+##   DEPT. FIN        3   5
+##   DEPT. LOG       10   7
+##   DEPT. MKT        0   2
+##   DEPT. TI         1   5
+##   DEPT.RH         14  12
+## 
+## , , CLASSE = GER-4
+## 
+##                 IDADE
+## DEPT              25  45
+##   DEPT. ATCLIENT   2   0
+##   DEPT. CMP        4   8
+##   DEPT. FIN        2   1
+##   DEPT. LOG        8   6
+##   DEPT. MKT        1   0
+##   DEPT. TI         2   0
+##   DEPT.RH          2   3
+## 
+## , , CLASSE = DIR-1
+## 
+##                 IDADE
+## DEPT              25  45
+##   DEPT. ATCLIENT   1   1
+##   DEPT. CMP        3   1
+##   DEPT. FIN        1   1
+##   DEPT. LOG        2   1
+##   DEPT. MKT        0   1
+##   DEPT. TI         1   0
+##   DEPT.RH          8   3
+## 
+## , , CLASSE = DIR-6
+## 
+##                 IDADE
+## DEPT              25  45
+##   DEPT. ATCLIENT   1   1
+##   DEPT. CMP        1   5
+##   DEPT. FIN        0   0
+##   DEPT. LOG        1   0
+##   DEPT. MKT        2   0
+##   DEPT. TI         1   0
+##   DEPT.RH          3   2
+## 
+## , , CLASSE = OUT
+## 
+##                 IDADE
+## DEPT              25  45
+##   DEPT. ATCLIENT   0   0
+##   DEPT. CMP        0   0
+##   DEPT. FIN        0   0
+##   DEPT. LOG        0   0
+##   DEPT. MKT        0   0
+##   DEPT. TI         0   0
+##   DEPT.RH          0   0</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ftable</span>(<span class="kw">with</span>(rh, <span class="kw">table</span>(DEPT, IDADE, CLASSE)))</code></pre></div>
+<pre><code>##                      CLASSE NIVEL-1 NIVEL-2 NIVEL-3 NIVEL-4 NIVEL-5 NIVEL-6 NIVEL-7 NIVEL-8 GER-1 GER-2 GER-3 GER-4 DIR-1 DIR-6 OUT
+## DEPT           IDADE                                                                                                               
+## DEPT. ATCLIENT 25                 0       0       0       0       0       1      41       2    29     1     2     2     1     1   0
+##                45                 0       0       0       0       0       0      39       4    29     3     4     0     1     1   0
+## DEPT. CMP      25                 0       0       0       2       1       0       0      12    38    28    25     4     3     1   0
+##                45                 0       0       0       0       0       3       0      13    38    27    19     8     1     5   0
+## DEPT. FIN      25                 0       0       0       1       0       0       0       1     4     4     3     2     1     0   0
+##                45                 0       0       0       0       0       0       0       2     2     4     5     1     1     0   0
+## DEPT. LOG      25                 0       5       0       1       2      94      48      42   158    17    10     8     2     1   0
+##                45                 0       4       1       0       6      91      50      49   148    25     7     6     1     0   0
+## DEPT. MKT      25                 0       0       0       0       0       0       0       0     5     2     0     1     0     2   0
+##                45                 0       0       0       0       0       0       0       0     6     0     2     0     1     0   0
+## DEPT. TI       25                 0       0       0       0       1       0       0       2     4     3     1     2     1     1   0
+##                45                 0       0       0       0       0       1       0       0     5     5     5     0     0     0   0
+## DEPT.RH        25                 0       0       0       0       1       2       1       5    96    30    14     2     8     3   0
+##                45                 0       0       0       0       2       4       4       6   100    26    12     3     3     2   0</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Agregações </span>
+<span class="kw">aggregate</span>(rh[, <span class="kw">c</span>(<span class="st">&quot;IDADE&quot;</span>, <span class="st">&quot;SALARIO&quot;</span>)],
+          <span class="dt">by=</span><span class="kw">list</span>(<span class="dt">DEPT=</span>rh$DEPT),
+          <span class="dt">FUN=</span>mean, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>##             DEPT    IDADE  SALARIO
+## 1 DEPT. ATCLIENT 35.06211 1366.177
+## 2      DEPT. CMP 35.00000 2400.038
+## 3      DEPT. FIN 34.67742 2789.548
+## 4      DEPT. LOG 35.00000 1266.453
+## 5      DEPT. MKT 34.47368 2884.221
+## 6       DEPT. TI 35.32258 2607.059
+## 7        DEPT.RH 35.00000 1978.182</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">aggregate</span>(rh[, <span class="kw">c</span>(<span class="st">&quot;SALARIO&quot;</span>, <span class="st">&quot;IDADE&quot;</span>)],
+          <span class="dt">by=</span><span class="kw">list</span>(<span class="dt">DEPT=</span>rh$DEPT, <span class="dt">CLASSE=</span>rh$CLASSE),
+          <span class="dt">FUN=</span>mean, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>##              DEPT  CLASSE   SALARIO    IDADE
+## 1       DEPT. LOG NIVEL-2  364.7222 33.88889
+## 2       DEPT. LOG NIVEL-3  438.7500 45.00000
+## 3       DEPT. CMP NIVEL-4  557.3500 25.00000
+## 4       DEPT. FIN NIVEL-4  520.0000 25.00000
+## 5       DEPT. LOG NIVEL-4  543.4000 25.00000
+## 6       DEPT. CMP NIVEL-5  650.0000 25.00000
+## 7       DEPT. LOG NIVEL-5  669.3863 40.00000
+## 8        DEPT. TI NIVEL-5  614.2500 25.00000
+## 9         DEPT.RH NIVEL-5  648.7000 38.33333
+## 10 DEPT. ATCLIENT NIVEL-6  715.0000 25.00000
+## 11      DEPT. CMP NIVEL-6  736.6667 45.00000
+## 12      DEPT. LOG NIVEL-6  723.6470 34.83784
+## 13       DEPT. TI NIVEL-6  747.5000 45.00000
+## 14        DEPT.RH NIVEL-6  735.5833 38.33333
+## 15 DEPT. ATCLIENT NIVEL-7  877.5000 34.75000
+## 16      DEPT. LOG NIVEL-7  862.1507 35.20408
+## 17        DEPT.RH NIVEL-7  845.0000 41.00000
+## 18 DEPT. ATCLIENT NIVEL-8  926.2500 38.33333
+## 19      DEPT. CMP NIVEL-8  931.7100 35.40000
+## 20      DEPT. FIN NIVEL-8  975.0000 38.33333
+## 21      DEPT. LOG NIVEL-8  955.2037 35.76923
+## 22       DEPT. TI NIVEL-8  942.5000 25.00000
+## 23        DEPT.RH NIVEL-8  951.3636 35.90909
+## 24 DEPT. ATCLIENT   GER-1 1375.9166 35.00000
+## 25      DEPT. CMP   GER-1 1486.6812 35.00000
+## 26      DEPT. FIN   GER-1 1636.9167 31.66667
+## 27      DEPT. LOG   GER-1 1392.3491 34.67320
+## 28      DEPT. MKT   GER-1 1648.9318 35.90909
+## 29       DEPT. TI   GER-1 1343.3333 36.11111
+## 30        DEPT.RH   GER-1 1423.2007 35.20408
+## 31 DEPT. ATCLIENT   GER-2 2191.9900 40.00000
+## 32      DEPT. CMP   GER-2 2559.2273 34.81818
+## 33      DEPT. FIN   GER-2 2665.0000 35.00000
+## 34      DEPT. LOG   GER-2 2379.8074 36.90476
+## 35      DEPT. MKT   GER-2 2600.0000 25.00000
+## 36       DEPT. TI   GER-2 2778.9125 37.50000
+## 37        DEPT.RH   GER-2 2429.3866 34.28571
+## 38 DEPT. ATCLIENT   GER-3 3814.2367 38.33333
+## 39      DEPT. CMP   GER-3 3480.8830 33.63636
+## 40      DEPT. FIN   GER-3 3463.6875 37.50000
+## 41      DEPT. LOG   GER-3 3443.1829 33.23529
+## 42      DEPT. MKT   GER-3 3672.5000 45.00000
+## 43       DEPT. TI   GER-3 3740.7500 41.66667
+## 44        DEPT.RH   GER-3 3456.9250 34.23077
+## 45 DEPT. ATCLIENT   GER-4 4156.7500 25.00000
+## 46      DEPT. CMP   GER-4 4325.8583 38.33333
+## 47      DEPT. FIN   GER-4 4376.6667 31.66667
+## 48      DEPT. LOG   GER-4 4341.7743 33.57143
+## 49      DEPT. MKT   GER-4 4972.5000 25.00000
+## 50       DEPT. TI   GER-4 4415.2150 25.00000
+## 51        DEPT.RH   GER-4 4657.9000 37.00000
+## 52 DEPT. ATCLIENT   DIR-1 5770.3750 35.00000
+## 53      DEPT. CMP   DIR-1 5420.2375 30.00000
+## 54      DEPT. FIN   DIR-1 5525.0000 35.00000
+## 55      DEPT. LOG   DIR-1 5304.0000 31.66667
+## 56      DEPT. MKT   DIR-1 5475.8300 45.00000
+## 57       DEPT. TI   DIR-1 5475.8300 25.00000
+## 58        DEPT.RH   DIR-1 5407.7945 30.45455
+## 59 DEPT. ATCLIENT   DIR-6 6085.6250 35.00000
+## 60      DEPT. CMP   DIR-6 6574.3017 41.66667
+## 61      DEPT. LOG   DIR-6 6617.0000 25.00000
+## 62      DEPT. MKT   DIR-6 6834.3050 25.00000
+## 63       DEPT. TI   DIR-6 6500.0100 25.00000
+## 64        DEPT.RH   DIR-6 6446.6340 33.00000</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(gmodels)
+<span class="kw">CrossTable</span>(cargos$CLASSE, cargos$CLASSE)</code></pre></div>
+<pre><code>## 
+##  
+##    Cell Contents
+## |-------------------------|
+## |                       N |
+## | Chi-square contribution |
+## |           N / Row Total |
+## |           N / Col Total |
+## |         N / Table Total |
+## |-------------------------|
+## 
+##  
+## Total Observations in Table:  1570 
+## 
+##  
+##               | cargos$CLASSE 
+## cargos$CLASSE |   NIVEL-2 |   NIVEL-3 |   NIVEL-4 |   NIVEL-5 |   NIVEL-6 |   NIVEL-7 |   NIVEL-8 |     GER-1 |     GER-2 |     GER-3 |     GER-4 |     DIR-1 |     DIR-6 | Row Total | 
+## --------------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|
+##       NIVEL-2 |         9 |         0 |         0 |         0 |         0 |         0 |         0 |         0 |         0 |         0 |         0 |         0 |         0 |         9 | 
+##               |  1552.052 |     0.006 |     0.023 |     0.075 |     1.124 |     1.049 |     0.791 |     3.795 |     1.003 |     0.625 |     0.224 |     0.138 |     0.097 |           | 
+##               |     1.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.006 | 
+##               |     1.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |           | 
+##               |     0.006 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |           | 
+## --------------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|
+##       NIVEL-3 |         0 |         1 |         0 |         0 |         0 |         0 |         0 |         0 |         0 |         0 |         0 |         0 |         0 |         1 | 
+##               |     0.006 |  1568.001 |     0.003 |     0.008 |     0.125 |     0.117 |     0.088 |     0.422 |     0.111 |     0.069 |     0.025 |     0.015 |     0.011 |           | 
+##               |     0.000 |     1.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.001 | 
+##               |     0.000 |     1.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |           | 
+##               |     0.000 |     0.001 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |           | 
+## --------------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|
+##       NIVEL-4 |         0 |         0 |         4 |         0 |         0 |         0 |         0 |         0 |         0 |         0 |         0 |         0 |         0 |         4 | 
+##               |     0.023 |     0.003 |  1562.010 |     0.033 |     0.499 |     0.466 |     0.352 |     1.687 |     0.446 |     0.278 |     0.099 |     0.061 |     0.043 |           | 
+##               |     0.000 |     0.000 |     1.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.003 | 
+##               |     0.000 |     0.000 |     1.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |           | 
+##               |     0.000 |     0.000 |     0.003 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |           | 
+## --------------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|
+##       NIVEL-5 |         0 |         0 |         0 |        13 |         0 |         0 |         0 |         0 |         0 |         0 |         0 |         0 |         0 |        13 | 
+##               |     0.075 |     0.008 |     0.033 |  1544.108 |     1.623 |     1.515 |     1.143 |     5.482 |     1.449 |     0.903 |     0.323 |     0.199 |     0.141 |           | 
+##               |     0.000 |     0.000 |     0.000 |     1.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.008 | 
+##               |     0.000 |     0.000 |     0.000 |     1.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |           | 
+##               |     0.000 |     0.000 |     0.000 |     0.008 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |           | 
+## --------------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|
+##       NIVEL-6 |         0 |         0 |         0 |         0 |       196 |         0 |         0 |         0 |         0 |         0 |         0 |         0 |         0 |       196 | 
+##               |     1.124 |     0.125 |     0.499 |     1.623 |  1202.469 |    22.846 |    17.228 |    82.645 |    21.847 |    13.608 |     4.869 |     2.996 |     2.122 |           | 
+##               |     0.000 |     0.000 |     0.000 |     0.000 |     1.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.125 | 
+##               |     0.000 |     0.000 |     0.000 |     0.000 |     1.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |           | 
+##               |     0.000 |     0.000 |     0.000 |     0.000 |     0.125 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |           | 
+## --------------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|
+##       NIVEL-7 |         0 |         0 |         0 |         0 |         0 |       183 |         0 |         0 |         0 |         0 |         0 |         0 |         0 |       183 | 
+##               |     1.049 |     0.117 |     0.466 |     1.515 |    22.846 |  1225.331 |    16.085 |    77.163 |    20.398 |    12.705 |     4.546 |     2.797 |     1.982 |           | 
+##               |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     1.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.117 | 
+##               |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     1.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |           | 
+##               |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.117 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |           | 
+## --------------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|
+##       NIVEL-8 |         0 |         0 |         0 |         0 |         0 |         0 |       138 |         0 |         0 |         0 |         0 |         0 |         0 |       138 | 
+##               |     0.791 |     0.088 |     0.352 |     1.143 |    17.228 |    16.085 |  1306.130 |    58.189 |    15.382 |     9.581 |     3.428 |     2.110 |     1.494 |           | 
+##               |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     1.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.088 | 
+##               |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     1.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |           | 
+##               |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.088 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |           | 
+## --------------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|
+##         GER-1 |         0 |         0 |         0 |         0 |         0 |         0 |         0 |       662 |         0 |         0 |         0 |         0 |         0 |       662 | 
+##               |     3.795 |     0.422 |     1.687 |     5.482 |    82.645 |    77.163 |    58.189 |   525.136 |    73.790 |    45.961 |    16.445 |    10.120 |     7.168 |           | 
+##               |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     1.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.422 | 
+##               |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     1.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |           | 
+##               |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.422 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |           | 
+## --------------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|
+##         GER-2 |         0 |         0 |         0 |         0 |         0 |         0 |         0 |         0 |       175 |         0 |         0 |         0 |         0 |       175 | 
+##               |     1.003 |     0.111 |     0.446 |     1.449 |    21.847 |    20.398 |    15.382 |    73.790 |  1239.506 |    12.150 |     4.347 |     2.675 |     1.895 |           | 
+##               |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     1.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.111 | 
+##               |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     1.000 |     0.000 |     0.000 |     0.000 |     0.000 |           | 
+##               |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.111 |     0.000 |     0.000 |     0.000 |     0.000 |           | 
+## --------------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|
+##         GER-3 |         0 |         0 |         0 |         0 |         0 |         0 |         0 |         0 |         0 |       109 |         0 |         0 |         0 |       109 | 
+##               |     0.625 |     0.069 |     0.278 |     0.903 |    13.608 |    12.705 |     9.581 |    45.961 |    12.150 |  1359.568 |     2.708 |     1.666 |     1.180 |           | 
+##               |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     1.000 |     0.000 |     0.000 |     0.000 |     0.069 | 
+##               |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     1.000 |     0.000 |     0.000 |     0.000 |           | 
+##               |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.069 |     0.000 |     0.000 |     0.000 |           | 
+## --------------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|
+##         GER-4 |         0 |         0 |         0 |         0 |         0 |         0 |         0 |         0 |         0 |         0 |        39 |         0 |         0 |        39 | 
+##               |     0.224 |     0.025 |     0.099 |     0.323 |     4.869 |     4.546 |     3.428 |    16.445 |     4.347 |     2.708 |  1492.969 |     0.596 |     0.422 |           | 
+##               |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     1.000 |     0.000 |     0.000 |     0.025 | 
+##               |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     1.000 |     0.000 |     0.000 |           | 
+##               |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.025 |     0.000 |     0.000 |           | 
+## --------------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|
+##         DIR-1 |         0 |         0 |         0 |         0 |         0 |         0 |         0 |         0 |         0 |         0 |         0 |        24 |         0 |        24 | 
+##               |     0.138 |     0.015 |     0.061 |     0.199 |     2.996 |     2.797 |     2.110 |    10.120 |     2.675 |     1.666 |     0.596 |  1522.367 |     0.260 |           | 
+##               |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     1.000 |     0.000 |     0.015 | 
+##               |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     1.000 |     0.000 |           | 
+##               |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.015 |     0.000 |           | 
+## --------------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|
+##         DIR-6 |         0 |         0 |         0 |         0 |         0 |         0 |         0 |         0 |         0 |         0 |         0 |         0 |        17 |        17 | 
+##               |     0.097 |     0.011 |     0.043 |     0.141 |     2.122 |     1.982 |     1.494 |     7.168 |     1.895 |     1.180 |     0.422 |     0.260 |  1536.184 |           | 
+##               |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     1.000 |     0.011 | 
+##               |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     1.000 |           | 
+##               |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.000 |     0.011 |           | 
+## --------------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|
+##  Column Total |         9 |         1 |         4 |        13 |       196 |       183 |       138 |       662 |       175 |       109 |        39 |        24 |        17 |      1570 | 
+##               |     0.006 |     0.001 |     0.003 |     0.008 |     0.125 |     0.117 |     0.088 |     0.422 |     0.111 |     0.069 |     0.025 |     0.015 |     0.011 |           | 
+## --------------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|
+## 
+## </code></pre>
 </div>
 
 
