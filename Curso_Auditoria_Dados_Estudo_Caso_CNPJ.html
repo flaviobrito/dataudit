@@ -178,7 +178,9 @@ $(document).ready(function () {
 nf &lt;-<span class="st"> </span><span class="ot">NULL</span>
 
 <span class="co">#Lendo o arquivo no padrão csv com separador ; e criando o data frame nf</span>
-nf &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="dt">file=</span><span class="st">&quot;~/Documents/NotaFiscal.csv&quot;</span>, <span class="dt">sep=</span><span class="st">&quot;;&quot;</span>,<span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>,<span class="dt">na.strings=</span><span class="kw">c</span>(<span class="st">&quot;&quot;</span>, <span class="st">&quot; &quot;</span>) )</code></pre></div>
+<span class="co">#nf &lt;- read.csv(file=&quot;~/Documents/NotaFiscal.csv&quot;, sep=&quot;;&quot;,stringsAsFactors = FALSE,na.strings=c(&quot;&quot;, &quot; &quot;) )</span>
+
+nf &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="dt">file=</span><span class="st">&quot;https://raw.githubusercontent.com/flaviobrito/dataudit/master/dados/NotaFiscal.csv&quot;</span>, <span class="dt">sep=</span><span class="st">&quot;;&quot;</span>,<span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>,<span class="dt">na.strings=</span><span class="kw">c</span>(<span class="st">&quot;&quot;</span>, <span class="st">&quot; &quot;</span>) )</code></pre></div>
 </div>
 <div id="arquivo-e-sua-estrutura" class="section level1">
 <h1><span class="header-section-number">2</span> Arquivo e sua Estrutura</h1>
@@ -300,15 +302,15 @@ nf$Data</code></pre></div>
 <pre><code>## Loading required package: proto</code></pre>
 <pre><code>## Loading required package: RSQLite</code></pre>
 <pre><code>## Loading required package: DBI</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sqldf</span>(<span class="st">&quot;select * from nf group by CNPJ having count(*) &gt;1&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sqldf</span>(<span class="st">&quot;SELECT * FROM nf GROUP BY CNPJ HAVING COUNT(*) &gt;1&quot;</span>)</code></pre></div>
 <pre><code>## Loading required package: tcltk</code></pre>
 <pre><code>##                 CNPJ UF                Data  NF Classificacao   Valor
 ## 1 21.704.783/0001-64 ES 2016-09-09 21:00:00  89           MEI 8888888
 ## 2 49.740.886/0001-07 MA 2016-09-08 21:00:00 400          &lt;NA&gt;    7777</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sqldf</span>(<span class="st">&quot;select * from nf group by CNPJ, Classificacao having count(*) &gt;1&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sqldf</span>(<span class="st">&quot;SELECT * FROM nf GROUP BY CNPJ, Classificacao HAVING COUNT(*) &gt;1&quot;</span>)</code></pre></div>
 <pre><code>##                 CNPJ UF                Data NF Classificacao Valor
 ## 1 21.704.783/0001-64 RJ 2016-09-01 21:00:00 91            ME 40000</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sqldf</span>(<span class="st">&quot;select * from nf group by CNPJ having count(*) = 1&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sqldf</span>(<span class="st">&quot;SELECT * FROM nf GROUP BY CNPJ HAVING COUNT(*) = 1&quot;</span>)</code></pre></div>
 <pre><code>##                 CNPJ UF                Data      NF Classificacao Valor
 ## 1 03.117.734/0001-43 SP 2016-09-02 21:00:00    2000           MEI   444
 ## 2 06.062.510/0001-70 SP 2016-09-04 21:00:00     222          &lt;NA&gt;  4444
@@ -590,7 +592,9 @@ nf_valida_seq</code></pre></div>
 <div id="aprofundando-nos-testes-de-possiveis-fraudes" class="section level1">
 <h1><span class="header-section-number">11</span> Aprofundando nos Testes de Possíveis Fraudes</h1>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Carrega arquivo de Impostos Pagos</span>
-nf_recolhidas &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="dt">file=</span><span class="st">&quot;~/Documents/Recolhimento.csv&quot;</span>, <span class="dt">sep=</span><span class="st">&quot;;&quot;</span>,<span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>,<span class="dt">na.strings=</span><span class="kw">c</span>(<span class="st">&quot;&quot;</span>, <span class="st">&quot; &quot;</span>) )
+<span class="co"># nf_recolhidas &lt;- read.csv(file=&quot;~/Documents/Recolhimento.csv&quot;, sep=&quot;;&quot;,stringsAsFactors = FALSE,na.strings=c(&quot;&quot;, &quot; &quot;) )</span>
+
+nf_recolhidas &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="dt">file=</span><span class="st">&quot;https://raw.githubusercontent.com/flaviobrito/dataudit/master/dados/Recolhimento.csv&quot;</span>, <span class="dt">sep=</span><span class="st">&quot;;&quot;</span>,<span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>,<span class="dt">na.strings=</span><span class="kw">c</span>(<span class="st">&quot;&quot;</span>, <span class="st">&quot; &quot;</span>) )
 
 <span class="co">#Verificar se o registro dos impostos recolhidos a maior </span>
 <span class="co"># Processa o campo Valor</span>
