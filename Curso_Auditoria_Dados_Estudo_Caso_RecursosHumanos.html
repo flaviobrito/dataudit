@@ -162,6 +162,7 @@ $(document).ready(function () {
 <li><a href="#calcula-os-percentuais-utilizando-as-frequencias-ja-calculadas"><span class="toc-section-number">10</span> Calcula os percentuais utilizando as frequências já calculadas</a></li>
 <li><a href="#une-as-tabelas-pelas-colunas"><span class="toc-section-number">11</span> Une as tabelas pelas colunas</a></li>
 <li><a href="#estudo-de-caso-2"><span class="toc-section-number">12</span> Estudo de Caso #2</a></li>
+<li><a href="#pacotes-instalados-e-carregados"><span class="toc-section-number">13</span> Pacotes instalados e carregados</a></li>
 </ul>
 </div>
 
@@ -196,13 +197,13 @@ RH &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class=
              <span class="dt">DEPARTAMENTO =</span> <span class="kw">sample</span>(<span class="kw">paste</span>(<span class="st">&quot;DEPARTAMENTO&quot;</span>, LETTERS[<span class="dv">1</span>:<span class="dv">5</span>]), <span class="dv">100</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>))
 
 <span class="kw">head</span>(RH)</code></pre></div>
-<pre><code>##   ID    IDADE       CARGO    FORMACAO   DEPARTAMENTO
-## 1  1 42.00488     TECNICO ESTATISTICA DEPARTAMENTO A
-## 2  2 38.94571  ASSISTENTE    SISTEMAS DEPARTAMENTO C
-## 3  3 46.94256     TECNICO    SISTEMAS DEPARTAMENTO E
-## 4  4 42.14371     TECNICO     DIREITO DEPARTAMENTO C
-## 5  5 44.37232 COORDENADOR  ENGENHARIA DEPARTAMENTO C
-## 6  6 69.22638     GERENTE ESTATISTICA DEPARTAMENTO E</code></pre>
+<pre><code>##   ID    IDADE      CARGO    FORMACAO   DEPARTAMENTO
+## 1  1 50.08577 ASSISTENTE    SISTEMAS DEPARTAMENTO E
+## 2  2 37.28510   AUXILIAR      LETRAS DEPARTAMENTO A
+## 3  3 40.43417    GERENTE    SISTEMAS DEPARTAMENTO B
+## 4  4 48.86021 ASSISTENTE  MATEMATICA DEPARTAMENTO A
+## 5  5 52.56766   AUXILIAR ESTATISTICA DEPARTAMENTO A
+## 6  6 44.89361    GERENTE    SISTEMAS DEPARTAMENTO D</code></pre>
 </div>
 </div>
 <div id="outra-forma-de-gerar-o-mesmo-data-frame" class="section level1">
@@ -216,13 +217,13 @@ DEPARTAMENTO =<span class="st"> </span><span class="kw">sample</span>(<span clas
 RH2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(ID, IDADE, CARGO, FORMACAO, DEPARTAMENTO)
 
 <span class="kw">head</span>(RH2)</code></pre></div>
-<pre><code>##   ID    IDADE      CARGO    FORMACAO   DEPARTAMENTO
-## 1  1 41.15783 ASSISTENTE    SISTEMAS DEPARTAMENTO E
-## 2  2 30.43975    GERENTE  MATEMATICA DEPARTAMENTO B
-## 3  3 38.35535    TECNICO ESTATISTICA DEPARTAMENTO E
-## 4  4 43.69359    GERENTE  MATEMATICA DEPARTAMENTO E
-## 5  5 37.19106    GERENTE  ENGENHARIA DEPARTAMENTO E
-## 6  6 44.40202   AUXILIAR     DIREITO DEPARTAMENTO D</code></pre>
+<pre><code>##   ID    IDADE      CARGO   FORMACAO   DEPARTAMENTO
+## 1  1 41.23677 ASSISTENTE MATEMATICA DEPARTAMENTO D
+## 2  2 33.70935   AUXILIAR    DIREITO DEPARTAMENTO E
+## 3  3 36.62882    TECNICO   ECONOMIA DEPARTAMENTO B
+## 4  4 46.28952 ASSISTENTE   ECONOMIA DEPARTAMENTO A
+## 5  5 41.03659    TECNICO  PROFESSOR DEPARTAMENTO E
+## 6  6 55.33833 ASSISTENTE  PROFESSOR DEPARTAMENTO E</code></pre>
 </div>
 <div id="gera-propositamente-10-missings-values-na-em-idade" class="section level1">
 <h1><span class="header-section-number">3</span> Gera propositamente 10 Missings Values (NA) em IDADE</h1>
@@ -231,20 +232,20 @@ RH2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(ID, IDADE, 
 <div id="gera-um-sumario" class="section level1">
 <h1><span class="header-section-number">4</span> Gera um Sumário</h1>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(RH)</code></pre></div>
-<pre><code>##        ID             IDADE               CARGO            FORMACAO  
-##  Min.   :   1.0   Min.   :28.17   TECNICO    :300   SISTEMAS   :300  
-##  1st Qu.: 250.8   1st Qu.:40.84   ASSISTENTE :220   ECONOMIA   :200  
-##  Median : 500.5   Median :44.69   COORDENADOR:200   ESTATISTICA:140  
-##  Mean   : 500.5   Mean   :44.92   AUXILIAR   :120   ENGENHARIA :120  
-##  3rd Qu.: 750.2   3rd Qu.:48.96   GERENTE    :160   PROFESSOR  :100  
-##  Max.   :1000.0   Max.   :69.23                     DIREITO    : 60  
-##                   NA&#39;s   :10                        (Other)    : 80  
+<pre><code>##        ID             IDADE               CARGO           FORMACAO  
+##  Min.   :   1.0   Min.   :26.32   TECNICO    :220   SISTEMAS  :200  
+##  1st Qu.: 250.8   1st Qu.:40.95   ASSISTENTE :200   ECONOMIA  :160  
+##  Median : 500.5   Median :45.00   COORDENADOR:140   ENGENHARIA:160  
+##  Mean   : 500.5   Mean   :45.19   AUXILIAR   :140   LETRAS    :140  
+##  3rd Qu.: 750.2   3rd Qu.:49.47   GERENTE    :300   MATEMATICA:120  
+##  Max.   :1000.0   Max.   :62.16                     PROFESSOR :100  
+##                   NA&#39;s   :10                        (Other)   :120  
 ##          DEPARTAMENTO
-##  DEPARTAMENTO A:190  
-##  DEPARTAMENTO B:270  
-##  DEPARTAMENTO C:170  
-##  DEPARTAMENTO D:220  
-##  DEPARTAMENTO E:150  
+##  DEPARTAMENTO A:230  
+##  DEPARTAMENTO B:220  
+##  DEPARTAMENTO C:160  
+##  DEPARTAMENTO D:190  
+##  DEPARTAMENTO E:200  
 ##                      
 ## </code></pre>
 </div>
@@ -253,39 +254,39 @@ RH2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(ID, IDADE, 
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(RH$DEPARTAMENTO)</code></pre></div>
 <pre><code>## 
 ## DEPARTAMENTO A DEPARTAMENTO B DEPARTAMENTO C DEPARTAMENTO D DEPARTAMENTO E 
-##            190            270            170            220            150</code></pre>
+##            230            220            160            190            200</code></pre>
 </div>
 <div id="calcula-a-frequencia-do-campo-idade-para-valores-menores-que-50" class="section level1">
 <h1><span class="header-section-number">6</span> Calcula a Frequência do campo IDADE para valores menores que 50</h1>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(RH$IDADE &lt;<span class="st"> </span><span class="dv">50</span>)</code></pre></div>
 <pre><code>## 
 ## FALSE  TRUE 
-##   190   800</code></pre>
+##   223   767</code></pre>
 <div id="ao-utilizar-o-argumento---usena-queremos-que-tambem-seja-apresentada-a-coluna-de-missings-na-na-tabela-de-frequencias" class="section level2">
 <h2><span class="header-section-number">6.1</span> Ao utilizar o argumento -&gt; useNA queremos que também seja apresentada a coluna de missings (NA) na tabela de frequências</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(RH$IDADE &lt;<span class="st"> </span><span class="dv">50</span>, <span class="dt">useNA =</span> <span class="st">&quot;always&quot;</span>)</code></pre></div>
 <pre><code>## 
 ## FALSE  TRUE  &lt;NA&gt; 
-##   190   800    10</code></pre>
+##   223   767    10</code></pre>
 </div>
 <div id="tabela-de-missings-por-idade" class="section level2">
 <h2><span class="header-section-number">6.2</span> tabela de Missings por IDADE</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(RH$DEPARTAMENTO, <span class="kw">is.na</span>(RH$IDADE))</code></pre></div>
 <pre><code>##                 
 ##                  FALSE TRUE
-##   DEPARTAMENTO A   189    1
-##   DEPARTAMENTO B   266    4
-##   DEPARTAMENTO C   168    2
-##   DEPARTAMENTO D   219    1
-##   DEPARTAMENTO E   148    2</code></pre>
+##   DEPARTAMENTO A   228    2
+##   DEPARTAMENTO B   218    2
+##   DEPARTAMENTO C   159    1
+##   DEPARTAMENTO D   188    2
+##   DEPARTAMENTO E   197    3</code></pre>
 </div>
 </div>
 <div id="departamento-com-o-maior-numero-de-missings---maior-para-menor-frequencia" class="section level1">
 <h1><span class="header-section-number">7</span> DEPARTAMENTO com o maior número de missings -&gt; maior para menor frequencia</h1>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sort</span>(<span class="kw">table</span>(RH$DEPARTAMENTO, <span class="kw">is.na</span>(RH$IDADE))[, <span class="dv">2</span>],
      <span class="dt">decreasing =</span> <span class="ot">TRUE</span>)</code></pre></div>
-<pre><code>## DEPARTAMENTO B DEPARTAMENTO C DEPARTAMENTO E DEPARTAMENTO A DEPARTAMENTO D 
-##              4              2              2              1              1</code></pre>
+<pre><code>## DEPARTAMENTO E DEPARTAMENTO A DEPARTAMENTO B DEPARTAMENTO D DEPARTAMENTO C 
+##              3              2              2              2              1</code></pre>
 </div>
 <div id="tabela-com-a-distribuicao-de-missings-por-idade-e-departamento" class="section level1">
 <h1><span class="header-section-number">8</span> Tabela com a distribuição de missings por IDADE e DEPARTAMENTO</h1>
@@ -296,11 +297,11 @@ RH2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(ID, IDADE, 
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(freq1)</code></pre></div>
 <pre><code>##                 
 ##                  FALSE TRUE
-##   DEPARTAMENTO A   189    1
-##   DEPARTAMENTO B   266    4
-##   DEPARTAMENTO C   168    2
-##   DEPARTAMENTO D   219    1
-##   DEPARTAMENTO E   148    2</code></pre>
+##   DEPARTAMENTO A   228    2
+##   DEPARTAMENTO B   218    2
+##   DEPARTAMENTO C   159    1
+##   DEPARTAMENTO D   188    2
+##   DEPARTAMENTO E   197    3</code></pre>
 </div>
 <div id="calcula-os-percentuais-utilizando-as-frequencias-ja-calculadas" class="section level1">
 <h1><span class="header-section-number">10</span> Calcula os percentuais utilizando as frequências já calculadas</h1>
@@ -310,11 +311,11 @@ RH2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(ID, IDADE, 
 <h1><span class="header-section-number">11</span> Une as tabelas pelas colunas</h1>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cbind</span>(freq1,prob1)</code></pre></div>
 <pre><code>##                FALSE TRUE FALSE  TRUE
-## DEPARTAMENTO A   189    1 0.189 0.001
-## DEPARTAMENTO B   266    4 0.266 0.004
-## DEPARTAMENTO C   168    2 0.168 0.002
-## DEPARTAMENTO D   219    1 0.219 0.001
-## DEPARTAMENTO E   148    2 0.148 0.002</code></pre>
+## DEPARTAMENTO A   228    2 0.228 0.002
+## DEPARTAMENTO B   218    2 0.218 0.002
+## DEPARTAMENTO C   159    1 0.159 0.001
+## DEPARTAMENTO D   188    2 0.188 0.002
+## DEPARTAMENTO E   197    3 0.197 0.003</code></pre>
 </div>
 <div id="estudo-de-caso-2" class="section level1">
 <h1><span class="header-section-number">12</span> Estudo de Caso #2</h1>
@@ -420,7 +421,7 @@ cargos&lt;-cargos_sem_out
             <span class="dt">SD      =</span> <span class="kw">sd</span>(SALARIO, <span class="dt">na.rm=</span><span class="ot">TRUE</span>),
             <span class="dt">Q1      =</span> <span class="kw">quantile</span>(SALARIO, <span class="dt">probs=</span><span class="fl">0.25</span>, <span class="dt">na.rm=</span><span class="ot">TRUE</span>),
             <span class="dt">MEDIANA =</span> <span class="kw">median</span>(SALARIO, <span class="dt">na.rm=</span><span class="ot">TRUE</span>),
-            <span class="dt">Q2      =</span> <span class="kw">quantile</span>(SALARIO, <span class="dt">probs=</span><span class="fl">0.75</span>, <span class="dt">na.rm=</span><span class="ot">TRUE</span>),
+            <span class="dt">Q3      =</span> <span class="kw">quantile</span>(SALARIO, <span class="dt">probs=</span><span class="fl">0.75</span>, <span class="dt">na.rm=</span><span class="ot">TRUE</span>),
             <span class="dt">TOTAL   =</span> <span class="kw">sum</span>(SALARIO, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)
   )
 TBL</code></pre></div>
@@ -440,7 +441,7 @@ TBL</code></pre></div>
 ## 9       RH DEPT. ATCLIENT   DIR-6     2 6085.625  29.87526 6075.062
 ## 10      RH      DEPT. CMP NIVEL-4     2  557.350  39.10300  543.525
 ## ..     ...            ...     ...   ...      ...       ...      ...
-## Variables not shown: MEDIANA (dbl), Q2 (dbl), TOTAL (dbl)</code></pre>
+## Variables not shown: MEDIANA (dbl), Q3 (dbl), TOTAL (dbl)</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Cria novo DF</span>
 cargos2 &lt;-<span class="st"> </span>cargos
 
@@ -919,6 +920,12 @@ rh &lt;-<span class="st"> </span>cargos
 ## --------------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|
 ## 
 ## </code></pre>
+</div>
+<div id="pacotes-instalados-e-carregados" class="section level1">
+<h1><span class="header-section-number">13</span> Pacotes instalados e carregados</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">installed.packages</span>()[<span class="kw">names</span>(<span class="kw">sessionInfo</span>()$otherPkgs), <span class="st">&quot;Version&quot;</span>]</code></pre></div>
+<pre><code>##  gmodels    dplyr 
+## &quot;2.16.2&quot;  &quot;0.4.3&quot;</code></pre>
 </div>
 
 

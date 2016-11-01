@@ -146,6 +146,7 @@ $(document).ready(function () {
 <div id="TOC">
 <ul>
 <li><a href="#arquivos"><span class="toc-section-number">1</span> Arquivos</a></li>
+<li><a href="#pacotes-instalados-e-carregados"><span class="toc-section-number">2</span> Pacotes instalados e carregados</a></li>
 </ul>
 </div>
 
@@ -3184,6 +3185,12 @@ hosp_est &lt;-<span class="st"> </span><span class="kw">sqldf</span>(<span class
 ## 4    AZ 23389.11
 ## 5    CA 23437.82
 ## 6    CO 22827.00</code></pre>
+</div>
+<div id="pacotes-instalados-e-carregados" class="section level1">
+<h1><span class="header-section-number">2</span> Pacotes instalados e carregados</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">installed.packages</span>()[<span class="kw">names</span>(<span class="kw">sessionInfo</span>()$otherPkgs), <span class="st">&quot;Version&quot;</span>]</code></pre></div>
+<pre><code>##     sqldf   RSQLite       DBI    gsubfn     proto  reshape2 lubridate 
+##  &quot;0.4-10&quot;   &quot;1.0.0&quot;   &quot;0.3.1&quot;   &quot;0.6-6&quot;  &quot;0.3-10&quot;   &quot;1.4.1&quot;   &quot;1.5.0&quot;</code></pre>
 </div>
 
 

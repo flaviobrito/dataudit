@@ -166,6 +166,7 @@ $(document).ready(function () {
 <li><a href="#primeiro-registro"><span class="toc-section-number">2.1.10</span> Primeiro Registro</a></li>
 </ul></li>
 </ul></li>
+<li><a href="#pacotes-instalados-e-carregados"><span class="toc-section-number">3</span> Pacotes instalados e carregados</a></li>
 </ul>
 </div>
 
@@ -945,23 +946,23 @@ flights &lt;-<span class="st"> </span>flights %&gt;%<span class="st"> </span><sp
 <p>Você pode utilizar sample_n() and sample_frac() para gerar uma amostra aleatória de registros: utilize sample_n() para um número fixo e sample_frac() para uma fração fixa.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample_n</span>(flights, <span class="dv">5</span>)</code></pre></div>
 <pre><code>##   Year Month DayofMonth DayOfWeek DepTime ArrTime UniqueCarrier FlightNum
-## 4 2011     1          4         2    1403    1513            AA       428
-## 1 2011     1          1         6    1400    1500            AA       428
-## 6 2011     1          6         4    1359    1503            AA       428
 ## 5 2011     1          5         3    1405    1507            AA       428
 ## 2 2011     1          2         7    1401    1501            AA       428
+## 1 2011     1          1         6    1400    1500            AA       428
+## 6 2011     1          6         4    1359    1503            AA       428
+## 4 2011     1          4         2    1403    1513            AA       428
 ##   TailNum ActualElapsedTime AirTime ArrDelay DepDelay Origin Dest Distance
-## 4  N403AA                70      39        3        3    IAH  DFW      224
-## 1  N576AA                60      40      -10        0    IAH  DFW      224
-## 6  N262AA                64      45       -7       -1    IAH  DFW      224
 ## 5  N492AA                62      44       -3        5    IAH  DFW      224
 ## 2  N557AA                60      45       -9        1    IAH  DFW      224
+## 1  N576AA                60      40      -10        0    IAH  DFW      224
+## 6  N262AA                64      45       -7       -1    IAH  DFW      224
+## 4  N403AA                70      39        3        3    IAH  DFW      224
 ##   TaxiIn TaxiOut Cancelled CancellationCode Diverted    Speed
-## 4      9      22         0                         0 344.6154
+## 5      9       9         0                         0 305.4545
+## 2      6       9         0                         0 298.6667
 ## 1      7      13         0                         0 336.0000
 ## 6      6      13         0                         0 298.6667
-## 5      9       9         0                         0 305.4545
-## 2      6       9         0                         0 298.6667</code></pre>
+## 4      9      22         0                         0 344.6154</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample_frac</span>(flights, <span class="fl">0.01</span>)</code></pre></div>
 <pre><code>##  [1] Year              Month             DayofMonth       
 ##  [4] DayOfWeek         DepTime           ArrTime          
@@ -1100,6 +1101,12 @@ flights %&gt;%
 <pre><code>## [1] 224</code></pre>
 </div>
 </div>
+</div>
+<div id="pacotes-instalados-e-carregados" class="section level1">
+<h1><span class="header-section-number">3</span> Pacotes instalados e carregados</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">installed.packages</span>()[<span class="kw">names</span>(<span class="kw">sessionInfo</span>()$otherPkgs), <span class="st">&quot;Version&quot;</span>]</code></pre></div>
+<pre><code>## hflights    dplyr 
+##    &quot;0.1&quot;  &quot;0.4.3&quot;</code></pre>
 </div>
 
 

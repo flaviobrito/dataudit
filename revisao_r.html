@@ -180,6 +180,7 @@ $(document).ready(function () {
 <li><a href="#classes-de-caracteres"><span class="toc-section-number">4.2</span> Classes de Caracteres</a></li>
 </ul></li>
 <li><a href="#funcoes-estatisticas-e-transformacoes"><span class="toc-section-number">5</span> Funções Estatísticas e Transformações</a></li>
+<li><a href="#pacotes-instalados-e-carregados"><span class="toc-section-number">6</span> Pacotes instalados e carregados</a></li>
 </ul>
 </div>
 
@@ -346,15 +347,15 @@ Data &lt;-<span class="st"> </span><span class="kw">as.Date</span>(Data,<span cl
 <pre><code>## [1] &quot;23/10/2016&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Formata a Saída</span>
 <span class="kw">format</span>(<span class="kw">Sys.Date</span>(), <span class="st">&quot;%a %b %d&quot;</span>)</code></pre></div>
-<pre><code>## [1] &quot;Qua Out 26&quot;</code></pre>
+<pre><code>## [1] &quot;Ter Nov 01&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">format</span>(<span class="kw">Sys.Date</span>(), <span class="st">&quot;%d%b%Y&quot;</span>)</code></pre></div>
-<pre><code>## [1] &quot;26Out2016&quot;</code></pre>
+<pre><code>## [1] &quot;01Nov2016&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">format</span>(<span class="kw">Sys.Date</span>(), <span class="st">&quot;%d/%m/%Y&quot;</span>)</code></pre></div>
-<pre><code>## [1] &quot;26/10/2016&quot;</code></pre>
+<pre><code>## [1] &quot;01/11/2016&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">weekdays</span>(<span class="kw">Sys.Date</span>())</code></pre></div>
-<pre><code>## [1] &quot;Quarta Feira&quot;</code></pre>
+<pre><code>## [1] &quot;Terça Feira&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">months</span>(<span class="kw">Sys.Date</span>())</code></pre></div>
-<pre><code>## [1] &quot;Outubro&quot;</code></pre>
+<pre><code>## [1] &quot;Novembro&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">as.Date</span>(.leap.seconds)</code></pre></div>
 <pre><code>##  [1] &quot;1972-07-01&quot; &quot;1973-01-01&quot; &quot;1974-01-01&quot; &quot;1975-01-01&quot; &quot;1976-01-01&quot;
 ##  [6] &quot;1977-01-01&quot; &quot;1978-01-01&quot; &quot;1979-01-01&quot; &quot;1980-01-01&quot; &quot;1981-07-01&quot;
@@ -364,10 +365,10 @@ Data &lt;-<span class="st"> </span><span class="kw">as.Date</span>(Data,<span cl
 ## [26] &quot;2015-07-01&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">z &lt;-<span class="st"> </span><span class="kw">Sys.Date</span>()
 <span class="kw">print</span>(z)</code></pre></div>
-<pre><code>## [1] &quot;2016-10-26&quot;</code></pre>
+<pre><code>## [1] &quot;2016-11-01&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">w&lt;-<span class="st"> </span>z<span class="dv">+10</span>
 <span class="kw">print</span>(w)</code></pre></div>
-<pre><code>## [1] &quot;2016-11-05&quot;</code></pre>
+<pre><code>## [1] &quot;2016-11-11&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Diferença</span>
 
 data1 &lt;-<span class="st"> </span><span class="kw">strptime</span>(<span class="st">&quot;25/10/2016&quot;</span>, <span class="dt">format=</span><span class="st">&quot;%d/%m/%Y&quot;</span>)
@@ -900,6 +901,11 @@ power.t.test(n = NULL, delta = NULL, sd = 1, sig.level = 0.05,
              power = NULL, type = c("two.sample", "one.sample", "paired"),
              alternative = c("two.sided", "one.sided"),strict = FALSE)
 </pre>
+</div>
+<div id="pacotes-instalados-e-carregados" class="section level1">
+<h1><span class="header-section-number">6</span> Pacotes instalados e carregados</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">installed.packages</span>()[<span class="kw">names</span>(<span class="kw">sessionInfo</span>()$otherPkgs), <span class="st">&quot;Version&quot;</span>]</code></pre></div>
+<pre><code>## character(0)</code></pre>
 </div>
 
 
