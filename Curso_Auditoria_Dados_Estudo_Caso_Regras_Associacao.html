@@ -13526,13 +13526,36 @@ AAIgEoAAiAQgACIBCIBIAAIgEoAAiAQgACIBCIBIAAL8f8zYpYslx59LAAAAAElFTkSuQmCC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[110]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="kn">library</span><span class="p">(</span>arules<span class="p">)</span>
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Warning message:
+&#34;package &#39;arules&#39; was built under R version 3.3.2&#34;Loading required package: Matrix
+Warning message:
+&#34;package &#39;Matrix&#39; was built under R version 3.3.2&#34;
+Attaching package: &#39;arules&#39;
+
+The following objects are masked from &#39;package:base&#39;:
+
+    abbreviate, write
+
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -13549,7 +13572,7 @@ AAIgEoAAiAQgACIBCIBIAAIgEoAAiAQgACIBCIBIAAL8f8zYpYslx59LAAAAAElFTkSuQmCC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span>crimes <span class="o">&lt;-</span> read.csv<span class="p">(</span><span class="s">&quot;https://raw.githubusercontent.com/flaviobrito/dataudit/master/dados/Crimes.csv&quot;</span><span class="p">)</span>
@@ -13610,7 +13633,7 @@ AAIgEoAAiAQgACIBCIBIAAIgEoAAiAQgACIBCIBIAAL8f8zYpYslx59LAAAAAElFTkSuQmCC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span>str<span class="p">(</span>crimes<span class="p">)</span>
@@ -13663,7 +13686,7 @@ AAIgEoAAiAQgACIBCIBIAAIgEoAAiAQgACIBCIBIAAL8f8zYpYslx59LAAAAAElFTkSuQmCC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="kp">summary</span><span class="p">(</span>crimes<span class="p">)</span>
@@ -13742,7 +13765,7 @@ Nosso primeiro movimento é trabalhar para conseguir regras com algum senso pró
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span>crimes_rulez <span class="o">&lt;-</span> apriori<span class="p">(</span>crimes<span class="p">,</span> parameter <span class="o">=</span> <span class="kt">list</span><span class="p">(</span>minlen<span class="o">=</span><span class="m">4</span><span class="p">,</span>maxlen<span class="o">=</span><span class="m">10</span><span class="p">,</span> supp<span class="o">=</span><span class="m">0.55</span><span class="p">,</span> conf<span class="o">=</span><span class="m">0.80</span><span class="p">))</span>
@@ -13799,7 +13822,7 @@ creating S4 object  ... done [0.00s].
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span>quality<span class="p">(</span>crimes_rulez<span class="p">)</span> <span class="o">&lt;-</span> <span class="kp">round</span><span class="p">(</span>quality<span class="p">(</span>crimes_rulez<span class="p">),</span> digits<span class="o">=</span><span class="m">2</span><span class="p">)</span>
@@ -13822,7 +13845,7 @@ creating S4 object  ... done [0.00s].
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span>model_srt_confidence <span class="o">&lt;-</span> <span class="kp">sort</span><span class="p">(</span>crimes_rulez<span class="p">,</span> by<span class="o">=</span><span class="s">&quot;confidence&quot;</span><span class="p">)</span>
@@ -13976,10 +13999,10 @@ model_srt_lift <span class="o">&lt;-</span> <span class="kp">sort</span><span cl
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[124]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span>inspect<span class="p">(</span>crimes_rulez<span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">])</span>
+<div class=" highlight hl-r"><pre><span></span>inspect<span class="p">(</span>crimes_rulez<span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">4</span><span class="p">])</span>
 </pre></div>
 
 </div>
@@ -13992,37 +14015,19 @@ model_srt_lift <span class="o">&lt;-</span> <span class="kp">sort</span><span cl
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>     lhs                                     rhs                                  support confidence lift
-[1]  {Apoio_GCM=Nao,                                                                                     
-      Area_Residencial=Sim,                                                                              
-      Iluminacao=Sim}                     =&gt; {Patrulhamento=Sim}                     0.57       0.98 1.09
-[2]  {Patrulhamento=Sim,                                                                                 
-      Apoio_GCM=Nao,                                                                                     
-      Area_Residencial=Sim}               =&gt; {Iluminacao=Sim}                        0.57       0.95 1.08
-[3]  {Patrulhamento=Sim,                                                                                 
-      Apoio_GCM=Nao,                                                                                     
-      Iluminacao=Sim}                     =&gt; {Area_Residencial=Sim}                  0.57       0.92 1.08
-[4]  {Policiamento_Ostensivo=Sim,                                                                        
-      Area_Residencial=Sim,                                                                              
-      Ocorrencia_Atendida_15_Minutos=Sim} =&gt; {Iluminacao=Sim}                        0.61       0.96 1.09
-[5]  {Policiamento_Ostensivo=Sim,                                                                        
-      Ocorrencia_Atendida_15_Minutos=Sim,                                                                
-      Iluminacao=Sim}                     =&gt; {Area_Residencial=Sim}                  0.61       0.93 1.10
-[6]  {Area_Residencial=Sim,                                                                              
-      Ocorrencia_Atendida_15_Minutos=Sim,                                                                
-      Iluminacao=Sim}                     =&gt; {Policiamento_Ostensivo=Sim}            0.61       0.90 1.08
-[7]  {Policiamento_Ostensivo=Sim,                                                                        
-      Area_Residencial=Sim,                                                                              
-      Iluminacao=Sim}                     =&gt; {Ocorrencia_Atendida_15_Minutos=Sim}    0.61       0.84 1.12
-[8]  {Policiamento_Ostensivo=Sim,                                                                        
-      Area_Residencial=Sim,                                                                              
-      Ocorrencia_Atendida_15_Minutos=Sim} =&gt; {Patrulhamento=Sim}                     0.60       0.96 1.06
-[9]  {Patrulhamento=Sim,                                                                                 
-      Policiamento_Ostensivo=Sim,                                                                        
-      Ocorrencia_Atendida_15_Minutos=Sim} =&gt; {Area_Residencial=Sim}                  0.60       0.94 1.10
-[10] {Patrulhamento=Sim,                                                                                 
-      Area_Residencial=Sim,                                                                              
-      Ocorrencia_Atendida_15_Minutos=Sim} =&gt; {Policiamento_Ostensivo=Sim}            0.60       0.90 1.08
+<pre>    lhs                                     rhs                    support confidence lift
+[1] {Apoio_GCM=Nao,                                                                       
+     Area_Residencial=Sim,                                                                
+     Iluminacao=Sim}                     =&gt; {Patrulhamento=Sim}       0.57       0.98 1.09
+[2] {Patrulhamento=Sim,                                                                   
+     Apoio_GCM=Nao,                                                                       
+     Area_Residencial=Sim}               =&gt; {Iluminacao=Sim}          0.57       0.95 1.08
+[3] {Patrulhamento=Sim,                                                                   
+     Apoio_GCM=Nao,                                                                       
+     Iluminacao=Sim}                     =&gt; {Area_Residencial=Sim}    0.57       0.92 1.08
+[4] {Policiamento_Ostensivo=Sim,                                                          
+     Area_Residencial=Sim,                                                                
+     Ocorrencia_Atendida_15_Minutos=Sim} =&gt; {Iluminacao=Sim}          0.61       0.96 1.09
 </pre>
 </div>
 </div>
@@ -14033,10 +14038,10 @@ model_srt_lift <span class="o">&lt;-</span> <span class="kp">sort</span><span cl
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[125]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span>inspect<span class="p">(</span>model_srt_confidence<span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">])</span>
+<div class=" highlight hl-r"><pre><span></span>inspect<span class="p">(</span>model_srt_confidence<span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">4</span><span class="p">])</span>
 </pre></div>
 
 </div>
@@ -14049,37 +14054,19 @@ model_srt_lift <span class="o">&lt;-</span> <span class="kp">sort</span><span cl
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>     lhs                                     rhs                 support confidence lift
-[1]  {Apoio_GCM=Nao,                                                                    
-      Area_Residencial=Sim,                                                             
-      Iluminacao=Sim}                     =&gt; {Patrulhamento=Sim}    0.57       0.98 1.09
-[2]  {Policiamento_Ostensivo=Sim,                                                       
-      Area_Residencial=Sim,                                                             
-      Ocorrencia_Atendida_15_Minutos=Sim} =&gt; {Iluminacao=Sim}       0.61       0.96 1.09
-[3]  {Policiamento_Ostensivo=Sim,                                                       
-      Area_Residencial=Sim,                                                             
-      Ocorrencia_Atendida_15_Minutos=Sim} =&gt; {Patrulhamento=Sim}    0.60       0.96 1.06
-[4]  {Zona=Zona_Sul,                                                                    
-      Policiamento_Ostensivo=Sim,                                                       
-      Ocorrencia_Atendida_15_Minutos=Sim} =&gt; {Iluminacao=Sim}       0.56       0.96 1.09
-[5]  {Zona=Zona_Sul,                                                                    
-      Area_Residencial=Sim,                                                             
-      Ocorrencia_Atendida_15_Minutos=Sim} =&gt; {Iluminacao=Sim}       0.55       0.96 1.09
-[6]  {Area_Residencial=Sim,                                                             
-      Ocorrencia_Atendida_15_Minutos=Sim,                                               
-      Iluminacao=Sim}                     =&gt; {Patrulhamento=Sim}    0.65       0.96 1.07
-[7]  {Patrulhamento=Sim,                                                                
-      Area_Residencial=Sim,                                                             
-      Ocorrencia_Atendida_15_Minutos=Sim} =&gt; {Iluminacao=Sim}       0.65       0.96 1.09
-[8]  {Zona=Zona_Sul,                                                                    
-      Patrulhamento=Sim,                                                                
-      Ocorrencia_Atendida_15_Minutos=Sim} =&gt; {Iluminacao=Sim}       0.56       0.96 1.09
-[9]  {Zona=Zona_Sul,                                                                    
-      Policiamento_Ostensivo=Sim,                                                       
-      Area_Residencial=Sim}               =&gt; {Patrulhamento=Sim}    0.64       0.96 1.07
-[10] {Policiamento_Ostensivo=Sim,                                                       
-      Area_Residencial=Sim,                                                             
-      Iluminacao=Sim}                     =&gt; {Patrulhamento=Sim}    0.69       0.96 1.07
+<pre>    lhs                                     rhs                 support confidence lift
+[1] {Apoio_GCM=Nao,                                                                    
+     Area_Residencial=Sim,                                                             
+     Iluminacao=Sim}                     =&gt; {Patrulhamento=Sim}    0.57       0.98 1.09
+[2] {Policiamento_Ostensivo=Sim,                                                       
+     Area_Residencial=Sim,                                                             
+     Ocorrencia_Atendida_15_Minutos=Sim} =&gt; {Iluminacao=Sim}       0.61       0.96 1.09
+[3] {Policiamento_Ostensivo=Sim,                                                       
+     Area_Residencial=Sim,                                                             
+     Ocorrencia_Atendida_15_Minutos=Sim} =&gt; {Patrulhamento=Sim}    0.60       0.96 1.06
+[4] {Zona=Zona_Sul,                                                                    
+     Policiamento_Ostensivo=Sim,                                                       
+     Ocorrencia_Atendida_15_Minutos=Sim} =&gt; {Iluminacao=Sim}       0.56       0.96 1.09
 </pre>
 </div>
 </div>
@@ -14215,7 +14202,7 @@ model_srt_lift <span class="o">&lt;-</span> <span class="kp">sort</span><span cl
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[50]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span>Zona_Sul <span class="o">&lt;-</span> <span class="kp">subset</span><span class="p">(</span>crimes_rulez<span class="p">,</span> subset <span class="o">=</span> rhs <span class="o">%pin%</span> <span class="s">&quot;Zona=Zona_Sul&quot;</span><span class="p">)</span>
@@ -14250,10 +14237,10 @@ Policiamento_Ostensivo <span class="o">&lt;-</span> <span class="kp">subset</spa
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[51]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span>inspect<span class="p">(</span>Zona_Sul<span class="p">)</span>
+<div class=" highlight hl-r"><pre><span></span>inspect<span class="p">(</span>Zona_Sul<span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">4</span><span class="p">])</span>
 </pre></div>
 
 </div>
@@ -14266,38 +14253,19 @@ Policiamento_Ostensivo <span class="o">&lt;-</span> <span class="kp">subset</spa
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>     lhs                                     rhs             support confidence lift
-[1]  {Policiamento_Ostensivo=Sim,                                                   
-      Ocorrencia_Atendida_15_Minutos=Sim,                                           
-      Iluminacao=Sim}                     =&gt; {Zona=Zona_Sul}    0.56       0.87 1.01
-[2]  {Patrulhamento=Sim,                                                            
-      Policiamento_Ostensivo=Sim,                                                   
-      Ocorrencia_Atendida_15_Minutos=Sim} =&gt; {Zona=Zona_Sul}    0.55       0.86 1.01
-[3]  {Area_Residencial=Sim,                                                         
-      Ocorrencia_Atendida_15_Minutos=Sim,                                           
-      Iluminacao=Sim}                     =&gt; {Zona=Zona_Sul}    0.55       0.82 0.96
-[4]  {Patrulhamento=Sim,                                                            
-      Area_Residencial=Sim,                                                         
-      Ocorrencia_Atendida_15_Minutos=Sim} =&gt; {Zona=Zona_Sul}    0.55       0.82 0.96
-[5]  {Patrulhamento=Sim,                                                            
-      Ocorrencia_Atendida_15_Minutos=Sim,                                           
-      Iluminacao=Sim}                     =&gt; {Zona=Zona_Sul}    0.56       0.82 0.96
-[6]  {Policiamento_Ostensivo=Sim,                                                   
-      Area_Residencial=Sim,                                                         
-      Iluminacao=Sim}                     =&gt; {Zona=Zona_Sul}    0.64       0.88 1.03
-[7]  {Patrulhamento=Sim,                                                            
-      Policiamento_Ostensivo=Sim,                                                   
-      Area_Residencial=Sim}               =&gt; {Zona=Zona_Sul}    0.64       0.88 1.03
-[8]  {Patrulhamento=Sim,                                                            
-      Policiamento_Ostensivo=Sim,                                                   
-      Iluminacao=Sim}                     =&gt; {Zona=Zona_Sul}    0.66       0.88 1.03
-[9]  {Patrulhamento=Sim,                                                            
-      Area_Residencial=Sim,                                                         
-      Iluminacao=Sim}                     =&gt; {Zona=Zona_Sul}    0.66       0.85 0.99
-[10] {Patrulhamento=Sim,                                                            
-      Policiamento_Ostensivo=Sim,                                                   
-      Area_Residencial=Sim,                                                         
-      Iluminacao=Sim}                     =&gt; {Zona=Zona_Sul}    0.61       0.88 1.03
+<pre>    lhs                                     rhs             support confidence lift
+[1] {Policiamento_Ostensivo=Sim,                                                   
+     Ocorrencia_Atendida_15_Minutos=Sim,                                           
+     Iluminacao=Sim}                     =&gt; {Zona=Zona_Sul}    0.56       0.87 1.01
+[2] {Patrulhamento=Sim,                                                            
+     Policiamento_Ostensivo=Sim,                                                   
+     Ocorrencia_Atendida_15_Minutos=Sim} =&gt; {Zona=Zona_Sul}    0.55       0.86 1.01
+[3] {Area_Residencial=Sim,                                                         
+     Ocorrencia_Atendida_15_Minutos=Sim,                                           
+     Iluminacao=Sim}                     =&gt; {Zona=Zona_Sul}    0.55       0.82 0.96
+[4] {Patrulhamento=Sim,                                                            
+     Area_Residencial=Sim,                                                         
+     Ocorrencia_Atendida_15_Minutos=Sim} =&gt; {Zona=Zona_Sul}    0.55       0.82 0.96
 </pre>
 </div>
 </div>
@@ -14308,10 +14276,10 @@ Policiamento_Ostensivo <span class="o">&lt;-</span> <span class="kp">subset</spa
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[130]:</div>
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span>inspect<span class="p">(</span>Iluminacao_Sim<span class="p">)</span>
+<div class=" highlight hl-r"><pre><span></span>inspect<span class="p">(</span>Iluminacao_Sim<span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">4</span><span class="p">])</span>
 </pre></div>
 
 </div>
@@ -14324,48 +14292,19 @@ Policiamento_Ostensivo <span class="o">&lt;-</span> <span class="kp">subset</spa
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>     lhs                                     rhs              support confidence lift
-[1]  {Patrulhamento=Sim,                                                             
-      Apoio_GCM=Nao,                                                                 
-      Area_Residencial=Sim}               =&gt; {Iluminacao=Sim}    0.57       0.95 1.08
-[2]  {Policiamento_Ostensivo=Sim,                                                    
-      Area_Residencial=Sim,                                                          
-      Ocorrencia_Atendida_15_Minutos=Sim} =&gt; {Iluminacao=Sim}    0.61       0.96 1.09
-[3]  {Zona=Zona_Sul,                                                                 
-      Policiamento_Ostensivo=Sim,                                                    
-      Ocorrencia_Atendida_15_Minutos=Sim} =&gt; {Iluminacao=Sim}    0.56       0.96 1.09
-[4]  {Patrulhamento=Sim,                                                             
-      Policiamento_Ostensivo=Sim,                                                    
-      Ocorrencia_Atendida_15_Minutos=Sim} =&gt; {Iluminacao=Sim}    0.62       0.95 1.09
-[5]  {Zona=Zona_Sul,                                                                 
-      Area_Residencial=Sim,                                                          
-      Ocorrencia_Atendida_15_Minutos=Sim} =&gt; {Iluminacao=Sim}    0.55       0.96 1.09
-[6]  {Patrulhamento=Sim,                                                             
-      Area_Residencial=Sim,                                                          
-      Ocorrencia_Atendida_15_Minutos=Sim} =&gt; {Iluminacao=Sim}    0.65       0.96 1.09
-[7]  {Zona=Zona_Sul,                                                                 
-      Patrulhamento=Sim,                                                             
-      Ocorrencia_Atendida_15_Minutos=Sim} =&gt; {Iluminacao=Sim}    0.56       0.96 1.09
-[8]  {Zona=Zona_Sul,                                                                 
-      Policiamento_Ostensivo=Sim,                                                    
-      Area_Residencial=Sim}               =&gt; {Iluminacao=Sim}    0.64       0.95 1.08
-[9]  {Patrulhamento=Sim,                                                             
-      Policiamento_Ostensivo=Sim,                                                    
-      Area_Residencial=Sim}               =&gt; {Iluminacao=Sim}    0.69       0.95 1.08
-[10] {Zona=Zona_Sul,                                                                 
-      Patrulhamento=Sim,                                                             
-      Policiamento_Ostensivo=Sim}         =&gt; {Iluminacao=Sim}    0.66       0.94 1.08
-[11] {Zona=Zona_Sul,                                                                 
-      Patrulhamento=Sim,                                                             
-      Area_Residencial=Sim}               =&gt; {Iluminacao=Sim}    0.66       0.95 1.08
-[12] {Patrulhamento=Sim,                                                             
-      Policiamento_Ostensivo=Sim,                                                    
-      Area_Residencial=Sim,                                                          
-      Ocorrencia_Atendida_15_Minutos=Sim} =&gt; {Iluminacao=Sim}    0.58       0.96 1.09
-[13] {Zona=Zona_Sul,                                                                 
-      Patrulhamento=Sim,                                                             
-      Policiamento_Ostensivo=Sim,                                                    
-      Area_Residencial=Sim}               =&gt; {Iluminacao=Sim}    0.61       0.95 1.08
+<pre>    lhs                                     rhs              support confidence lift
+[1] {Patrulhamento=Sim,                                                             
+     Apoio_GCM=Nao,                                                                 
+     Area_Residencial=Sim}               =&gt; {Iluminacao=Sim}    0.57       0.95 1.08
+[2] {Policiamento_Ostensivo=Sim,                                                    
+     Area_Residencial=Sim,                                                          
+     Ocorrencia_Atendida_15_Minutos=Sim} =&gt; {Iluminacao=Sim}    0.61       0.96 1.09
+[3] {Zona=Zona_Sul,                                                                 
+     Policiamento_Ostensivo=Sim,                                                    
+     Ocorrencia_Atendida_15_Minutos=Sim} =&gt; {Iluminacao=Sim}    0.56       0.96 1.09
+[4] {Patrulhamento=Sim,                                                             
+     Policiamento_Ostensivo=Sim,                                                    
+     Ocorrencia_Atendida_15_Minutos=Sim} =&gt; {Iluminacao=Sim}    0.62       0.95 1.09
 </pre>
 </div>
 </div>
@@ -14376,10 +14315,10 @@ Policiamento_Ostensivo <span class="o">&lt;-</span> <span class="kp">subset</spa
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[131]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span>inspect<span class="p">(</span>Ocorrencia_Atendida_15_Minutos_Sim<span class="p">)</span>
+<div class=" highlight hl-r"><pre><span></span>inspect<span class="p">(</span>Ocorrencia_Atendida_15_Minutos_Sim<span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">4</span><span class="p">])</span>
 </pre></div>
 
 </div>
@@ -14405,16 +14344,6 @@ Policiamento_Ostensivo <span class="o">&lt;-</span> <span class="kp">subset</spa
 [4] {Patrulhamento=Sim,                                                                         
      Policiamento_Ostensivo=Sim,                                                                
      Iluminacao=Sim}             =&gt; {Ocorrencia_Atendida_15_Minutos=Sim}    0.62       0.82 1.10
-[5] {Zona=Zona_Sul,                                                                             
-     Area_Residencial=Sim,                                                                      
-     Iluminacao=Sim}             =&gt; {Ocorrencia_Atendida_15_Minutos=Sim}    0.55       0.81 1.08
-[6] {Patrulhamento=Sim,                                                                         
-     Area_Residencial=Sim,                                                                      
-     Iluminacao=Sim}             =&gt; {Ocorrencia_Atendida_15_Minutos=Sim}    0.65       0.83 1.11
-[7] {Patrulhamento=Sim,                                                                         
-     Policiamento_Ostensivo=Sim,                                                                
-     Area_Residencial=Sim,                                                                      
-     Iluminacao=Sim}             =&gt; {Ocorrencia_Atendida_15_Minutos=Sim}    0.58       0.83 1.11
 </pre>
 </div>
 </div>
@@ -14425,10 +14354,10 @@ Policiamento_Ostensivo <span class="o">&lt;-</span> <span class="kp">subset</spa
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[53]:</div>
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span>inspect<span class="p">(</span>Policiamento_Ostensivo<span class="p">,</span> by<span class="o">=</span><span class="s">&quot;con&quot;</span><span class="p">)</span>
+<div class=" highlight hl-r"><pre><span></span>inspect<span class="p">(</span>Policiamento_Ostensivo<span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">4</span><span class="p">])</span>
 </pre></div>
 
 </div>
@@ -14441,42 +14370,19 @@ Policiamento_Ostensivo <span class="o">&lt;-</span> <span class="kp">subset</spa
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>     lhs                                     rhs                          support confidence lift
-[1]  {Area_Residencial=Sim,                                                                      
-      Ocorrencia_Atendida_15_Minutos=Sim,                                                        
-      Iluminacao=Sim}                     =&gt; {Policiamento_Ostensivo=Sim}    0.61       0.90 1.08
-[2]  {Patrulhamento=Sim,                                                                         
-      Area_Residencial=Sim,                                                                      
-      Ocorrencia_Atendida_15_Minutos=Sim} =&gt; {Policiamento_Ostensivo=Sim}    0.60       0.90 1.08
-[3]  {Zona=Zona_Sul,                                                                             
-      Ocorrencia_Atendida_15_Minutos=Sim,                                                        
-      Iluminacao=Sim}                     =&gt; {Policiamento_Ostensivo=Sim}    0.56       0.94 1.14
-[4]  {Zona=Zona_Sul,                                                                             
-      Patrulhamento=Sim,                                                                         
-      Ocorrencia_Atendida_15_Minutos=Sim} =&gt; {Policiamento_Ostensivo=Sim}    0.55       0.94 1.14
-[5]  {Patrulhamento=Sim,                                                                         
-      Ocorrencia_Atendida_15_Minutos=Sim,                                                        
-      Iluminacao=Sim}                     =&gt; {Policiamento_Ostensivo=Sim}    0.62       0.90 1.08
-[6]  {Zona=Zona_Sul,                                                                             
-      Area_Residencial=Sim,                                                                      
-      Iluminacao=Sim}                     =&gt; {Policiamento_Ostensivo=Sim}    0.64       0.93 1.12
-[7]  {Zona=Zona_Sul,                                                                             
-      Patrulhamento=Sim,                                                                         
-      Area_Residencial=Sim}               =&gt; {Policiamento_Ostensivo=Sim}    0.64       0.93 1.12
-[8]  {Patrulhamento=Sim,                                                                         
-      Area_Residencial=Sim,                                                                      
-      Iluminacao=Sim}                     =&gt; {Policiamento_Ostensivo=Sim}    0.69       0.89 1.08
-[9]  {Zona=Zona_Sul,                                                                             
-      Patrulhamento=Sim,                                                                         
-      Iluminacao=Sim}                     =&gt; {Policiamento_Ostensivo=Sim}    0.66       0.92 1.11
-[10] {Patrulhamento=Sim,                                                                         
-      Area_Residencial=Sim,                                                                      
-      Ocorrencia_Atendida_15_Minutos=Sim,                                                        
-      Iluminacao=Sim}                     =&gt; {Policiamento_Ostensivo=Sim}    0.58       0.89 1.08
-[11] {Zona=Zona_Sul,                                                                             
-      Patrulhamento=Sim,                                                                         
-      Area_Residencial=Sim,                                                                      
-      Iluminacao=Sim}                     =&gt; {Policiamento_Ostensivo=Sim}    0.61       0.93 1.12
+<pre>    lhs                                     rhs                          support confidence lift
+[1] {Area_Residencial=Sim,                                                                      
+     Ocorrencia_Atendida_15_Minutos=Sim,                                                        
+     Iluminacao=Sim}                     =&gt; {Policiamento_Ostensivo=Sim}    0.61       0.90 1.08
+[2] {Patrulhamento=Sim,                                                                         
+     Area_Residencial=Sim,                                                                      
+     Ocorrencia_Atendida_15_Minutos=Sim} =&gt; {Policiamento_Ostensivo=Sim}    0.60       0.90 1.08
+[3] {Zona=Zona_Sul,                                                                             
+     Ocorrencia_Atendida_15_Minutos=Sim,                                                        
+     Iluminacao=Sim}                     =&gt; {Policiamento_Ostensivo=Sim}    0.56       0.94 1.14
+[4] {Zona=Zona_Sul,                                                                             
+     Patrulhamento=Sim,                                                                         
+     Ocorrencia_Atendida_15_Minutos=Sim} =&gt; {Policiamento_Ostensivo=Sim}    0.55       0.94 1.14
 </pre>
 </div>
 </div>
@@ -14497,7 +14403,7 @@ Policiamento_Ostensivo <span class="o">&lt;-</span> <span class="kp">subset</spa
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[133]:</div>
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span>crimes_rulez_2 <span class="o">&lt;-</span> apriori<span class="p">(</span>crimes<span class="p">,</span> parameter <span class="o">=</span> <span class="kt">list</span><span class="p">(</span>minlen<span class="o">=</span><span class="m">4</span><span class="p">,</span>maxlen<span class="o">=</span><span class="m">20</span><span class="p">,</span> supp<span class="o">=</span><span class="m">0.4</span><span class="p">,</span> conf<span class="o">=</span><span class="m">0.90</span><span class="p">))</span>
@@ -14528,7 +14434,7 @@ Algorithmic control:
 Absolute minimum support count: 312 
 
 set item appearances ...[0 item(s)] done [0.00s].
-set transactions ...[831 item(s), 780 transaction(s)] done [0.02s].
+set transactions ...[831 item(s), 780 transaction(s)] done [0.00s].
 sorting and recoding items ... [15 item(s)] done [0.00s].
 creating transaction tree ... done [0.00s].
 checking subsets of size 1 2 3 4 5 6 done [0.00s].
@@ -14554,7 +14460,7 @@ creating S4 object  ... done [0.00s].
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[134]:</div>
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span>out <span class="o">&lt;-</span> capture.output<span class="p">(</span>inspect<span class="p">(</span>crimes_rulez_2<span class="p">))</span>
@@ -14577,7 +14483,7 @@ creating S4 object  ... done [0.00s].
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[135]:</div>
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="kp">cat</span><span class="p">(</span><span class="s">&quot;Regras&quot;</span><span class="p">,</span> out<span class="p">,</span> file<span class="o">=</span><span class="s">&quot;regras.txt&quot;</span><span class="p">,</span> sep<span class="o">=</span><span class="s">&quot;n&quot;</span><span class="p">,</span> append<span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
