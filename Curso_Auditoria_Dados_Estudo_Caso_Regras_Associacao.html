@@ -11769,6 +11769,19 @@ div#notebook {
 </div>
 
 </div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -13536,10 +13549,10 @@ AAIgEoAAiAQgACIBCIBIAAIgEoAAiAQgACIBCIBIAAL8f8zYpYslx59LAAAAAElFTkSuQmCC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span>crimes <span class="o">&lt;-</span> read.csv<span class="p">(</span><span class="s">&quot;https://raw.githubusercontent.com/fclesio/learning-space/master/Datasets/01%20-%20Association%20Rules/Crimes.csv&quot;</span><span class="p">)</span>
+<div class=" highlight hl-r"><pre><span></span>crimes <span class="o">&lt;-</span> read.csv<span class="p">(</span><span class="s">&quot;https://raw.githubusercontent.com/flaviobrito/dataudit/master/dados/Crimes.csv&quot;</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -13585,19 +13598,6 @@ AAIgEoAAiAQgACIBCIBIAAIgEoAAiAQgACIBCIBIAAL8f8zYpYslx59LAAAAAElFTkSuQmCC
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -13610,7 +13610,7 @@ AAIgEoAAiAQgACIBCIBIAAIgEoAAiAQgACIBCIBIAAL8f8zYpYslx59LAAAAAElFTkSuQmCC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[113]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span>str<span class="p">(</span>crimes<span class="p">)</span>
@@ -14215,7 +14215,7 @@ model_srt_lift <span class="o">&lt;-</span> <span class="kp">sort</span><span cl
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[128]:</div>
+<div class="prompt input_prompt">In&nbsp;[50]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span>Zona_Sul <span class="o">&lt;-</span> <span class="kp">subset</span><span class="p">(</span>crimes_rulez<span class="p">,</span> subset <span class="o">=</span> rhs <span class="o">%pin%</span> <span class="s">&quot;Zona=Zona_Sul&quot;</span><span class="p">)</span>
@@ -14250,7 +14250,7 @@ Policiamento_Ostensivo <span class="o">&lt;-</span> <span class="kp">subset</spa
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[129]:</div>
+<div class="prompt input_prompt">In&nbsp;[51]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span>inspect<span class="p">(</span>Zona_Sul<span class="p">)</span>
@@ -14425,10 +14425,10 @@ Policiamento_Ostensivo <span class="o">&lt;-</span> <span class="kp">subset</spa
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[132]:</div>
+<div class="prompt input_prompt">In&nbsp;[53]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span>inspect<span class="p">(</span>Policiamento_Ostensivo<span class="p">)</span>
+<div class=" highlight hl-r"><pre><span></span>inspect<span class="p">(</span>Policiamento_Ostensivo<span class="p">,</span> by<span class="o">=</span><span class="s">&quot;con&quot;</span><span class="p">)</span>
 </pre></div>
 
 </div>
