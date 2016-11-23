@@ -452,8 +452,8 @@ mtcars[c("Datsun 710", "Camaro Z28"),]  #Seleciona um conjunto de carros
 ```{r}
 x<-c(1.6123,2.244,4.109,8.9,16 )
 round(x,2)                                # Arredonda os valores de x para n casas decimais
-ceiling(x)                                # Vector x de menor inteiro> x
-floor(x)                                  # Vetor x de maior inteiro <x
+ceiling(x)                                # retorna o menor valor maior que x (arredonda para cima)
+floor(x)                                  # retorna o maior valor menor que x (arredonda para baixo)
 as.integer(x)                             # Truncado x real para inteiros (em comparação com rodada)
 x%in%y                     # Testa cada elemento x para a adesão em y
 y%in%x                     # Testa cada elemento de y para a adesão em x

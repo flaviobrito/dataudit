@@ -20,7 +20,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r}
 getwd()
-setwd("/Users/flaviobrito/Documents/Cursos/Auditoria_Dados/dados/")
+setwd("./dados/")
 
 Dados_A <- read.csv2("Dados_A.csv", sep=";",stringsAsFactors=FALSE, header = TRUE, na.strings = " ")
 
@@ -334,7 +334,7 @@ mutate(flights,
   gain = ArrDelay - DepDelay,
   speed = Distance / AirTime * 60) %>%head
 
-# A abordagem com dplyr (imprime a nova variável, mas não armazená-lo)
+# A abordagem com dplyr (imprime a nova variável, mas não a armazena)
 flights %>%
     select(Distance, AirTime) %>%
     mutate(Speed = Distance/AirTime*60) %>%head
@@ -404,7 +404,7 @@ flights %>%
     group_by(Dest) %>%
     summarise(avg_delay = mean(ArrDelay, na.rm=TRUE))
 
-# Para cada operadora, calcule o atraso nas partidas mínimo e máximo e chegada
+# Para cada operadora, calcule o atraso máximo e mínimo em partidas e chegadas
 flights %>%
     group_by(UniqueCarrier) %>%
     summarise_each(funs(min(., na.rm=TRUE), max(., na.rm=TRUE)), matches("Delay"))

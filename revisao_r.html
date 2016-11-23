@@ -7,7 +7,7 @@
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
+
 
 <meta name="author" content="Flávio Brito" />
 
@@ -21,6 +21,7 @@
 <script src="revisao_r_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="revisao_r_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="revisao_r_files/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="revisao_r_files/navigation-1.1/tabsets.js"></script>
 
 
 <style type="text/css">code{white-space: pre;}</style>
@@ -68,25 +69,7 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 </style>
 
 
-
-</head>
-
-<body>
-
-<style type = "text/css">
-.main-container {
-  max-width: 940px;
-  margin-left: auto;
-  margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
-}
-img {
-  max-width:100%;
-  height: auto;
-}
+<style type="text/css">
 h1 {
   font-size: 34px;
 }
@@ -108,6 +91,30 @@ h5 {
 h6 {
   font-size: 12px;
 }
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
 .tabbed-pane {
   padding-top: 12px;
 }
@@ -117,10 +124,10 @@ button.code-folding-btn:focus {
 </style>
 
 
+
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
-<script src="revisao_r_files/navigation-1.0/tabsets.js"></script>
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
@@ -137,7 +144,8 @@ $(document).ready(function () {
 <div class="fluid-row" id="header">
 
 
-<h1 class="title">Introdução e Revisão - Linguagem R</h1>
+
+<h1 class="title toc-ignore">Introdução e Revisão - Linguagem R</h1>
 <h4 class="author"><em>Flávio Brito</em></h4>
 <h4 class="date"><em>23/10/2016</em></h4>
 
@@ -180,7 +188,6 @@ $(document).ready(function () {
 <li><a href="#classes-de-caracteres"><span class="toc-section-number">4.2</span> Classes de Caracteres</a></li>
 </ul></li>
 <li><a href="#funcoes-estatisticas-e-transformacoes"><span class="toc-section-number">5</span> Funções Estatísticas e Transformações</a></li>
-<li><a href="#pacotes-instalados-e-carregados"><span class="toc-section-number">6</span> Pacotes instalados e carregados</a></li>
 </ul>
 </div>
 
@@ -200,7 +207,7 @@ Valor &lt;-<span class="st"> &quot;R$ 1.650,00&quot;</span>
 <h1><span class="header-section-number">2</span> Ambiente R</h1>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Imprime seu diretório corrente </span>
 <span class="kw">getwd</span>() </code></pre></div>
-<pre><code>## [1] &quot;/Users/flaviobrito/Documents/Cursos/Auditoria_Dados&quot;</code></pre>
+<pre><code>## [1] &quot;C:/Users/flavi/OneDrive/Source/Repos/DataAudit&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Lista os objetos em memória</span>
 <span class="kw">ls</span>()    </code></pre></div>
 <pre><code>## [1] &quot;curso&quot;            &quot;Data&quot;             &quot;Duração do curso&quot;
@@ -214,8 +221,10 @@ Valor &lt;-<span class="st"> &quot;R$ 1.650,00&quot;</span>
 <span class="co">#setwd(&quot;./dados/&quot;)</span>
 <span class="co"># Visualiza e Grava as opções do ambiente</span>
 <span class="co"># Ajuda com as opções disponíveis</span>
-<span class="kw">help</span>(options) 
-<span class="co">#Lista as OpçÕes disponívies</span>
+<span class="kw">help</span>(options) </code></pre></div>
+<pre><code>## starting httpd help server ...</code></pre>
+<pre><code>##  done</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Lista as OpçÕes disponívies</span>
 <span class="co">#options() </span>
 <span class="co">#Configura o número de dígitos para serem impressos na saída</span>
 <span class="co">#options(digits=3) </span>
@@ -347,15 +356,15 @@ Data &lt;-<span class="st"> </span><span class="kw">as.Date</span>(Data,<span cl
 <pre><code>## [1] &quot;23/10/2016&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Formata a Saída</span>
 <span class="kw">format</span>(<span class="kw">Sys.Date</span>(), <span class="st">&quot;%a %b %d&quot;</span>)</code></pre></div>
-<pre><code>## [1] &quot;Ter Nov 01&quot;</code></pre>
+<pre><code>## [1] &quot;qua nov 23&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">format</span>(<span class="kw">Sys.Date</span>(), <span class="st">&quot;%d%b%Y&quot;</span>)</code></pre></div>
-<pre><code>## [1] &quot;01Nov2016&quot;</code></pre>
+<pre><code>## [1] &quot;23nov2016&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">format</span>(<span class="kw">Sys.Date</span>(), <span class="st">&quot;%d/%m/%Y&quot;</span>)</code></pre></div>
-<pre><code>## [1] &quot;01/11/2016&quot;</code></pre>
+<pre><code>## [1] &quot;23/11/2016&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">weekdays</span>(<span class="kw">Sys.Date</span>())</code></pre></div>
-<pre><code>## [1] &quot;Terça Feira&quot;</code></pre>
+<pre><code>## [1] &quot;quarta-feira&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">months</span>(<span class="kw">Sys.Date</span>())</code></pre></div>
-<pre><code>## [1] &quot;Novembro&quot;</code></pre>
+<pre><code>## [1] &quot;novembro&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">as.Date</span>(.leap.seconds)</code></pre></div>
 <pre><code>##  [1] &quot;1972-07-01&quot; &quot;1973-01-01&quot; &quot;1974-01-01&quot; &quot;1975-01-01&quot; &quot;1976-01-01&quot;
 ##  [6] &quot;1977-01-01&quot; &quot;1978-01-01&quot; &quot;1979-01-01&quot; &quot;1980-01-01&quot; &quot;1981-07-01&quot;
@@ -365,10 +374,10 @@ Data &lt;-<span class="st"> </span><span class="kw">as.Date</span>(Data,<span cl
 ## [26] &quot;2015-07-01&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">z &lt;-<span class="st"> </span><span class="kw">Sys.Date</span>()
 <span class="kw">print</span>(z)</code></pre></div>
-<pre><code>## [1] &quot;2016-11-01&quot;</code></pre>
+<pre><code>## [1] &quot;2016-11-23&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">w&lt;-<span class="st"> </span>z<span class="dv">+10</span>
 <span class="kw">print</span>(w)</code></pre></div>
-<pre><code>## [1] &quot;2016-11-11&quot;</code></pre>
+<pre><code>## [1] &quot;2016-12-03&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Diferença</span>
 
 data1 &lt;-<span class="st"> </span><span class="kw">strptime</span>(<span class="st">&quot;25/10/2016&quot;</span>, <span class="dt">format=</span><span class="st">&quot;%d/%m/%Y&quot;</span>)
@@ -741,9 +750,9 @@ mtcars[<span class="st">&quot;Camaro Z28&quot;</span>,] <span class="co"># Selec
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x&lt;-<span class="kw">c</span>(<span class="fl">1.6123</span>,<span class="fl">2.244</span>,<span class="fl">4.109</span>,<span class="fl">8.9</span>,<span class="dv">16</span> )
 <span class="kw">round</span>(x,<span class="dv">2</span>)                                <span class="co"># Arredonda os valores de x para n casas decimais</span></code></pre></div>
 <pre><code>## [1]  1.61  2.24  4.11  8.90 16.00</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ceiling</span>(x)                                <span class="co"># Vector x de menor inteiro&gt; x</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ceiling</span>(x)                                <span class="co"># retorna o menor valor maior que x (arredonda para cima)</span></code></pre></div>
 <pre><code>## [1]  2  3  5  9 16</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">floor</span>(x)                                  <span class="co"># Vetor x de maior inteiro &lt;x</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">floor</span>(x)                                  <span class="co"># retorna o maior valor menor que x (arredonda para baixo)</span></code></pre></div>
 <pre><code>## [1]  1  2  4  8 16</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">as.integer</span>(x)                             <span class="co"># Truncado x real para inteiros (em comparação com rodada)</span></code></pre></div>
 <pre><code>## [1]  1  2  4  8 16</code></pre>
@@ -902,11 +911,6 @@ power.t.test(n = NULL, delta = NULL, sd = 1, sig.level = 0.05,
              alternative = c("two.sided", "one.sided"),strict = FALSE)
 </pre>
 </div>
-<div id="pacotes-instalados-e-carregados" class="section level1">
-<h1><span class="header-section-number">6</span> Pacotes instalados e carregados</h1>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">installed.packages</span>()[<span class="kw">names</span>(<span class="kw">sessionInfo</span>()$otherPkgs), <span class="st">&quot;Version&quot;</span>]</code></pre></div>
-<pre><code>## character(0)</code></pre>
-</div>
 
 
 
@@ -916,9 +920,13 @@ power.t.test(n = NULL, delta = NULL, sd = 1, sig.level = 0.05,
 <script>
 
 // add bootstrap table styles to pandoc tables
-$(document).ready(function () {
+function bootstrapStylePandocTables() {
   $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
 });
+
 
 </script>
 
