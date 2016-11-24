@@ -16,11 +16,137 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+
+#Leitura de Arquivos
+##Excel
+
+```{r, eval=FALSE}
+
+install.packages("xlsx", repos = "http://cran.us.r-project.org")
+
+library(xlsx)
+
+res <- read.xlsx(arquivo, 1) # 1 corresponde ao número da Planilha que será lida
+
+out <- write.xlsx(x = res, file="./dados/Novo_Arquivo.xlsx", sheetName = "Nova", showNA = FALSE)
+
+
+```
+
+## Leitura de Arquivos Texto
+```{r, eval=FALSE}
+
+# Sintaxe
+
+read.table(file, header = FALSE, sep = "", quote = "\"'",
+           dec = ".", numerals = c("allow.loss", "warn.loss", "no.loss"),
+           row.names, col.names, as.is = !stringsAsFactors,
+           na.strings = "NA", colClasses = NA, nrows = -1,
+           skip = 0, check.names = TRUE, fill = !blank.lines.skip,
+           strip.white = FALSE, blank.lines.skip = TRUE,
+           comment.char = "#",
+           allowEscapes = FALSE, flush = FALSE,
+           stringsAsFactors = default.stringsAsFactors(),
+           fileEncoding = "", encoding = "unknown", text, skipNul = FALSE)
+
+read.csv(file, header = TRUE, sep = ",", quote = "\"",
+         dec = ".", fill = TRUE, comment.char = "", ...)
+
+read.csv2(file, header = TRUE, sep = ";", quote = "\"",
+          dec = ",", fill = TRUE, comment.char = "", ...)
+
+read.delim(file, header = TRUE, sep = "\t", quote = "\"",
+           dec = ".", fill = TRUE, comment.char = "", ...)
+
+read.delim2(file, header = TRUE, sep = "\t", quote = "\"",
+            dec = ",", fill = TRUE, comment.char = "", ...)
+            
+
+```
+
+* file: Nome do Arquivo
+* header: Primeira linha do arquivo corresponde ao cabeçalho
+* sep: separador
+* quote: aspas para separar caracteres
+* stringFactors: converte strings em Fatores
+
+
+Exemplos:
+```{r, eval=FALSE}
+dados <- read.table("arquivo.csv", header=TRUE, sep=",", row.names="id")
+
+dados <- read.csv("arquivo.txt", header=T, dec=".",sep="\t")
+
+dados <- read.csv2("arquivos.csv",
+                header = FALSE,
+                quote = "\"",
+                dec = ",",
+                row.names = c("M", "N", "O", "P", "Q"),
+                col.names= c("X", "Y", "Z", "A","B"),
+                stringsAsFactors=TRUE)
+
+dados <- read.csv(
+            file = "https://raw.githubusercontent.com/flaviobrito/dataudit/master/dados/Hospital.csv",
+            sep = ";",
+            stringsAsFactors = FALSE,
+            na.strings = c("", " ")
+  )  
+
+
+dados  <- read.delim2("arquivo.txt",
+                  header = FALSE,
+                  sep = "\t",
+                  quote  "\"",
+                  dec = ".",
+                  row.names = c("M", "N", "O"),
+                  col.names= c("X", "Y", "Z", "A","B"),
+                  colClasses = (rep("integer",2),
+                                "date",
+                                "numeric",
+                                "character")
+                  na.strings = "EMPTY",
+                  skip = 2) # Pula as duas primeiras linhas antes de carregar
+
+
+#Tamanho fixado
+
+#Cria arquivo temporário
+f <- tempfile()
+
+#Dá saída da informação
+cat("ID01Joao  M6.21970-01-01\nID02JaneteF5.61977-04-20\nID03Adao  M5.71979-05-13\n", file=f)
+
+#Especificação dos campos por tamanho
+d <- read.fwf(f, c(4,6,1,3,10))
+
+# Apresenta a estrutura de d
+str(d)
+
+'data.frame':	3 obs. of  5 variables:
+ $ V1: Factor w/ 3 levels "ID01","ID02",..: 1 2 3
+ $ V2: Factor w/ 3 levels "Adao  ","Janete",..: 3 2 1
+ $ V3: Factor w/ 2 levels "F","M": 2 1 2
+ $ V4: num  6.2 5.6 5.7
+ $ V5: Factor w/ 3 levels "1970-01-01","1977-04-20",..: 1 2 3
+
+d
+
+   V1     V2 V3  V4         V5
+1 ID01 Joao    M 6.2 1970-01-01
+2 ID02 Janete  F 5.6 1977-04-20
+3 ID03 Adao    M 5.7 1979-05-13
+
+```
+
+
+
+
+
 #Operações com Data Frame
 
 ```{r}
 getwd()
-setwd("/Users/flaviobrito/Documents/Cursos/Auditoria_Dados/dados/")
+setwd("./dados/")
 
 Dados_A <- read.csv2("Dados_A.csv", sep=";",stringsAsFactors=FALSE, header = TRUE, na.strings = " ")
 
