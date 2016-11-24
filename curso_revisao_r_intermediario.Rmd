@@ -222,6 +222,97 @@ v
 
 ```
 
+### Append
+
+A operação append une os dois data frames pelas linhas, colocando um após o outro.
+No exemplo abaixo temos 2 data frames com o mesmo número de colunas e todas do mesmo tipo. Desta forma faremos a operação de união destes em um outro data frame que chamaremos de "total"
+
+```{r, eval=FALSE}
+
+total <- rbind(DADOS_A_JANEIRO, DADOS_A_FEVEREIRO) 
+
+
+```
+
+
+### Melt (Derreter)
+
+Esta operação modifica a distribuição de valores, trazendo colunas para linhas
+
+```{r, eval=FALSE}
+
+id <- c(1,1,2,3)
+time <- c(1,2,1,1)
+x1 <- c(5,3,6,2)
+x2 <- c(6,5,1,4)
+df <- data.frame(id,time,x1,x2)
+df
+### Saída
+ id time x1 x2
+1  1    1  5  6
+2  1    2  3  5
+3  2    1  6  1
+4  3    1  2  4
+
+install.packages("reshape2")
+library(reshape2)
+
+novo_df <- melt(df, id=c("id","time")) 
+novo_df
+
+#Saída
+  id time variable value
+1  1    1       x1     5
+2  1    2       x1     3
+3  2    1       x1     6
+4  3    1       x1     2
+5  1    1       x2     6
+6  1    2       x2     5
+7  2    1       x2     1
+8  3    1       x2     4
+
+# Calculando com dados após melt
+
+#Função cast
+
+Sintaxe: dcast(data, formula, function) 
+
+subj_medias <- dcast(novo_df, id~variable, mean)
+
+subj_medias
+
+id x1  x2
+1  1  4 5.5
+2  2  6 1.0
+3  3  2 4.0
+
+time_medias <- dcast(novo_df, time~variable, mean) 
+
+time_medias
+
+time       x1       x2
+1    1 4.333333 3.666667
+2    2 3.000000 5.000000
+
+```
+
+
+#Transpondo
+
+Transpõe uma matriz ou um data frame, mundando trocando o que é coluna or linha
+```{r, eval=FALSE}
+t(mtcars)
+#Saída
+    Mazda RX4 Mazda RX4 Wag Datsun 710 Hornet 4 Drive Hornet Sportabout Valiant Duster 360
+mpg      21.00        21.000      22.80         21.400             18.70   18.10      14.30
+cyl       6.00         6.000       4.00          6.000              8.00    6.00       8.00
+disp    160.00       160.000     108.00        258.000            360.00  225.00     360.00
+hp      110.00       110.000      93.00        110.000            175.00  105.00     245.00
+drat      3.90         3.900       3.85          3.080              3.15    2.76       3.21
+wt        2.62         2.875       2.32          3.215              3.44    3.46       3.57
+
+```
+
 
 ### Combinando Conjuntos de dados
 ```{r}
@@ -276,8 +367,27 @@ union(y, z) # Linhas que aparecem em y e também em z
 #Diferença
 setdiff(y, z) # Linhas que aparecem em y e não em z
 ```
+#### Usando Data frames
+```{r}
 
+df1 <- data.frame(nome=c("SEPLAG", "SEFAZ", "SEEDUC"),bairro=c("CENTRO","CENTRO","CENTRO"), stringsAsFactors = FALSE)
 
+print(df1)
+
+df2 <- data.frame(nome=c("CECIERJ", "PRODERJ","SEEDUC"),bairro=c("GLORIA","GLORIA","CENTRO"), stringsAsFactors = FALSE)
+
+print(df2)
+
+#União
+union(df1,df2)
+
+#Interseção
+intersect(df1,df2)
+
+#Diferença
+setdiff(df1,df2)
+
+```
 
 
 

@@ -42,13 +42,9 @@ ls()
 #Muda de diretório
 # muda para o diretório dados
 #setwd("./dados/")      
-# Perceba / ao invés de  \ no Windows 
-#setwd("c:/docs/mydir")"
-# no  MAC OS ou Gnu Linux
-#setwd("./dados/")
 # Visualiza e Grava as opções do ambiente
 # Ajuda com as opções disponíveis
-help(options) 
+#help(options) 
 #Lista as OpçÕes disponívies
 #options() 
 #Configura o número de dígitos para serem impressos na saída
@@ -388,9 +384,22 @@ df <- data.frame(n, s, b)
 
 df
 
+#Exemplo mais avançado:
+
+ID    <- c(1,2,3,4,5)
+IDADE <- c(40,45,25,50,60)
+CARGO <- c("TECNICO", "ASSISTENTE", "COORDENADOR","AUXILIAR", "GERENTE")
+FORMACAO <- c("ESTATISTICA", "ECONOMIA", "SISTEMAS", "DIREITO","LETRAS")
+DEPARTAMENTO = c("DEPARTAMENTO A", "DEPARTAMENTO A", "DEPARTAMENTO A","DEPARTAMENTO B","DEPARTAMENTO B")
+
+RH1 <-data.frame(ID, IDADE, CARGO, FORMACAO, DEPARTAMENTO)
+
+print(RH1)
+
+    
 
 #Data frame de carros - Motor Trend Car Road Tests
-mtcars
+print(mtcars)
 
 #Seleciona a linha 1 e coluna 2
 mtcars[1, 2] 
@@ -400,6 +409,7 @@ mtcars["Mazda RX4", "cyl"]
 
 nrow(mtcars) # número de linhas
 ncol(mtcars) # número de colunas
+
 help(mtcars) # informações sobre este dataframe
 
 #Visualização
@@ -437,23 +447,39 @@ mtcars["Camaro Z28",] # Seleciona um carro específico
 
 mtcars[c("Datsun 710", "Camaro Z28"),]  #Seleciona um conjunto de carros
 
-
-
-
  
 
 ```
+### Trocando o nome das variáveis de um data frame
+
+```{r}
+#Lista o nome das variáveis de um data frame
+names(mtcars)
+
+#Troca o nome da variável carb, posição 11 para "carburador"
+names(mtcars)[11] <- "carburador"
+names(mtcars)[11] 
+#Volta ao nome anterior
+
+names(mtcars)[11] <- "carb"
+names(mtcars)[11] 
+#Sem utilizar o índice do vetor
+names(mtcars)[11] <- "carburador"
+colnames(mtcars)[colnames(mtcars)=="carburador"] <- "carb"
+names(mtcars)[11] 
+#Lista o nome das variáveis de um data frame
+names(mtcars)
 
 
 
-
+```
 
 ## Manipulação de dados
 ```{r}
 x<-c(1.6123,2.244,4.109,8.9,16 )
 round(x,2)                                # Arredonda os valores de x para n casas decimais
-ceiling(x)                                # Vector x de menor inteiro> x
-floor(x)                                  # Vetor x de maior inteiro <x
+ceiling(x)                                # retorna o menor valor maior que x (arredonda para cima)
+floor(x)                                  # retorna o maior valor menor que x (arredonda para baixo)
 as.integer(x)                             # Truncado x real para inteiros (em comparação com rodada)
 x%in%y                     # Testa cada elemento x para a adesão em y
 y%in%x                     # Testa cada elemento de y para a adesão em x

@@ -158,24 +158,28 @@ $(document).ready(function () {
 <li><a href="#operacoes-com-data-frame"><span class="toc-section-number">2</span> Operações com Data Frame</a><ul>
 <li><a href="#arquivos-data-frames"><span class="toc-section-number">2.1</span> Arquivos / Data Frames</a><ul>
 <li><a href="#merge"><span class="toc-section-number">2.1.1</span> Merge</a></li>
-<li><a href="#combinando-conjuntos-de-dados"><span class="toc-section-number">2.1.2</span> Combinando Conjuntos de dados</a></li>
-<li><a href="#filtros-e-selecao-de-registros-e-atributos-em-data-frames"><span class="toc-section-number">2.1.3</span> Filtros e Seleção de Registros e Atributos em Data Frames</a></li>
-<li><a href="#split---dividindo-data-frames"><span class="toc-section-number">2.1.4</span> Split - Dividindo Data frames</a></li>
-<li><a href="#append-data-frames---anexando-data-frames"><span class="toc-section-number">2.1.5</span> Append Data frames - Anexando Data frames</a></li>
+<li><a href="#append"><span class="toc-section-number">2.1.2</span> Append</a></li>
+<li><a href="#melt-derreter"><span class="toc-section-number">2.1.3</span> Melt (Derreter)</a></li>
 </ul></li>
 </ul></li>
-<li><a href="#usando-pacote-dplyr"><span class="toc-section-number">3</span> Usando pacote Dplyr</a><ul>
-<li><a href="#filtros-e-selecoes"><span class="toc-section-number">3.1</span> Filtros e Seleções</a><ul>
-<li><a href="#filtrando-linhas-usando-filter"><span class="toc-section-number">3.1.1</span> Filtrando linhas usando filter()</a></li>
-<li><a href="#selecionar-colunas-com-select"><span class="toc-section-number">3.1.2</span> Selecionar colunas com select ()</a></li>
-<li><a href="#extraia-linhas-distintas-unicas"><span class="toc-section-number">3.1.3</span> Extraia linhas distintas (únicas)</a></li>
-<li><a href="#adicionar-novas-colunas-com-mutate"><span class="toc-section-number">3.1.4</span> Adicionar novas colunas com mutate()</a></li>
-<li><a href="#totalize-valores-com-summarise"><span class="toc-section-number">3.1.5</span> Totalize valores com summarise()</a></li>
-<li><a href="#amostras---randomicamente-selecione-amostras-com-sample_n-e-sample_frac"><span class="toc-section-number">3.1.6</span> Amostras - randomicamente selecione amostras com sample_n() e sample_frac()</a></li>
-<li><a href="#operacoes-agrupadas"><span class="toc-section-number">3.1.7</span> Operações Agrupadas</a></li>
-<li><a href="#funcoes-janela"><span class="toc-section-number">3.1.8</span> Funções Janela</a></li>
-<li><a href="#top---maiores-valores"><span class="toc-section-number">3.1.9</span> Top - Maiores valores</a></li>
-<li><a href="#primeiro-registro"><span class="toc-section-number">3.1.10</span> Primeiro Registro</a></li>
+<li><a href="#transpondo"><span class="toc-section-number">3</span> Transpondo</a><ul>
+<li><a href="#combinando-conjuntos-de-dados"><span class="toc-section-number">3.0.1</span> Combinando Conjuntos de dados</a></li>
+<li><a href="#filtros-e-selecao-de-registros-e-atributos-em-data-frames"><span class="toc-section-number">3.0.2</span> Filtros e Seleção de Registros e Atributos em Data Frames</a></li>
+<li><a href="#split---dividindo-data-frames"><span class="toc-section-number">3.0.3</span> Split - Dividindo Data frames</a></li>
+<li><a href="#append-data-frames---anexando-data-frames"><span class="toc-section-number">3.0.4</span> Append Data frames - Anexando Data frames</a></li>
+</ul></li>
+<li><a href="#usando-pacote-dplyr"><span class="toc-section-number">4</span> Usando pacote Dplyr</a><ul>
+<li><a href="#filtros-e-selecoes"><span class="toc-section-number">4.1</span> Filtros e Seleções</a><ul>
+<li><a href="#filtrando-linhas-usando-filter"><span class="toc-section-number">4.1.1</span> Filtrando linhas usando filter()</a></li>
+<li><a href="#selecionar-colunas-com-select"><span class="toc-section-number">4.1.2</span> Selecionar colunas com select ()</a></li>
+<li><a href="#extraia-linhas-distintas-unicas"><span class="toc-section-number">4.1.3</span> Extraia linhas distintas (únicas)</a></li>
+<li><a href="#adicionar-novas-colunas-com-mutate"><span class="toc-section-number">4.1.4</span> Adicionar novas colunas com mutate()</a></li>
+<li><a href="#totalize-valores-com-summarise"><span class="toc-section-number">4.1.5</span> Totalize valores com summarise()</a></li>
+<li><a href="#amostras---randomicamente-selecione-amostras-com-sample_n-e-sample_frac"><span class="toc-section-number">4.1.6</span> Amostras - randomicamente selecione amostras com sample_n() e sample_frac()</a></li>
+<li><a href="#operacoes-agrupadas"><span class="toc-section-number">4.1.7</span> Operações Agrupadas</a></li>
+<li><a href="#funcoes-janela"><span class="toc-section-number">4.1.8</span> Funções Janela</a></li>
+<li><a href="#top---maiores-valores"><span class="toc-section-number">4.1.9</span> Top - Maiores valores</a></li>
+<li><a href="#primeiro-registro"><span class="toc-section-number">4.1.10</span> Primeiro Registro</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -391,8 +395,83 @@ v</code></pre></div>
 ## 3  109999         3    3000         3   SETOR_C
 ## 4  119836         1     500         1 SETOR_ABC</code></pre>
 </div>
+<div id="append" class="section level3">
+<h3><span class="header-section-number">2.1.2</span> Append</h3>
+<p>A operação append une os dois data frames pelas linhas, colocando um após o outro. No exemplo abaixo temos 2 data frames com o mesmo número de colunas e todas do mesmo tipo. Desta forma faremos a operação de união destes em um outro data frame que chamaremos de “total”</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">total &lt;-<span class="st"> </span><span class="kw">rbind</span>(DADOS_A_JANEIRO, DADOS_A_FEVEREIRO) </code></pre></div>
+</div>
+<div id="melt-derreter" class="section level3">
+<h3><span class="header-section-number">2.1.3</span> Melt (Derreter)</h3>
+<p>Esta operação modifica a distribuição de valores, trazendo colunas para linhas</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">id &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)
+time &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>)
+x1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">3</span>,<span class="dv">6</span>,<span class="dv">2</span>)
+x2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">6</span>,<span class="dv">5</span>,<span class="dv">1</span>,<span class="dv">4</span>)
+df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(id,time,x1,x2)
+df
+### Saída
+ id time x1 x2
+<span class="dv">1</span>  <span class="dv">1</span>    <span class="dv">1</span>  <span class="dv">5</span>  <span class="dv">6</span>
+<span class="dv">2</span>  <span class="dv">1</span>    <span class="dv">2</span>  <span class="dv">3</span>  <span class="dv">5</span>
+<span class="dv">3</span>  <span class="dv">2</span>    <span class="dv">1</span>  <span class="dv">6</span>  <span class="dv">1</span>
+<span class="dv">4</span>  <span class="dv">3</span>    <span class="dv">1</span>  <span class="dv">2</span>  <span class="dv">4</span>
+
+<span class="kw">install.packages</span>(<span class="st">&quot;reshape2&quot;</span>)
+<span class="kw">library</span>(reshape2)
+
+novo_df &lt;-<span class="st"> </span><span class="kw">melt</span>(df, <span class="dt">id=</span><span class="kw">c</span>(<span class="st">&quot;id&quot;</span>,<span class="st">&quot;time&quot;</span>)) 
+novo_df
+
+<span class="co">#Saída</span>
+  id time variable value
+<span class="dv">1</span>  <span class="dv">1</span>    <span class="dv">1</span>       x1     <span class="dv">5</span>
+<span class="dv">2</span>  <span class="dv">1</span>    <span class="dv">2</span>       x1     <span class="dv">3</span>
+<span class="dv">3</span>  <span class="dv">2</span>    <span class="dv">1</span>       x1     <span class="dv">6</span>
+<span class="dv">4</span>  <span class="dv">3</span>    <span class="dv">1</span>       x1     <span class="dv">2</span>
+<span class="dv">5</span>  <span class="dv">1</span>    <span class="dv">1</span>       x2     <span class="dv">6</span>
+<span class="dv">6</span>  <span class="dv">1</span>    <span class="dv">2</span>       x2     <span class="dv">5</span>
+<span class="dv">7</span>  <span class="dv">2</span>    <span class="dv">1</span>       x2     <span class="dv">1</span>
+<span class="dv">8</span>  <span class="dv">3</span>    <span class="dv">1</span>       x2     <span class="dv">4</span>
+
+<span class="co"># Calculando com dados após melt</span>
+
+<span class="co">#Função cast</span>
+
+Sintaxe:<span class="st"> </span><span class="kw">dcast</span>(data, formula, function) 
+
+subj_medias &lt;-<span class="st"> </span><span class="kw">dcast</span>(novo_df, id~variable, mean)
+
+subj_medias
+
+id x1  x2
+<span class="dv">1</span>  <span class="dv">1</span>  <span class="dv">4</span> <span class="fl">5.5</span>
+<span class="dv">2</span>  <span class="dv">2</span>  <span class="dv">6</span> <span class="fl">1.0</span>
+<span class="dv">3</span>  <span class="dv">3</span>  <span class="dv">2</span> <span class="fl">4.0</span>
+
+time_medias &lt;-<span class="st"> </span><span class="kw">dcast</span>(novo_df, time~variable, mean) 
+
+time_medias
+
+time       x1       x2
+<span class="dv">1</span>    <span class="dv">1</span> <span class="fl">4.333333</span> <span class="fl">3.666667</span>
+<span class="dv">2</span>    <span class="dv">2</span> <span class="fl">3.000000</span> <span class="fl">5.000000</span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="transpondo" class="section level1">
+<h1><span class="header-section-number">3</span> Transpondo</h1>
+<p>Transpõe uma matriz ou um data frame, mundando trocando o que é coluna or linha</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t</span>(mtcars)
+<span class="co">#Saída</span>
+    Mazda RX4 Mazda RX4 Wag Datsun <span class="dv">710</span> Hornet <span class="dv">4</span> Drive Hornet Sportabout Valiant Duster <span class="dv">360</span>
+mpg      <span class="fl">21.00</span>        <span class="fl">21.000</span>      <span class="fl">22.80</span>         <span class="fl">21.400</span>             <span class="fl">18.70</span>   <span class="fl">18.10</span>      <span class="fl">14.30</span>
+cyl       <span class="fl">6.00</span>         <span class="fl">6.000</span>       <span class="fl">4.00</span>          <span class="fl">6.000</span>              <span class="fl">8.00</span>    <span class="fl">6.00</span>       <span class="fl">8.00</span>
+disp    <span class="fl">160.00</span>       <span class="fl">160.000</span>     <span class="fl">108.00</span>        <span class="fl">258.000</span>            <span class="fl">360.00</span>  <span class="fl">225.00</span>     <span class="fl">360.00</span>
+hp      <span class="fl">110.00</span>       <span class="fl">110.000</span>      <span class="fl">93.00</span>        <span class="fl">110.000</span>            <span class="fl">175.00</span>  <span class="fl">105.00</span>     <span class="fl">245.00</span>
+drat      <span class="fl">3.90</span>         <span class="fl">3.900</span>       <span class="fl">3.85</span>          <span class="fl">3.080</span>              <span class="fl">3.15</span>    <span class="fl">2.76</span>       <span class="fl">3.21</span>
+wt        <span class="fl">2.62</span>         <span class="fl">2.875</span>       <span class="fl">2.32</span>          <span class="fl">3.215</span>              <span class="fl">3.44</span>    <span class="fl">3.46</span>       <span class="fl">3.57</span></code></pre></div>
 <div id="combinando-conjuntos-de-dados" class="section level3">
-<h3><span class="header-section-number">2.1.2</span> Combinando Conjuntos de dados</h3>
+<h3><span class="header-section-number">3.0.1</span> Combinando Conjuntos de dados</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">suppressMessages</span>(<span class="kw">library</span>(dplyr))
 x1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>)
 x2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)
@@ -402,7 +481,7 @@ x1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quo
 x3 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;T&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;T&quot;</span>)
 b &lt;-<span class="st"> </span><span class="kw">data.frame</span>(x1,x3)</code></pre></div>
 <div id="joins---juncoes-usando-dplyr" class="section level4">
-<h4><span class="header-section-number">2.1.2.1</span> Joins - Junções usando dplyr</h4>
+<h4><span class="header-section-number">3.0.1.1</span> Joins - Junções usando dplyr</h4>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">left_join</span>(a, b, <span class="dt">by =</span> <span class="st">&quot;x1&quot;</span>)</code></pre></div>
 <pre><code>##   x1 x2 x3
 ## 1  A  1  T
@@ -434,7 +513,7 @@ b &lt;-<span class="st"> </span><span class="kw">data.frame</span>(x1,x3)</code>
 ## &lt;0 rows&gt; (or 0-length row.names)</code></pre>
 </div>
 <div id="operacoes-com-conjuntos" class="section level4">
-<h4><span class="header-section-number">2.1.2.2</span> Operações com Conjuntos</h4>
+<h4><span class="header-section-number">3.0.1.2</span> Operações com Conjuntos</h4>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">z &lt;-<span class="st"> </span><span class="ot">NULL</span>
 x1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>)
 x2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)
@@ -461,9 +540,43 @@ z &lt;-<span class="st"> </span><span class="kw">data.frame</span>(x1,x2, <span 
 <pre><code>##   x1 x2
 ## 1  A  1</code></pre>
 </div>
+<div id="usando-data-frames" class="section level4">
+<h4><span class="header-section-number">3.0.1.3</span> Usando Data frames</h4>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">nome=</span><span class="kw">c</span>(<span class="st">&quot;SEPLAG&quot;</span>, <span class="st">&quot;SEFAZ&quot;</span>, <span class="st">&quot;SEEDUC&quot;</span>),<span class="dt">bairro=</span><span class="kw">c</span>(<span class="st">&quot;CENTRO&quot;</span>,<span class="st">&quot;CENTRO&quot;</span>,<span class="st">&quot;CENTRO&quot;</span>), <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)
+
+<span class="kw">print</span>(df1)</code></pre></div>
+<pre><code>##     nome bairro
+## 1 SEPLAG CENTRO
+## 2  SEFAZ CENTRO
+## 3 SEEDUC CENTRO</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">nome=</span><span class="kw">c</span>(<span class="st">&quot;CECIERJ&quot;</span>, <span class="st">&quot;PRODERJ&quot;</span>,<span class="st">&quot;SEEDUC&quot;</span>),<span class="dt">bairro=</span><span class="kw">c</span>(<span class="st">&quot;GLORIA&quot;</span>,<span class="st">&quot;GLORIA&quot;</span>,<span class="st">&quot;CENTRO&quot;</span>), <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)
+
+<span class="kw">print</span>(df2)</code></pre></div>
+<pre><code>##      nome bairro
+## 1 CECIERJ GLORIA
+## 2 PRODERJ GLORIA
+## 3  SEEDUC CENTRO</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#União</span>
+<span class="kw">union</span>(df1,df2)</code></pre></div>
+<pre><code>##      nome bairro
+## 1  SEPLAG CENTRO
+## 2   SEFAZ CENTRO
+## 3  SEEDUC CENTRO
+## 4 CECIERJ GLORIA
+## 5 PRODERJ GLORIA</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Interseção</span>
+<span class="kw">intersect</span>(df1,df2)</code></pre></div>
+<pre><code>##     nome bairro
+## 1 SEEDUC CENTRO</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Diferença</span>
+<span class="kw">setdiff</span>(df1,df2)</code></pre></div>
+<pre><code>##     nome bairro
+## 1 SEPLAG CENTRO
+## 2  SEFAZ CENTRO</code></pre>
+</div>
 </div>
 <div id="filtros-e-selecao-de-registros-e-atributos-em-data-frames" class="section level3">
-<h3><span class="header-section-number">2.1.3</span> Filtros e Seleção de Registros e Atributos em Data Frames</h3>
+<h3><span class="header-section-number">3.0.2</span> Filtros e Seleção de Registros e Atributos em Data Frames</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">suppressMessages</span>(<span class="kw">library</span>(dplyr))
 
 
@@ -504,7 +617,7 @@ flights &lt;-<span class="st"> </span>hflights
 <pre><code>## [1] 21</code></pre>
 </div>
 <div id="split---dividindo-data-frames" class="section level3">
-<h3><span class="header-section-number">2.1.4</span> Split - Dividindo Data frames</h3>
+<h3><span class="header-section-number">3.0.3</span> Split - Dividindo Data frames</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">split</span>(Dados_B, Dados_B$SETOR)</code></pre></div>
 <pre><code>## $SETOR_ABC
 ##   NUMFUNC NUMVINC     SETOR
@@ -515,7 +628,7 @@ flights &lt;-<span class="st"> </span>hflights
 ## 2  109999       3 SETOR_C</code></pre>
 </div>
 <div id="append-data-frames---anexando-data-frames" class="section level3">
-<h3><span class="header-section-number">2.1.5</span> Append Data frames - Anexando Data frames</h3>
+<h3><span class="header-section-number">3.0.4</span> Append Data frames - Anexando Data frames</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rbind</span>(Dados_A, Dados_A)</code></pre></div>
 <pre><code>##   NUMFUNC NUMVINC SALARIO
 ## 1  102929       1    1000
@@ -528,11 +641,10 @@ flights &lt;-<span class="st"> </span>hflights
 ## 8  119836       1     500</code></pre>
 </div>
 </div>
-</div>
 <div id="usando-pacote-dplyr" class="section level1">
-<h1><span class="header-section-number">3</span> Usando pacote Dplyr</h1>
+<h1><span class="header-section-number">4</span> Usando pacote Dplyr</h1>
 <div id="filtros-e-selecoes" class="section level2">
-<h2><span class="header-section-number">3.1</span> Filtros e Seleções</h2>
+<h2><span class="header-section-number">4.1</span> Filtros e Seleções</h2>
 <p>Dplyr tem como objectivo proporcionar uma função para cada verbo base para manipulação de dados:</p>
 <ul>
 <li>filter() (e slice())</li>
@@ -544,7 +656,7 @@ flights &lt;-<span class="st"> </span>hflights
 <li>sample_n() (e sample_frac())</li>
 </ul>
 <div id="filtrando-linhas-usando-filter" class="section level3">
-<h3><span class="header-section-number">3.1.1</span> Filtrando linhas usando filter()</h3>
+<h3><span class="header-section-number">4.1.1</span> Filtrando linhas usando filter()</h3>
 <p>filter () permite selecionar um subconjunto de linhas em um quadro de dados. O primeiro argumento é o nome do data frame. O segundo e subseqüentes argumentos são as expressões que filtram o data frame:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">attach</span>(flights)
 <span class="kw">filter</span>(flights, Month ==<span class="st"> </span><span class="dv">1</span>, DayofMonth ==<span class="st"> </span><span class="dv">1</span>) %&gt;%head</code></pre></div>
@@ -838,7 +950,7 @@ flights %&gt;%
 ## 3016449        0</code></pre>
 </div>
 <div id="selecionar-colunas-com-select" class="section level3">
-<h3><span class="header-section-number">3.1.2</span> Selecionar colunas com select ()</h3>
+<h3><span class="header-section-number">4.1.2</span> Selecionar colunas com select ()</h3>
 <p>Muitas vezes você trabalhar com grandes conjuntos de dados com muitas colunas, mas apenas alguns são realmente de interesse para você. select() permite-lhe ampliar rapidamente em um subconjunto útil usando operações que normalmente só funcionam em posições variáveis numéricas:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">select</span>(flights, DepTime, ArrTime, FlightNum) %&gt;%head</code></pre></div>
 <pre><code>##      DepTime ArrTime FlightNum
@@ -932,7 +1044,7 @@ flights %&gt;%
 ## 5429  DFW      224      6      13         0                         0</code></pre>
 </div>
 <div id="extraia-linhas-distintas-unicas" class="section level3">
-<h3><span class="header-section-number">3.1.3</span> Extraia linhas distintas (únicas)</h3>
+<h3><span class="header-section-number">4.1.3</span> Extraia linhas distintas (únicas)</h3>
 <p>Use distinct () para encontrar valores exclusivos em uma tabela:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">distinct</span>(flights, TailNum) %&gt;%head</code></pre></div>
 <pre><code>##   TailNum
@@ -948,7 +1060,7 @@ flights %&gt;%
 ## 2    HOU         FALSE</code></pre>
 </div>
 <div id="adicionar-novas-colunas-com-mutate" class="section level3">
-<h3><span class="header-section-number">3.1.4</span> Adicionar novas colunas com mutate()</h3>
+<h3><span class="header-section-number">4.1.4</span> Adicionar novas colunas com mutate()</h3>
 <p>Além de selecionar conjuntos de colunas existentes, muitas vezes é útil para adicionar novas colunas que são funções de colunas existentes. Este é o trabalho de mutate ():</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mutate</span>(flights,
   <span class="dt">gain =</span> ArrDelay -<span class="st"> </span>DepDelay,
@@ -1035,7 +1147,7 @@ flights &lt;-<span class="st"> </span>flights %&gt;%<span class="st"> </span><sp
 ## 6   -6      -8.00000</code></pre>
 </div>
 <div id="totalize-valores-com-summarise" class="section level3">
-<h3><span class="header-section-number">3.1.5</span> Totalize valores com summarise()</h3>
+<h3><span class="header-section-number">4.1.5</span> Totalize valores com summarise()</h3>
 <p>O último verbo é summarise(). Ele recolhe um data frame a uma única linha (este é exatamente equivalente a plyr :: summarise ()) group_by cria os grupos que serão operados. summarise utiliza a função de agregação fornecida para resumir cada grupo.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summarise</span>(flights,
   <span class="dt">delay =</span> <span class="kw">mean</span>(DepDelay, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</code></pre></div>
@@ -1043,27 +1155,27 @@ flights &lt;-<span class="st"> </span>flights %&gt;%<span class="st"> </span><sp
 ## 1     0</code></pre>
 </div>
 <div id="amostras---randomicamente-selecione-amostras-com-sample_n-e-sample_frac" class="section level3">
-<h3><span class="header-section-number">3.1.6</span> Amostras - randomicamente selecione amostras com sample_n() e sample_frac()</h3>
+<h3><span class="header-section-number">4.1.6</span> Amostras - randomicamente selecione amostras com sample_n() e sample_frac()</h3>
 <p>Você pode utilizar sample_n() and sample_frac() para gerar uma amostra aleatória de registros: utilize sample_n() para um número fixo e sample_frac() para uma fração fixa.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample_n</span>(flights, <span class="dv">5</span>)</code></pre></div>
 <pre><code>##   Year Month DayofMonth DayOfWeek DepTime ArrTime UniqueCarrier FlightNum
-## 3 2011     1          3         1    1352    1502            AA       428
-## 4 2011     1          4         2    1403    1513            AA       428
-## 5 2011     1          5         3    1405    1507            AA       428
 ## 2 2011     1          2         7    1401    1501            AA       428
+## 4 2011     1          4         2    1403    1513            AA       428
 ## 6 2011     1          6         4    1359    1503            AA       428
+## 5 2011     1          5         3    1405    1507            AA       428
+## 3 2011     1          3         1    1352    1502            AA       428
 ##   TailNum ActualElapsedTime AirTime ArrDelay DepDelay Origin Dest Distance
-## 3  N541AA                70      48       -8       -8    IAH  DFW      224
-## 4  N403AA                70      39        3        3    IAH  DFW      224
-## 5  N492AA                62      44       -3        5    IAH  DFW      224
 ## 2  N557AA                60      45       -9        1    IAH  DFW      224
+## 4  N403AA                70      39        3        3    IAH  DFW      224
 ## 6  N262AA                64      45       -7       -1    IAH  DFW      224
+## 5  N492AA                62      44       -3        5    IAH  DFW      224
+## 3  N541AA                70      48       -8       -8    IAH  DFW      224
 ##   TaxiIn TaxiOut Cancelled CancellationCode Diverted    Speed
-## 3      5      17         0                         0 280.0000
-## 4      9      22         0                         0 344.6154
-## 5      9       9         0                         0 305.4545
 ## 2      6       9         0                         0 298.6667
-## 6      6      13         0                         0 298.6667</code></pre>
+## 4      9      22         0                         0 344.6154
+## 6      6      13         0                         0 298.6667
+## 5      9       9         0                         0 305.4545
+## 3      5      17         0                         0 280.0000</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample_frac</span>(flights, <span class="fl">0.01</span>)</code></pre></div>
 <pre><code>##  [1] Year              Month             DayofMonth       
 ##  [4] DayOfWeek         DepTime           ArrTime          
@@ -1077,7 +1189,7 @@ flights &lt;-<span class="st"> </span>flights %&gt;%<span class="st"> </span><sp
 <p>Use replace = TRUE para executar uma amostra de bootstrap. Se necessário, você pode pesar a amostra com o argumento de peso.</p>
 </div>
 <div id="operacoes-agrupadas" class="section level3">
-<h3><span class="header-section-number">3.1.7</span> Operações Agrupadas</h3>
+<h3><span class="header-section-number">4.1.7</span> Operações Agrupadas</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#A abordagem com dplyr: criar uma tabela agrupados por Dest, e depois resumir cada grupo tomando a média de ArrDelay</span>
 
 flights %&gt;%
@@ -1136,7 +1248,7 @@ flights %&gt;%
 ##   DFW 6</code></pre>
 </div>
 <div id="funcoes-janela" class="section level3">
-<h3><span class="header-section-number">3.1.8</span> Funções Janela</h3>
+<h3><span class="header-section-number">4.1.8</span> Funções Janela</h3>
 <p>função de aggregate (como média) tem n entradas e retorna 1 valor Função de janela tem n entradas e retorna n valores</p>
 <p>Inclui funções de ranking e ordenação (como min_rank), compensado funções (lead e lag), e agregações acumuladas (como cummean).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">by_tailnum &lt;-<span class="st"> </span><span class="kw">group_by</span>(flights, TailNum)
@@ -1183,7 +1295,7 @@ flights %&gt;%
 ## 2            AA     1          4        3</code></pre>
 </div>
 <div id="top---maiores-valores" class="section level3">
-<h3><span class="header-section-number">3.1.9</span> Top - Maiores valores</h3>
+<h3><span class="header-section-number">4.1.9</span> Top - Maiores valores</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Maiores Atrasos na Partida</span>
 <span class="kw">top_n</span>(flights, <span class="dv">2</span>, flights$DepDelay)</code></pre></div>
 <pre><code>##   Year Month DayofMonth DayOfWeek DepTime ArrTime UniqueCarrier FlightNum
@@ -1197,7 +1309,7 @@ flights %&gt;%
 ## 2      9       9         0                         0 305.4545</code></pre>
 </div>
 <div id="primeiro-registro" class="section level3">
-<h3><span class="header-section-number">3.1.10</span> Primeiro Registro</h3>
+<h3><span class="header-section-number">4.1.10</span> Primeiro Registro</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">first</span>(flights$Distance)</code></pre></div>
 <pre><code>## [1] 224</code></pre>
 </div>
