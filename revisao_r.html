@@ -177,6 +177,7 @@ $(document).ready(function () {
 <li><a href="#lista"><span class="toc-section-number">3.4</span> Lista</a></li>
 <li><a href="#data-frame"><span class="toc-section-number">3.5</span> Data Frame</a><ul>
 <li><a href="#coluna-do-dataframe"><span class="toc-section-number">3.5.1</span> Coluna do Dataframe</a></li>
+<li><a href="#trocando-o-nome-das-variaveis-de-um-data-frame"><span class="toc-section-number">3.5.2</span> Trocando o nome das variáveis de um data frame</a></li>
 </ul></li>
 <li><a href="#manipulacao-de-dados"><span class="toc-section-number">3.6</span> Manipulação de dados</a></li>
 </ul></li>
@@ -215,16 +216,10 @@ Valor &lt;-<span class="st"> &quot;R$ 1.650,00&quot;</span>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Muda de diretório</span>
 <span class="co"># muda para o diretório dados</span>
 <span class="co">#setwd(&quot;./dados/&quot;)      </span>
-<span class="co"># Perceba / ao invés de  \ no Windows </span>
-<span class="co">#setwd(&quot;c:/docs/mydir&quot;)&quot;</span>
-<span class="co"># no  MAC OS ou Gnu Linux</span>
-<span class="co">#setwd(&quot;./dados/&quot;)</span>
 <span class="co"># Visualiza e Grava as opções do ambiente</span>
 <span class="co"># Ajuda com as opções disponíveis</span>
-<span class="kw">help</span>(options) </code></pre></div>
-<pre><code>## starting httpd help server ...</code></pre>
-<pre><code>##  done</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Lista as OpçÕes disponívies</span>
+<span class="co">#help(options) </span>
+<span class="co">#Lista as OpçÕes disponívies</span>
 <span class="co">#options() </span>
 <span class="co">#Configura o número de dígitos para serem impressos na saída</span>
 <span class="co">#options(digits=3) </span>
@@ -356,13 +351,13 @@ Data &lt;-<span class="st"> </span><span class="kw">as.Date</span>(Data,<span cl
 <pre><code>## [1] &quot;23/10/2016&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Formata a Saída</span>
 <span class="kw">format</span>(<span class="kw">Sys.Date</span>(), <span class="st">&quot;%a %b %d&quot;</span>)</code></pre></div>
-<pre><code>## [1] &quot;qua nov 23&quot;</code></pre>
+<pre><code>## [1] &quot;qui nov 24&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">format</span>(<span class="kw">Sys.Date</span>(), <span class="st">&quot;%d%b%Y&quot;</span>)</code></pre></div>
-<pre><code>## [1] &quot;23nov2016&quot;</code></pre>
+<pre><code>## [1] &quot;24nov2016&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">format</span>(<span class="kw">Sys.Date</span>(), <span class="st">&quot;%d/%m/%Y&quot;</span>)</code></pre></div>
-<pre><code>## [1] &quot;23/11/2016&quot;</code></pre>
+<pre><code>## [1] &quot;24/11/2016&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">weekdays</span>(<span class="kw">Sys.Date</span>())</code></pre></div>
-<pre><code>## [1] &quot;quarta-feira&quot;</code></pre>
+<pre><code>## [1] &quot;quinta-feira&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">months</span>(<span class="kw">Sys.Date</span>())</code></pre></div>
 <pre><code>## [1] &quot;novembro&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">as.Date</span>(.leap.seconds)</code></pre></div>
@@ -374,10 +369,10 @@ Data &lt;-<span class="st"> </span><span class="kw">as.Date</span>(Data,<span cl
 ## [26] &quot;2015-07-01&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">z &lt;-<span class="st"> </span><span class="kw">Sys.Date</span>()
 <span class="kw">print</span>(z)</code></pre></div>
-<pre><code>## [1] &quot;2016-11-23&quot;</code></pre>
+<pre><code>## [1] &quot;2016-11-24&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">w&lt;-<span class="st"> </span>z<span class="dv">+10</span>
 <span class="kw">print</span>(w)</code></pre></div>
-<pre><code>## [1] &quot;2016-12-03&quot;</code></pre>
+<pre><code>## [1] &quot;2016-12-04&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Diferença</span>
 
 data1 &lt;-<span class="st"> </span><span class="kw">strptime</span>(<span class="st">&quot;25/10/2016&quot;</span>, <span class="dt">format=</span><span class="st">&quot;%d/%m/%Y&quot;</span>)
@@ -554,8 +549,25 @@ df</code></pre></div>
 ## 1 2 aa  TRUE
 ## 2 3 bb FALSE
 ## 3 5 cc  TRUE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Exemplo mais avançado:</span>
+
+ID    &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)
+IDADE &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">40</span>,<span class="dv">45</span>,<span class="dv">25</span>,<span class="dv">50</span>,<span class="dv">60</span>)
+CARGO &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;TECNICO&quot;</span>, <span class="st">&quot;ASSISTENTE&quot;</span>, <span class="st">&quot;COORDENADOR&quot;</span>,<span class="st">&quot;AUXILIAR&quot;</span>, <span class="st">&quot;GERENTE&quot;</span>)
+FORMACAO &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ESTATISTICA&quot;</span>, <span class="st">&quot;ECONOMIA&quot;</span>, <span class="st">&quot;SISTEMAS&quot;</span>, <span class="st">&quot;DIREITO&quot;</span>,<span class="st">&quot;LETRAS&quot;</span>)
+DEPARTAMENTO =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;DEPARTAMENTO A&quot;</span>, <span class="st">&quot;DEPARTAMENTO A&quot;</span>, <span class="st">&quot;DEPARTAMENTO A&quot;</span>,<span class="st">&quot;DEPARTAMENTO B&quot;</span>,<span class="st">&quot;DEPARTAMENTO B&quot;</span>)
+
+RH1 &lt;-<span class="kw">data.frame</span>(ID, IDADE, CARGO, FORMACAO, DEPARTAMENTO)
+
+<span class="kw">print</span>(RH1)</code></pre></div>
+<pre><code>##   ID IDADE       CARGO    FORMACAO   DEPARTAMENTO
+## 1  1    40     TECNICO ESTATISTICA DEPARTAMENTO A
+## 2  2    45  ASSISTENTE    ECONOMIA DEPARTAMENTO A
+## 3  3    25 COORDENADOR    SISTEMAS DEPARTAMENTO A
+## 4  4    50    AUXILIAR     DIREITO DEPARTAMENTO B
+## 5  5    60     GERENTE      LETRAS DEPARTAMENTO B</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Data frame de carros - Motor Trend Car Road Tests</span>
-mtcars</code></pre></div>
+<span class="kw">print</span>(mtcars)</code></pre></div>
 <pre><code>##                      mpg cyl  disp  hp drat    wt  qsec vs am gear carb
 ## Mazda RX4           21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4
 ## Mazda RX4 Wag       21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4
@@ -599,9 +611,10 @@ mtcars[<span class="st">&quot;Mazda RX4&quot;</span>, <span class="st">&quot;cyl
 <pre><code>## [1] 32</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ncol</span>(mtcars) <span class="co"># número de colunas</span></code></pre></div>
 <pre><code>## [1] 11</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">help</span>(mtcars) <span class="co"># informações sobre este dataframe</span>
-
-<span class="co">#Visualização</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">help</span>(mtcars) <span class="co"># informações sobre este dataframe</span></code></pre></div>
+<pre><code>## starting httpd help server ...</code></pre>
+<pre><code>##  done</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Visualização</span>
 <span class="kw">head</span>(mtcars)</code></pre></div>
 <pre><code>##                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
 ## Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
@@ -743,6 +756,31 @@ mtcars[<span class="st">&quot;Camaro Z28&quot;</span>,] <span class="co"># Selec
 <pre><code>##             mpg cyl disp  hp drat   wt  qsec vs am gear carb
 ## Datsun 710 22.8   4  108  93 3.85 2.32 18.61  1  1    4    1
 ## Camaro Z28 13.3   8  350 245 3.73 3.84 15.41  0  0    3    4</code></pre>
+</div>
+<div id="trocando-o-nome-das-variaveis-de-um-data-frame" class="section level3">
+<h3><span class="header-section-number">3.5.2</span> Trocando o nome das variáveis de um data frame</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Lista o nome das variáveis de um data frame</span>
+<span class="kw">names</span>(mtcars)</code></pre></div>
+<pre><code>##  [1] &quot;mpg&quot;  &quot;cyl&quot;  &quot;disp&quot; &quot;hp&quot;   &quot;drat&quot; &quot;wt&quot;   &quot;qsec&quot; &quot;vs&quot;   &quot;am&quot;   &quot;gear&quot;
+## [11] &quot;carb&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Troca o nome da variável carb, posição 11 para &quot;carburador&quot;</span>
+<span class="kw">names</span>(mtcars)[<span class="dv">11</span>] &lt;-<span class="st"> &quot;carburador&quot;</span>
+<span class="kw">names</span>(mtcars)[<span class="dv">11</span>] </code></pre></div>
+<pre><code>## [1] &quot;carburador&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Volta ao nome anterior</span>
+
+<span class="kw">names</span>(mtcars)[<span class="dv">11</span>] &lt;-<span class="st"> &quot;carb&quot;</span>
+<span class="kw">names</span>(mtcars)[<span class="dv">11</span>] </code></pre></div>
+<pre><code>## [1] &quot;carb&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Sem utilizar o índice do vetor</span>
+<span class="kw">names</span>(mtcars)[<span class="dv">11</span>] &lt;-<span class="st"> &quot;carburador&quot;</span>
+<span class="kw">colnames</span>(mtcars)[<span class="kw">colnames</span>(mtcars)==<span class="st">&quot;carburador&quot;</span>] &lt;-<span class="st"> &quot;carb&quot;</span>
+<span class="kw">names</span>(mtcars)[<span class="dv">11</span>] </code></pre></div>
+<pre><code>## [1] &quot;carb&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Lista o nome das variáveis de um data frame</span>
+<span class="kw">names</span>(mtcars)</code></pre></div>
+<pre><code>##  [1] &quot;mpg&quot;  &quot;cyl&quot;  &quot;disp&quot; &quot;hp&quot;   &quot;drat&quot; &quot;wt&quot;   &quot;qsec&quot; &quot;vs&quot;   &quot;am&quot;   &quot;gear&quot;
+## [11] &quot;carb&quot;</code></pre>
 </div>
 </div>
 <div id="manipulacao-de-dados" class="section level2">

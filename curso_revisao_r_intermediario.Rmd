@@ -20,7 +20,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r}
 getwd()
-setwd("./dados/")
+setwd("/Users/flaviobrito/Documents/Cursos/Auditoria_Dados/dados/")
 
 Dados_A <- read.csv2("Dados_A.csv", sep=";",stringsAsFactors=FALSE, header = TRUE, na.strings = " ")
 
